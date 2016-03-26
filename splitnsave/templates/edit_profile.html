@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Split'n'Save</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <script type="text/javascript" src="static/js/angular.js"></script>
+      <script type="text/javascript" src="static/js/script.js"></script>
+  
+  </head>
+  <body class="clearfix" ng-controller="Main">
+  <div id="wrap">
+  <nav class="navbar navbar-default" style="background-color: white;margin-bottom: 0px;">
+    <div class="container-fluid clearfix">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-6">
+      <div class="navbar-header" style="margin-left: 70px;">
+        <a class="navbar-brand" href="#">Split'n'Save</a>
+      </div>
+      </div>
+	<div class="col-xs-5 col-sm-3 col-md-4">
+    <div class="options pull-right">
+      <button type="button" class="btn navbar-btn" style="display:inline-block;background-color: white;color:black;">Post an Ad</button>
+    </div>
+  </div>
+  <div class="col-xs-7 col-sm-3 col-md-2">
+    <div class="options pull-left">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="display:inline-block"><span class="glyphicon glyphicon-user"></span><span > UserName </span><!--<span class="caret"></span>--></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">My Profile</a></li>
+                <li><a href="#">My Posts</a></li>
+                <li><a href="#">Transaction History</a></li>
+                <li><a href="#">Messages</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Settings</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Sign Out<OUTPUT></OUTPUT></a></li>
+              </ul>
+            </li>
+          </ul>
+          
+	</div>
+	</div>
+	</div>
+    </div>
+  </nav>
+
+    <nav class="navbar navbar-default navbar-inverse" style="background-color: black;margin-top: 0px;">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" style="font-size: 15px;">
+          <ul class="nav navbar-nav" style="padding-left: 50px;">
+            <li><a href="#">Dashboard <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Inbox</a></li>
+            <li><a href="#">My Posts</a></li>
+            <li><a href="#">Transactions</a></li>
+            <li class="active"><a href="#">Profile</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container" style="padding-top: 50px;overflow-y:auto;height:auto">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 col-md-3" style="border-style: solid 5px;">
+            <a href="#" class="thumbnail">
+              <img ng-src="{{Image_Link}}" alt="profile picture">
+            </a>
+        </div>
+
+        <div class="col-xs-12 col-sm-9 col-md-9">
+          <div class="details">
+            <div class="row" style="margin-bottom:10px">
+              <div class="col-xs-12 col-sm-6 col-md-5"  style="margin-bottom:10px">
+                <div class="input-group">
+                  <span class="input-group-addon" style="width: 120px;" id="basic-addon1">First Name</span>
+                  <input type="text" class="form-control" ng-model="First_Name" ng-blur="onMouseLeave_First_Name($event)" ng-change="onMouseLeave_First_Name($event)" placeholder="{{First_Name}}" aria-describedby="sizing-addon1" >
+                </div>
+                <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_First_Name_Result}}</div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-5">
+                <div class="input-group">
+                  <span class="input-group-addon" style="width: 120px;" id="basic-addon1">Last Name</span>
+                  <input type="text" class="form-control" ng-model="Last_Name" aria-describedby="sizing-addon1" placeholder="{{Last_Name}}" ng-blur="onMouseLeave_Last_Name($event)" ng-change="onMouseLeave_Last_Name($event)">
+                </div>
+                <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Last_Name_Result}}</div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+              <div class="col-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon" style="width: 120px;" id="basic-addon1">Phone Number</span>
+                  <input type="text" class="form-control" ng-model="ContactNumber" aria-describedby="sizing-addon1" placeholder="{{ContactNumber}}" ng-blur="onMouseLeave_ContactNumber($event)" ng-change="onMouseLeave_ContactNumber($event)">
+                </div>
+                <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_ContactNumber_Result}}</div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px">
+              <div class="col-md-10">
+                <div class="input-group">
+                  <span class="input-group-addon" style="width: 120px;" id="basic-addon1">Email</span>
+                  <input type="text" class="form-control" ng-model="Email" aria-describedby="sizing-addon1" placeholder="{{Email}}" ng-blur="onMouseLeave_Email($event)" ng-change="onMouseLeave_Email($event)">
+                </div>
+                <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Email_Result}}</div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom:10px">
+              <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 120px;" id="basic-addon1">Location</span>
+                    <input type="text" class="form-control Location" aria-label="..." placeholder="{{CityName}}"  disabled>
+                    <div class="input-group-btn location">
+                        <ul class="dropdown-menu">
+                            <li><a href="">Gandhinagar</a></li>
+                            <li><a href="">Ahmedabad</a></li>
+                            <li><a href="">Other</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                    </div>
+                </div>
+              </div>
+            </div>
+              <div class="row" style="margin-bottom: 10px;">
+              <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 120px;" id="basic-addon1">Gender</span>
+                    <input type="text" class="form-control Gender" aria-label="..." placeholder="{{Gender}}"  disabled>
+                    <div class="input-group-btn gender">
+                        <ul class="dropdown-menu">
+                            <li><a href="">Male</a></li>
+                            <li><a href="">Female</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                    </div>
+                </div>
+              </div>
+            </div>
+         
+            <div class="row" style="margin-bottom:10px">
+              <div class="col-xs-12 col-sm-6 col-md-4"  style="margin-bottom:10px">
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 120px;" id="basic-addon1">Date of Birth</span>
+                    <span class="input-group-addon" id="basic-addon1">Date</span>
+                    <input type="text" class="form-control Day" placeholder="{{Day}}"  disabled>
+                    <div class="input-group-btn day">
+                        <ul class="dropdown-menu">
+                            <li><a href="">1</a></li>
+                            <li><a href="">2</a></li>
+                            <li><a href="">3</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3"  style="margin-bottom:10px">
+                  <div class="input-group">
+                      <span class="input-group-addon" id="basic-addon1">Month</span>
+                      <input type="text" class="form-control Month" aria-label="..." placeholder="{{Month}}"  disabled>
+                      <div class="input-group-btn month">
+                          <ul class="dropdown-menu">
+                              <li><a href="">1</a></li>
+                              <li><a href="">2</a></li>
+                              <li><a href="">3</a></li>
+                          </ul>
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                      </div>
+                  </div>
+            </div>
+            <div class="col-xs-12 col-sm-3 col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Year</span>
+                    <input type="text" class="form-control Year" aria-label="..." placeholder="{{Year}}"  disabled>
+                    <div class="input-group-btn year">
+                        <ul class="dropdown-menu">
+                            <li><a href="">1994</a></li>
+                            <li><a href="">1995</a></li>
+                            <li><a href="">1996</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom:10px">
+              <div class="col-xs-12 col-sm-6 col-md-10" >
+                <div class="input-group">
+                    <span class="input-group-addon" style="width: 120px;" id="basic-addon1">Profession</span>
+                    <input type="text" class="form-control Profession" aria-label="..." placeholder="{{Profession_Name}}"  disabled>
+                    <div class="input-group-btn profession">
+                        <ul class="dropdown-menu">
+                            <li><a href="">Student</a></li>
+                            <li><a href="">Faculty</a></li>
+                            <li><a href="">Others</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                    </div>
+                </div>
+              </div>
+            </div>        
+              <div class="row" style="margin-bottom: 50px;">
+                <div class="col-xs-12 col-sm-6 col-md-10">
+                  <div class="input-group">
+                    <span class="input-group-addon" style="width: 120px;" id="basic-addon1">Institute</span>
+                    <input type="text" class="form-control Institute" aria-label="..." placeholder="{{Institute_Name}}"  disabled>
+                    <div class="input-group-btn institute">
+                        <ul class="dropdown-menu">
+                            <li><a href="">DA-IICT</a></li>
+                            <li><a href="">NIFT</a></li>
+                            <li><a href="">Other</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                    </div>
+                    </div>
+                </div>  
+              </div>
+               </div>
+                <div class="row save" ng-click="onMouseClick_Changes($event)">
+                  <button type="button" class="btn btn-info save-button">Save Changes</button>
+                </div>
+            </div>
+            
+          </div>
+          
+        </div>
+        </div> 
+        
+     
+ <nav class="navbar navbar-default navbar-fixed-bottom" id="footer">
+    <div class="container clearfix">
+       <div class="row">
+        <div class="col-md-4">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="#">Split'n'Save</a>
+          </div>
+        </div>
+        <div class="join col-md-8" style="text-align:right;float:right;">
+            <span style="padding: 10px;">Join Us On</span>
+            <span style="font-size:2em;padding: 2px;"><i class="fa fa-facebook-square"></i></span>
+            <span style="font-size:2em;padding: 2px;"><i class="fa fa-twitter-square"></i></span>
+            <span style="font-size:2em;padding: 2px;"><i class="fa fa-google-plus"></i></span>
+            <span style="font-size:2em;padding: 2px;"><i class="fa fa-youtube-square"></i></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="static/js/bootstrap.min.js"></script>
+  </body>
+</html>

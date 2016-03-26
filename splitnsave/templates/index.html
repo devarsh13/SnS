@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+  <head>
+  	{% load static from 	staticfiles %}
+
+	
+	 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  	<script type="text/javascript" src="static/js/angular.js"></script>
+      	<script type="text/javascript" src="static/js/script.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    	<script src="static/js/bootstrap.min.js"></script>
+  
+  </head>
+  <body>
+  <div class="container" style="padding-top: 50px;">
+	  <div ng-controller="Main">
+		<span class="input-group-addon" id="basic-addon1">First name</span>
+		<input type="text" class="form-control" ng-model="First_Name" aria-describedby="sizing-addon1" ng-blur="onMouseLeave_First_Name($event)" >
+		{{onMouseLeave_First_Name_Result}}<br />
+		<span class="input-group-addon" id="basic-addon1">Last name</span>
+		<input type="text" class="form-control" ng-model="Last_Name" aria-describedby="sizing-addon1" ng-blur="onMouseLeave_Last_Name($event)" >
+		{{onMouseLeave_Last_Name_Result}}<br />
+		<span class="input-group-addon" id="basic-addon1">Email</span>
+		<input type="text" class="form-control" ng-model="Email" aria-describedby="sizing-addon1" ng-blur="onMouseLeave_Email($event)" >
+		{{onMouseLeave_Email_Result}}<br />
+		<span class="input-group-addon" id="basic-addon1">Phone Number</span>
+		<input type="text" class="form-control" ng-model="ContactNumber" aria-describedby="sizing-addon1" ng-blur="onMouseLeave_ContactNumber($event)" >
+		{{onMouseLeave_ContactNumber_Result}}<br />
+		<span class="input-group-addon" id="basic-addon1">Location</span>
+		            
+    
+		            <div class="input-group-btn location">
+		                <ul class="dropdown-menu"  >
+		                    <li><a href="#">Gandhinagar</a></li>
+		                    <li><a href="#">Ahmedabad</a></li>
+		                    <li><a href="#">Other</a></li>
+		                </ul>
+		                <button type="button" class="btn btn-default dropdown-toggle"   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{CityName}}<span class="caret"></span></button>
+			   </div>
+			   
+		<span class="input-group-addon" id="basic-addon1">Gender</span>
+		            
+    
+		            <div class="input-group-btn gender">
+		                <ul class="dropdown-menu"  >
+		                    <li><a href="#">Male</a></li>
+		                    <li><a href="#">Female</a></li>
+		                    <li><a href="#">Other</a></li>
+		                </ul>
+		                <button type="button" class="btn btn-default dropdown-toggle"   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Gender}}<span class="caret"></span></button>
+			    </div> <br>
+		  <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">Date of Birth</span>
+                    <span class="input-group-addon" id="basic-addon1">Day</span>
+                    <div class="input-group-btn day">
+                        <ul class="dropdown-menu">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Day}}<span class="caret"></span></button>
+                    </div>
+		    <span class="input-group-addon" id="basic-addon1">Month</span>
+                    <div class="input-group-btn month">
+                        <ul class="dropdown-menu">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Month}}<span class="caret"></span></button>
+                    </div>
+		    <span class="input-group-addon" id="basic-addon1">Year</span>
+                    <div class="input-group-btn year">
+                        <ul class="dropdown-menu">
+                            <li><a href="">1</a></li>
+                            <li><a href="">2</a></li>
+                            <li><a href="">3</a></li>
+                        </ul>
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Year}}<span class="caret"></span></button>
+                    </div>
+		</div><br>
+		<span class="input-group-addon" id="basic-addon1">Profession</span>
+	            <div class="input-group-btn profession">
+	                <ul class="dropdown-menu"  >
+	                    <li><a href="#">Student</a></li>
+	                    <li><a href="#">Professor</a></li>
+	                    <li><a href="#">Other</a></li>
+	                </ul>
+	                <button type="button" class="btn btn-default dropdown-toggle"   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Profession_Name}}<span class="caret"></span></button>
+		   </div> 
+		<span class="input-group-addon" id="basic-addon1">Institute</span>
+	            <div class="input-group-btn institute">
+	                <ul class="dropdown-menu">
+	                    <li><a href="#">Student</a></li>
+	                    <li><a href="#">Professor</a></li>
+	                    <li><a href="#">Other</a></li>
+	                </ul>
+	                <button type="button" class="btn btn-default dropdown-toggle"   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Institute_Name}}<span class="caret"></span></button>
+		   </div>    
+		<!-- <img ng-src="{{image}}">
+	  	
+		<input type="text"> -->
+		 
+	  </div>
+  </div>
+  </body>
+  </html>

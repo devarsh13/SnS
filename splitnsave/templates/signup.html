@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Split'n'Save</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="static/js/angular.js"></script>
+    <script type="text/javascript" src="static/js/signupscript.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-controller="Main">
+    
+  <nav class="navbar navbar-default" style="background-color: white;margin-bottom: 0px;">
+    <div class="container-fluid">
+      <div class="navbar-header" style="padding-left: 70px;">
+        <a class="navbar-brand" href="#">Split'n'Save</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="color: black;">
+      <h1 style="margin-top:20px;text-align:center;color: black;">Welcome to the Community!</h1>
+
+      <form ng-model="user">
+          <div class="row" style="margin-bottom: 10px">
+            <div class="form-group">
+              <div class="col-md-2"></div>
+              <div class="col-md-4" style="margin-bottom: 10px">
+                <!--<label for="exampleInputEmail1">First Name</label>-->
+                <input type="text" class="form-control" id="First_Name" placeholder="First Name"  ng-model="user.First_Name" ng-change="onMouseLeave_First_Name($event)" ng-blur="onMouseLeave_First_Name($event)">
+                <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_First_Name_Result}}</div>
+              </div>
+              <div class="col-md-4">
+                <!--<label for="exampleInputEmail1">Last Name</label>-->
+                <input type="text" class="form-control" id="Last_Name" placeholder="Last Name"  ng-model="user.Last_Name" ng-blur="onMouseLeave_Last_Name($event)" ng-change="onMouseLeave_Last_Name($event)">
+                 <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Last_Name_Result}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 10px">
+          <div class="col-md-2"></div>
+            <div class="form-group col-md-8">
+              <!--<label for="exampleInputPassword1">Email Address</label>-->
+              <input type="text" class="form-control" id="Email" placeholder="Email address" ng-model="user.Email" ng-blur="onMouseLeave_Email($event)" ng-change="onMouseLeave_Email($event)">
+              <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Email_Result}}</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 10px">
+          <div class="col-md-2"></div>
+            <div class="form-group col-md-8">
+              <!--<label for="exampleInputPassword1">Password</label>-->
+              <input type="password" class="form-control" id="Password" placeholder="Password"  ng-model="user.Password" 
+              ng-blur="onMouseLeave_Password($event)" ng-change="onMouseLeave_Password($event)">
+               <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Password_Result}}</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 10px">
+          <div class="col-md-2"></div>
+            <div class="form-group col-md-8">
+              <!--<label for="exampleInputPassword1">Confirm Password</label>-->
+              <input type="password" class="form-control" id="Re_Password" placeholder="Confirm Password"  ng-model="user.Re_Password" ng-blur="onMouseLeave_Re_Password($event)" ng-change="onMouseLeave_Re_Password($event)">
+               <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Re_Password_Result}}</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 10px">
+          <div class="col-md-2"></div>
+            <div class="form-group col-md-8">
+              <!--<label for="exampleInputPassword1">Contact Number</label>-->
+              <input type="text" class="form-control" id="ContactNumber" placeholder="Contact Number" ng-model="user.ContactNumber" ng-blur="onMouseLeave_ContactNumber($event)" ng-change="onMouseLeave_ContactNumber($event)">
+              <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_ContactNumber_Result}}</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 10px">
+          <div class="col-md-2"></div>
+            <div class="form-group col-md-8">
+              <!--<label for="exampleInputPassword1">Location</label>-->
+               <select class="form-control" id="CityName" ng-model="user.CityName" 
+              ng-blur="onMouseLeave_CityName($event)" ng-change="onMouseLeave_CityName($event)">
+                <option value="" disabled selected>Location</option>
+                <option value="Gandhinagar">Gandhinagar</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Others">Others</option>
+              </select>
+               <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_CityName_Result}}</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 10px">
+          <div class="col-md-2"></div>
+            <div class="form-group col-md-8">
+              <select class="form-control" id="Gender" ng-model="user.Gender" 
+              ng-blur="onMouseLeave_Gender($event)" ng-change="onMouseLeave_Gender($event)">
+                <option value="" disabled selected>Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Gender_Result}}</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 10px;">
+          <div class="col-md-2"></div>
+            <div class="col-md-2">
+              <!--<h5 style="margin: 0 auto;color: black;">Date of birth</h5>-->
+              <label for="exampleInputFile">Date of birth</label>
+            </div>
+            <div class="col-md-2" style="margin-bottom: 10px;">
+              <select class="form-control" id="Date" ng-model="user.Date" 
+              ng-blur="onMouseLeave_Date($event)" ng-change="onMouseLeave_Date($event)">
+                <option value="" disabled selected>Date</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+              </select>
+              <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Date_Result}}</div>
+            </div>
+            <div class="col-md-2" style="margin-bottom: 10px;">
+              <select class="form-control" id="Month" ng-model="user.Month" 
+              ng-blur="onMouseLeave_Month($event)" ng-change="onMouseLeave_Month($event)">
+                <option value="" disabled selected>Month</option>
+                <option value="01">January</option>
+                <option value="02">February</option>
+              </select>
+              <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Month_Result}}</div>
+            </div>
+            <div class="col-md-2">
+              <select class="form-control" id="Year" ng-model="user.Year" 
+              ng-blur="onMouseLeave_Year($event)" ng-change="onMouseLeave_Year($event)">
+                <option value="" disabled selected>Year</option>
+                <option value="1994">1994</option>
+                <option value="1995">1995</option>
+                <option value="1996">1996</option>
+              </select>
+              <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Year_Result}}</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 10px;">
+          <div class="col-md-2"></div>
+            <div class="form-group col-md-8">
+              <select class="form-control" ng-model="user.Profession_Name" 
+              ng-blur="onMouseLeave_Profession_Name($event)" ng-change="onMouseLeave_Profession_Name($event)">
+                <option value="" disabled selected>Profession</option>
+                <option value="Student">Student</option>
+                <option value="Professor">Professor</option>
+                <option value="Others">Others</option>
+              </select>
+               <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Profession_Name_Result}}</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 10px;">
+          <div class="col-md-2"></div>
+            <div class="form-group col-md-8">
+              <select class="form-control" ng-model="user.Institute_Name" 
+              ng-blur="onMouseLeave_Institute_Name($event)" ng-change="onMouseLeave_Institute_Name($event)">
+                <option value="" disabled selected>Institute</option>
+                <option value="DA-IICT">DA-IICT</option>
+                <option value="NIFT">NIFT</option>
+                <option value="Other">Other</option>
+              </select>
+               <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Institute_Name_Result}}</div>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom: 10px;">
+          <div class="col-md-2"></div>
+            <div class="form-group col-md-8">
+              <label for="exampleInputFile">Profile Picture</label>
+              <input name="image" type="file" id="image" ng-model="user.Image_Link">
+              <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_Image_Link_Result}}</div>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-md-5"></div>
+            <button type="submit" class="btn btn-default" style="background-color: black;color: white;width: 150px;" ng-click="onMouseLeave_Submit($event)">Submit</button>
+          </div>
+          <div class="row">
+          <div class="col-md-5"></div>
+          <div id="login" style="margin: 0 auto;display:block;padding-left: 10px;">Already registred ? <a href="">Log In</a></div>
+          </div>
+      </form>
+  </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom" id="footer">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Split'n'Save</a>
+            </div>
+            <div class="join">
+                <span style="padding: 10px;">Join Us On</span>
+                <span style="font-size:2em;padding: 2px;"><i class="fa fa-facebook-square"></i></span>
+                <span style="font-size:2em;padding: 2px;"><i class="fa fa-twitter-square"></i></span>
+                <span style="font-size:2em;padding: 2px;"><i class="fa fa-google-plus"></i></span>
+                <span style="font-size:2em;padding: 2px;"><i class="fa fa-youtube-square"></i></span>
+            </div>
+        </div>
+  </nav>    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="static/js/bootstrap.min.js"></script>
+  </body>
+</html>
