@@ -1,5 +1,8 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en" ng-app="myModule">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +13,11 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="static/css/style.css" rel="stylesheet">
-    <script type="text/javascript" src="static/js/angular.js"></script>
-    <script type="text/javascript" src="static/js/signupscript.js"></script>
+    <link href="{{STATIC_URL}}style.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="{% static 'angular2.js' %}"></script>
+    
+    <script type="text/javascript" src="{% static 'signupscript2.js' %}"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -41,6 +46,7 @@
                 <!--<label for="exampleInputEmail1">First Name</label>-->
                 <input type="text" class="form-control" id="First_Name" placeholder="First Name"  ng-model="user.First_Name" ng-change="onMouseLeave_First_Name($event)" ng-blur="onMouseLeave_First_Name($event)">
                 <div class="error" style="color:red;font-family:verdana;font-size: 13px">{{onMouseLeave_First_Name_Result}}</div>
+                
               </div>
               <div class="col-md-4">
                 <!--<label for="exampleInputEmail1">Last Name</label>-->
@@ -205,6 +211,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="static/js/bootstrap.min.js"></script>
+    <script src="{{STATIC_URL}}bootstrap.min.js"></script>
   </body>
 </html>

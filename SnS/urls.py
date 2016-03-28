@@ -21,5 +21,5 @@ from django.contrib import admin
 from django.conf.urls.static import static
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^',include('splitnsave.urls'),)
+    url(r'api',include('splitnsave.urls'),)
 ]+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)

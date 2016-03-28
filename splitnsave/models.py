@@ -21,13 +21,15 @@ class institute_list(models.Model):
 		return self.institute_name
 class profession_list(models.Model):
 	profession_id=models.IntegerField(default=0,primary_key=True)
-	PROFESSIONS=[('','')]
+	PROFESSIONS=[('',''),('abc','abc')]
 	profession_name=models.CharField(default='',max_length=100,choices=PROFESSIONS,null=True)
 
 class users(models.Model):
 	
 	GENDER=[('M','Male'),('F','Female')]
 	STATUS=[('-1','Not Active'),('0','Not Verified'),('1','Active')]
+
+	user_id=models.IntegerField(primary_key=True,default=0)
 
 	first_name=models.CharField(max_length=50)
 	
