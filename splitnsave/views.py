@@ -52,5 +52,8 @@ def change_password(request):
 
 def dashboard(request):
 	#Coded in /SEN
+	pass
+	
 def products(request):
 	#Coded in /SEN
+	pass
