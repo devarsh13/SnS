@@ -7,7 +7,8 @@ def index(request):
 	return render(request,'index.html')
 
 def signup_check(request):
-	Email='devarshsheth13@gmal.com'
+	Email=request.POST.get('Email')
+	Email=Email['Email']
 	exists=False
 	msg={'status':'0'}
 	try:
