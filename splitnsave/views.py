@@ -6,7 +6,7 @@ from models import *
 def index(request):
 	return render(request,'index.html')
 
-def signup(request):
+def signup_check(request):
 	Email='devarshsheth13@gmal.com'
 	exists=False
 	msg={'status':'0'}
@@ -20,7 +20,8 @@ def signup(request):
 		msg['status']='-1'
 
 	return JsonResponse(msg)
-
+def signup(request):
+	pass
 def editprofile(request):
 	userid='1'
 	u=users.objects.get(user_id=userid)
