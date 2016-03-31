@@ -22,7 +22,19 @@ def signup_check(request):
 
 	return JsonResponse(msg)
 def signup(request):
-	pass
+	input_=request.POST.get('input')
+	u=users.objects.get(input_['User_id'])
+	u.first_name=input_['First_Name']
+	u.last_name=input_['Last_Name']
+	u.contact_number=input_['ContactNumber']
+	u.password=input_['Password']
+	u.city_name=input_['CityName']
+	u.birthday=input_['Birthdate']
+	u.gender=input_['Gender']
+	u.institute=input_['Institute_Name']
+	u.profession=input_['Profession_Name']
+	u.image_url=input_['Image_Link']
+
 def editprofile(request):
 	userid='1'
 	u=users.objects.get(user_id=userid)

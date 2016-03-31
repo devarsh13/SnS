@@ -59,6 +59,8 @@ class users(models.Model):
 
 	rating=models.CharField(max_length=4,default='0')
 
+	image_url=models.URLField(default=0)
+
 	def __str__(self):
 		return self.first_name+" "+self.last_name
 
