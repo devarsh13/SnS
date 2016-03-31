@@ -23,7 +23,7 @@ def signup_check(request):
 	return JsonResponse(msg)
 def signup(request):
 	input_=request.POST.get('input')
-	u=users.objects.get(input_['User_id'])
+	u=users.objects.get(user_id=input_['User_id'])
 	u.first_name=input_['First_Name']
 	u.last_name=input_['Last_Name']
 	u.contact_number=input_['ContactNumber']
