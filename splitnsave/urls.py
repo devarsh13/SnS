@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'signupcheck',views.signup),
     url(r'editprofile',views.editprofile),
     url(r'userprofile',views.userprofile),
+    url(r'signup',views.signup),
 ]
