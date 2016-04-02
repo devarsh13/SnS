@@ -16,6 +16,7 @@ try:
     from local_settings import *
 except ImportError as e:
     pass
+CORS_REPLACE_HTTPS_REFERER = True
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
