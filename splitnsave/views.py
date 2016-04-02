@@ -9,7 +9,7 @@ def index(request):
 def signup_check(request):
 	Email=request.POST.get('Email','')
 	
-	Email=Email['Email']
+	
 	exists=False
 	msg={'status':'0'}
 	try:
