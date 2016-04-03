@@ -7,7 +7,7 @@ def index(request):
 	return render(request,'index.html')
 
 def signup_check(request):
-	Email=request.POST.get('Email','')
+	Email=request.GET.get('Email','')
 	
 	
 	exists=False
