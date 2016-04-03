@@ -5,7 +5,7 @@ from models import *
 # Create your views here.
 def index(request):
 	return render(request,'index.html')
-
+@csrf_exempt
 def signup_check(request):
 	Email=request.POST.get('Email','')
 	
