@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from models import *
 from django.views.decorators.csrf import csrf_exempt
 import json
+import ast
 # Create your views here.
 def index(request):
 	return render(request,'index.html')
@@ -27,7 +28,7 @@ def signup_check(request):
 @csrf_exempt
 def signup(request):
 	input1=request.POST.get('input','')
-	input1=json.loads(input1)
+	input1=ast.literal_eval(input1)
 	u=users.objects.create(first_name=input1['First_Name'],
 		last_name=input1['Last_Name'],
 		contact_number=input1['ContactNumber'],
