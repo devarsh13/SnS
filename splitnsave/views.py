@@ -23,6 +23,7 @@ def signup_check(request):
 		msg['status']='-1'
 
 	return JsonResponse(msg)
+@csrf_exempt
 def signup(request):
 	input_=request.POST.get('input','')
 	u=users.objects.create(user_id=1,
