@@ -25,18 +25,18 @@ def signup_check(request):
 	return JsonResponse(msg)
 @csrf_exempt
 def signup(request):
-	input_=request.POST.get('input','')
+	input1=request.POST.get('input','')
 	u=users.objects.create(user_id=1,
-		first_name=input_['First_Name'],
-		last_name=input_['Last_Name'],
-		contact_number=input_['ContactNumber'],
-		password=input_['Password'],
-		city_name=input_['CityName'],
-		birthday=input_['Birthdate'],
-		gender=input_['Gender'],
-		institute=input_['Institute_Name'],
-		profession=input_['Profession_Name'],
-		image_url=input_['Image_Link'])
+		first_name=input1['First_Name'],
+		last_name=input1['Last_Name'],
+		contact_number=input1['ContactNumber'],
+		password=input1['Password'],
+		city_name=input1['CityName'],
+		birthday=input1['Birthdate'],
+		gender=input1['Gender'],
+		institute=input1['Institute_Name'],
+		profession=input1['Profession_Name'],
+		image_url=input1['Image_Link'])
 	
 
 def editprofile(request):
