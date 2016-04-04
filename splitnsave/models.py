@@ -26,11 +26,11 @@ class profession_list(models.Model):
 
 class users(models.Model):
 	def number():
-        no = users.objects.count()
-        if no == None:
-            return 1
-        else:
-            return no + 1
+		no=users.objects.count()
+		if no==None:
+			return 1
+		else:
+			return no+1
 	GENDER=[('M','Male'),('F','Female')]
 	STATUS=[('-1','Not Active'),('0','Not Verified'),('1','Active')]
 	user_id=models.IntegerField(primary_key=True,default=number)
