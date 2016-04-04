@@ -25,7 +25,7 @@ def signup_check(request):
 	return JsonResponse(msg)
 @csrf_exempt
 def signup(request):
-	input1=json.loads(request.POST.get('input',''))
+	input1=json.loads(request.body)
 	u=users.objects.create(first_name=input1['First_Name'],
 		last_name=input1['Last_Name'],
 		contact_number=input1['ContactNumber'],
