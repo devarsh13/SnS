@@ -10,8 +10,8 @@ def index(request):
 	return render(request,'index.html')
 @csrf_exempt
 def signup_check(request):
-	Email=request.body
-	
+	Email=str(request.body)
+	Email=json.loads(Email)
 	exists=False
 	msg={'status':'0'}
 	try:
