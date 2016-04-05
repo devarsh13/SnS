@@ -11,7 +11,6 @@ def index(request):
 @csrf_exempt
 def signup_check(request):
 	Email=request.body
-	
 	exists=False
 	msg={'status':'0'}
 	try:
@@ -24,7 +23,7 @@ def signup_check(request):
 		msg['status']='-1'
 
 	
-
+	msg['email']=Email
 	return JsonResponse(msg)
 @csrf_exempt
 def signup(request):
