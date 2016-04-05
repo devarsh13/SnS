@@ -21,7 +21,6 @@ CORS_ORIGIN_ALLOW_ALL=True
 CORS_ORIGIN_WHITELIST=['localhost']
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SESSION_COOKIE_SECURE = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
