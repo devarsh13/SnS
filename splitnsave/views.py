@@ -11,8 +11,8 @@ def index(request):
 @csrf_exempt
 def signup_check(request):
 	Email=request.POST.get('Email','')
-	
-	
+	f=open('test.txt','w')
+	f.write(Email)
 	exists=False
 	msg={'status':'0'}
 	try:
