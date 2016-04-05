@@ -10,7 +10,7 @@ def index(request):
 	return render(request,'index.html')
 @csrf_exempt
 def signup_check(request):
-	Email=request.body
+	Email=request.POST['Email']
 	
 	exists=False
 	msg={'status':'0'}
