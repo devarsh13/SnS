@@ -15,7 +15,7 @@ def signup_check(request):
 	msg={'status':'0'}
 	try:
 		print "Asdsad"
-		users.objects.get(email=Email)
+		users.objects.get(email=Email['Email'])
 		exists=True
 	except:
 		pass
