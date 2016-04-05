@@ -23,7 +23,7 @@ def signup_check(request):
 	if(exists==True):
 		msg['status']='-1'
 
-	msg['email']=Email
+	
 
 	return JsonResponse(msg)
 @csrf_exempt
