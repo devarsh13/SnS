@@ -2,7 +2,12 @@ from __future__ import unicode_literals
 import json
 from django.db import models
 
-
+def number():
+		no=users.objects.count()
+		if no==None:
+			return 1
+		else:
+			return no+1
 # Create your models here.
 class city_list(models.Model):
 	
@@ -25,12 +30,7 @@ class profession_list(models.Model):
 	profession_name=models.CharField(default='',max_length=100,choices=PROFESSIONS,null=True)
 
 class users(models.Model):
-	def number():
-		no=users.objects.count()
-		if no==None:
-			return 1
-		else:
-			return no+1
+	
 	GENDER=[('M','Male'),('F','Female')]
 	STATUS=[('-1','Not Active'),('0','Not Verified'),('1','Active')]
 	user_id=models.IntegerField(primary_key=True,default=number)
