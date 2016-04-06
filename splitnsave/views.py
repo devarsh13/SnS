@@ -30,13 +30,13 @@ def signup(request):
 	input1=json.loads(request.body)
 	institute=institute_list.objects.get(institute_name=input1['Institute_Name'])
 	profession=profession_list.objects.get(profession_name=input1['Profession_Name'])
-
+	city=city_list.objects.get(cite_name=input1['CityName'])
 	
 	u=users.objects.create(first_name=input1['First_Name'],
 		last_name=input1['Last_Name'],
 		contact_number=input1['ContactNumber'],
 		password=input1['Password'],
-		city_name=input1['CityName'],
+		city=input1['CityName'],
 		birthday=input1['Birthdate'],
 		gender=input1['Gender'],
 		institute=institute,
