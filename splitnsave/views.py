@@ -36,13 +36,15 @@ def signup(request):
 		last_name=input1['Last_Name'],
 		contact_number=input1['ContactNumber'],
 		password=input1['Password'],
-		city=input1['CityName'],
+		city=city,
 		birthday=input1['Birthdate'],
 		gender=input1['Gender'],
 		institute=institute,
 		profession=profession,
-		image_url=input1['Image_Link'])
-	
+		image_url=input1['Image_Link'])	
+
+
+	return JsonResponse({status:'0'})
 @csrf_exempt
 def editprofile(request):
 	userid=request.POST.get('input','')
