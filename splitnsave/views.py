@@ -27,7 +27,9 @@ def signup_check(request):
 	return JsonResponse(msg)
 @csrf_exempt
 def signup(request):
-	
+	institute=institute_list.objects.get(institute_name=input1['Institute_Name'])
+	profession=profession_list.objects.get(profession_name=input1['Institute_Name'])
+
 	input1=json.loads(request.body)
 	u=users.objects.create(first_name=input1['First_Name'],
 		last_name=input1['Last_Name'],
@@ -36,8 +38,8 @@ def signup(request):
 		city_name=input1['CityName'],
 		birthday=input1['Birthdate'],
 		gender=input1['Gender'],
-		institute=input1['Institute_Name'],
-		profession=input1['Profession_Name'],
+		institute=institute,
+		profession=profession,
 		image_url=input1['Image_Link'])
 	
 @csrf_exempt

@@ -8,24 +8,43 @@ def number():
 			return 1
 		else:
 			return no+1
-# Create your models here.
+def institute_number():
+		no1=institute_list.objects.count()
+		if no1==None:
+			return 1
+		else:
+			return no1+1
+def city_number():
+		no2=city_list.objects.count()
+		if no2==None:
+			return 1
+		else:
+			return no2+1
+def profession_number():
+		no3=profession_list.objects.count()
+		if no3==None:
+			return 1
+		else:
+			return no3+1
+
+# Create your models here
 class city_list(models.Model):
 	
-	city_id=models.IntegerField(default=0,primary_key=True)
+	city_id=models.IntegerField(primary_key=True,default=city_number)
 	CITIES=[('',''),('Ahmedabad','Ahmedabad'),('Gandhinagar','Gandhinagar')]
-	city_name=models.CharField(default='',max_length=100,choices=CITIES,null=False)
+	city_name=models.CharField(default='',max_length=100,choices=CITIES)
 	
 	def __str__(self):
 		return self.city_name
 class institute_list(models.Model):
-	institute_id=models.IntegerField(default=0,primary_key=True)
+	institute_id=models.IntegerField(primary_key=True,default=institute_number)
 	INSTITUTES=[('',''),('DA-IICT','DA-IICT'),('Nirma Institute of Technology','Nirma Institute of Technology')]
 	institute_name=models.CharField(default='',max_length=100,choices=INSTITUTES,null=False)
 	
 	def __str__(self):
 		return self.institute_name
 class profession_list(models.Model):
-	profession_id=models.IntegerField(default=0,primary_key=True)
+	profession_id=models.IntegerField(primary_key=True,default=profession_number)
 	PROFESSIONS=[('',''),('abc','abc')]
 	profession_name=models.CharField(default='',max_length=100,choices=PROFESSIONS,null=True)
 
