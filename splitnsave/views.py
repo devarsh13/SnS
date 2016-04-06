@@ -5,6 +5,7 @@ from models import *
 from django.views.decorators.csrf import csrf_exempt
 import json
 import ast
+from time import strptime
 # Create your views here.
 def index(request):
 	return render(request,'index.html')
