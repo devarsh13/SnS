@@ -55,7 +55,7 @@ class users(models.Model):
 	user_id=models.IntegerField(primary_key=True,default=number)
 	first_name=models.CharField(max_length=50)
 	last_name=models.CharField(max_length=50)
-	email=models.EmailField(unique=True)
+	email=models.EmailField(primary_key=True,null=False)
 	password=models.CharField(max_length=50,default='splitnsave')
 	verified=models.BooleanField(default=False)
 	contact_number=models.BigIntegerField(default=0)
