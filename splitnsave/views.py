@@ -29,7 +29,7 @@ def signup_check(request):
 def signup(request):
 	input1=json.loads(request.body)
 	institute=institute_list.objects.get(institute_name=input1['Institute_Name'])
-	profession=profession_list.objects.get(profession_name=input1['Institute_Name'])
+	profession=profession_list.objects.get(profession_name=input1['Profession_Name'])
 
 	
 	u=users.objects.create(first_name=input1['First_Name'],
