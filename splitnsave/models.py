@@ -65,7 +65,7 @@ class users(models.Model):
 	profession=models.ForeignKey(profession_list,on_delete=models.CASCADE,default=None)
 	gender=models.CharField(max_length=1,choices=GENDER,default=None)
 	status=models.IntegerField(default=0,null=False)
-	verification_link=models.URLField(max_length=1000,default=None)
+	verification_link=models.URLField(max_length=1000,default='')
 	rating=models.CharField(max_length=4,default='0')
 	image_url=models.URLField(default=0)
 
