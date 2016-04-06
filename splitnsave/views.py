@@ -38,7 +38,7 @@ def signup(request):
 		contact_number=input1['ContactNumber'],
 		password=input1['Password'],
 		city=city,
-		birthday=birthdate.year+'-'+birthdate.month+'-'+birthdate.day,
+		birthday=birthdate.tm_year+'-'+birthdate.month+'-'+birthdate.day,
 		gender=input1['Gender'],
 		institute=institute,
 		profession=profession,
