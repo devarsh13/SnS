@@ -85,6 +85,7 @@ class categories(models.Model):
 	CATEGORIES=[('',''),('Cabs','Cabs'),('Books','Books')]
 	category_name=models.CharField(default='',max_length=100,choices=CATEGORIES,null=False)
 
+
 class products(models.Model):
 	user_id=models.ForeignKey(users)
 	category_id=models.ForeignKey(categories)
@@ -99,7 +100,7 @@ class products(models.Model):
 	price=models.IntegerField(default=0,null=False)
 
 	def __str__(self):
-		return self.product_id
+		return str(self.product_id)
 
 class transaction_history(models.Model):
 	product_id=models.ForeignKey(products,default=None)
