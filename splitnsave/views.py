@@ -104,8 +104,8 @@ def dashboard(request):
 	u=users.objects.all()
 	data=[]
 	for i in u:
-		temp_dict={'First_Name':i.first_name,'Last_Name':i.last_name,'User_Id':i.user_id,'Image_Link':i.image_url}
-		data.appned(temp_dict)
+		temp_dict={'First_Name':i.first_name,'Last_Name'=i.last_name,'User_Id':i.user_id,'Image_Link':i.image_url}
+		data.append(temp_dict)
 	return JsonResponse(data)
 
 @csrf_exempt	
