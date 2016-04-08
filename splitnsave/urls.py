@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'editprofile',views.edit_profile_change),
     url(r'userprofile',views.userprofile),
     url(r'signup',views.signup),
+    url(r'dashboard',views.dashboard)
 ]
