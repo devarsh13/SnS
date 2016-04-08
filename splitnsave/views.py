@@ -97,7 +97,7 @@ def change_password(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	u=user.objects.get(email=Email)
-	u.password=new_password
+	u.password=input1['New_Password']
 
 @csrf_exempt
 def dashboard(request):
