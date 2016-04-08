@@ -103,7 +103,7 @@ def change_password(request):
 def dashboard(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
-	u1=user.objects.get(email=Email)
+	u1=users.objects.get(email=Email)
 	u=users.objects.all()
 	data={'users':[],'notifications':[{'Message':'aaaaa','Type':1}],'details':[]}
 	for i in u:
