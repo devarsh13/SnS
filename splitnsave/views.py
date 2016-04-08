@@ -101,8 +101,12 @@ def change_password(request):
 
 @csrf_exempt
 def dashboard(request):
-	#Coded in /SEN
-	pass
+	u=users.objects.all()
+	data=[]
+	for i in u:
+		temp_dict={'First_Name':i.first_name,'Last_Name'=i.last_name,'User_Id':i.user_id,'Image_Link':i.image_url}
+		data.appned(temp_dict)
+	return JsonResponse(data)
 
 @csrf_exempt	
 def products(request):
