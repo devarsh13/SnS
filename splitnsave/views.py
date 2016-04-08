@@ -78,23 +78,25 @@ def edit_profile_change(request):
 	return JsonResponse({status:'0'})
 @csrf_exempt
 def userprofile(request):
-	userid='0'
-	u=users.objects.get(user_id=userid)
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	u=users.objects.get(email=Email)
 	d={'user_id':u.user_id,'first_name':u.first_name,'last_name':u.last_name,'email':u.email,'password':u.password,'verified':u.verified,'contact_number':u.contact_number,'city':u.city.city_name,'institute':u.institute.institute_name,'birthday':u.birthday,'profession':u.profession.profession_name,'gender':u.gender,'status':u.status}
 	return JsonResponse(d)
 
 @csrf_exempt
 def settings(request):
-	userid='0'
-	u=users.objects.get(user_id=userid)
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	u=users.objects.get(email=Email)
 	d={'old_password':u.password}
 	return JsonResponse(d)
 
 @csrf_exempt
 def change_password(request):
-	userid=request.POST.get('userid','')
-	new_password=request.POST.get('new_password','')
-	u=user.objects.get(user_id=userid)
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	u=user.objects.get(email=Email)
 	u.password=new_password
 
 @csrf_exempt
