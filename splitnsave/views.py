@@ -101,6 +101,7 @@ def change_password(request):
 
 @csrf_exempt
 def dashboard(request):
+	input1=request.body
 	u=users.objects.all()
 	data={'users':[]}
 	for i in u:
