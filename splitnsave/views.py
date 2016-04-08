@@ -102,7 +102,7 @@ def change_password(request):
 @csrf_exempt
 def dashboard(request):
 	u=users.objects.all()
-	data={users:[]}
+	data={'users':[]}
 	for i in u:
 		temp_dict={'First_Name':i.first_name,'Last_Name':i.last_name,'User_Id':i.user_id,'Image_Link':i.image_url}
 		data['users'].append(temp_dict)
