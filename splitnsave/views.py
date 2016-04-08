@@ -101,12 +101,15 @@ def change_password(request):
 
 @csrf_exempt
 def dashboard(request):
-	input1=request.body
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	u1=user.objects.get(email=Email)
 	u=users.objects.all()
-	data={'users':[]}
+	data={'users':[],'notifications':[{'Message':'aaaaa','Type':1}],'details':[]}
 	for i in u:
 		temp_dict={'First_Name':i.first_name,'Last_Name':i.last_name,'User_Id':i.user_id,'Image_Link':i.image_url}
 		data['users'].append(temp_dict)
+	data['details']={'First_Name':u1.first_name,'Last_Name':u1.last_name,'User_Id':u1.user_id,'Image_Link':u1.image_url}
 	return JsonResponse(data)
 
 @csrf_exempt	
