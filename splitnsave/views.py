@@ -74,7 +74,7 @@ def edit_profile_change(request):
 	u.institute=institute
 	u.profession=profession
 	u.image_url=input1['Image_Link']
-
+	u.save()
 	return JsonResponse({'status':'0'})
 @csrf_exempt
 def userprofile(request):
