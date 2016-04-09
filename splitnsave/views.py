@@ -127,7 +127,7 @@ def transactions(request):
 		details={'Product_Name':temp.product_name,'Product_Image':temp.image_url,'Product_Id':temp.product_id,'Confirm_Date':temp.confirm_date,'Price':temp.price}
 		details['Sharer']=[]
 		sharers=[]
-		aaa=transaction_history.objects.get(product_id=temp)
+		aaa=transaction_history.objects.get(product_id=temp.product_id)
 		for i in aaa:
 			if i.poster not in sharers:
 				sharers.append(i)
