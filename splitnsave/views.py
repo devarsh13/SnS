@@ -52,13 +52,13 @@ def editprofile(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	u=users.objects.get(email=Email)
-	d={'user_id':u.user_id,'first_name':u.first_name,'last_name':u.last_name,'email':u.email,'password':u.password,'verified':u.verified,'contact_number':u.contact_number,'city':u.city.city_name,'institute':u.institute.institute_name,'birthday':u.birthday,'profession':u.profession.profession_name,'gender':u.gender,'status':u.status}
+	d={'details':{'user_id':u.user_id,'first_name':u.first_name,'last_name':u.last_name,'email':u.email,'password':u.password,'verified':u.verified,'contact_number':u.contact_number,'city':u.city.city_name,'institute':u.institute.institute_name,'birthday':u.birthday,'profession':u.profession.profession_name,'gender':u.gender,'status':u.status}}
 	return JsonResponse(d)
 
 @csrf_exempt
 def edit_profile_change(request):
 	input1=json.loads(request.body)
-	Email=input1['Email']
+	
 	institute=institute_list.objects.get(institute_name=input1['Institute_Name'])
 	profession=profession_list.objects.get(profession_name=input1['Profession_Name'])
 	city=city_list.objects.get(city_name=input1['CityName'])
@@ -81,7 +81,7 @@ def userprofile(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	u=users.objects.get(email=Email)
-	d={'user_id':u.user_id,'first_name':u.first_name,'last_name':u.last_name,'email':u.email,'password':u.password,'verified':u.verified,'contact_number':u.contact_number,'city':u.city.city_name,'institute':u.institute.institute_name,'birthday':u.birthday,'profession':u.profession.profession_name,'gender':u.gender,'status':u.status}
+	d={'details':{'user_id':u.user_id,'first_name':u.first_name,'last_name':u.last_name,'email':u.email,'password':u.password,'verified':u.verified,'contact_number':u.contact_number,'city':u.city.city_name,'institute':u.institute.institute_name,'birthday':u.birthday,'profession':u.profession.profession_name,'gender':u.gender,'status':u.status}}
 	return JsonResponse(d)
 
 @csrf_exempt
@@ -113,6 +113,8 @@ def dashboard(request):
 	return JsonResponse(data)
 
 @csrf_exempt	
-def products(request):
-	#Coded in /SEN
+def transactions(request):
+	input1=json.loads(request.body)
+	Email=input1['Email']
+
 	pass

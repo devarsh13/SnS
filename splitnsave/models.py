@@ -26,7 +26,12 @@ def profession_number():
 			return 1
 		else:
 			return no3+1
-
+def product_number():
+		no=products.objects.count()
+		if no==None:
+			return 1
+		else:
+			return no+1
 # Create your models here
 class city_list(models.Model):
 	
@@ -89,7 +94,7 @@ class categories(models.Model):
 class products(models.Model):
 	user_id=models.ForeignKey(users)
 	category_id=models.ForeignKey(categories)
-	product_id=models.IntegerField(default=0,primary_key=True)
+	product_id=models.IntegerField(default=product_number,primary_key=True)
 	number_of_sharers=models.IntegerField(default=1)
 	number_of_sharers_left=models.IntegerField(default=0)
 	GENDER=[('M','Male'),('F','Female')]
@@ -103,10 +108,11 @@ class products(models.Model):
 		return str(self.product_id)
 
 class transaction_history(models.Model):
-	product_id=models.ForeignKey(products,default=None)
-	poster=models.ForeignKey(users,default=None,related_name='poster')
-	seeker=models.ForeignKey(users,default=None,related_name='seeker')
-	transact_status=models.IntegerField(default=0)
+	product_id=models.ForeignKey(products,default=None,primary_key=True)
+	poster=models.ForeignKey(users,default=None,related_name='poster',primary_key=True)
+	seeker=models.ForeignKey(users,default=None,related_name='seeker',primary_key=True)
+	transact_status=models.IntegerField(default=0,primary_key=True)
+	rating=models.ForeignKey(transaction_ratings,default=None)
 
 class transaction_ratings(models.Model):
 	product_id=models.ForeignKey(products,default=None)
