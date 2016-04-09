@@ -128,13 +128,13 @@ def transactions(request):
 		details['Sharer']=[]
 		sharers=[]
 		aaa=transaction_history.objects.filter(product_id=temp)
-		for i in aaa:
-			if i.poster not in sharers:
-				sharers.append(i)
-			if i.seeker not in sharers:
-				sharers.append(i)
-		for i in sharers:
-			user_details={'First_Name':i.First_Name,'Last_Name':i.Last_Name,'User_Id':i.user_id,'User_Image':i.image_url}
+		for j in aaa:
+			if j.poster not in sharers:
+				sharers.append(j.poster)
+			if j.seeker not in sharers:
+				sharers.append(j.seeker)
+		for k in sharers:
+			user_details={'First_Name':k.First_Name,'Last_Name':k.Last_Name,'User_Id':k.user_id,'User_Image':k.image_url}
 			details['sharer'].append(user_details)
 		products.append(details)
 	d={'products':products}
