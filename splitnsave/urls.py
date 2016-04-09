@@ -11,4 +11,6 @@ urlpatterns = [
     url(r'dashboard',views.dashboard),
     url(r'settings',views.settings),
     url(r'changepassword',views.change_password),
+    url(r'transactions',views.transactions),
 ]
+	
