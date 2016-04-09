@@ -107,6 +107,12 @@ class products(models.Model):
 	def __str__(self):
 		return str(self.product_id)
 
+class transaction_ratings(models.Model):
+	product_id=models.ForeignKey(products,default=None)
+	rater=models.ForeignKey(users,default=None,related_name='rater')
+	ratee=models.ForeignKey(users,default=None,related_name='ratee')
+	rating=models.IntegerField(users,default=None)
+
 class transaction_history(models.Model):
 	product_id=models.ForeignKey(products,default=None,primary_key=True)
 	poster=models.ForeignKey(users,default=None,related_name='poster',primary_key=True)
@@ -114,11 +120,6 @@ class transaction_history(models.Model):
 	transact_status=models.IntegerField(default=0,primary_key=True)
 	rating=models.ForeignKey(transaction_ratings,default=None)
 
-class transaction_ratings(models.Model):
-	product_id=models.ForeignKey(products,default=None)
-	rater=models.ForeignKey(users,default=None,related_name='rater')
-	ratee=models.ForeignKey(users,default=None,related_name='ratee')
-	rating=models.IntegerField(users,default=None)
 
 class post_reporting(models.Model):
 	product_id=models.ForeignKey(products,default=None)
