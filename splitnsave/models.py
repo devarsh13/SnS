@@ -105,7 +105,7 @@ class products(models.Model):
 	image_url=models.URLField(default=0)
 	price=models.IntegerField(default=0,null=False)
 	confirm_date=models.DateField(null=True)
-	location=models.CharField(max_length=100)
+	location=models.CharField(max_length=100,default=None,null=True)
 	def __str__(self):
 		return str(self.product_id)
 
@@ -113,7 +113,7 @@ class transaction_ratings(models.Model):
 	product_id=models.ForeignKey(products,default=None)
 	rater=models.ForeignKey(users,default=None,related_name='rater')
 	ratee=models.ForeignKey(users,default=None,related_name='ratee')
-	rating=models.IntegerField(users,default=None)
+	rating=models.IntegerField(default=0)
 
 class transaction_history(models.Model):
 	product_id=models.ForeignKey(products,default=None,primary_key=True)
