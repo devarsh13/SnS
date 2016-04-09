@@ -58,6 +58,7 @@ def editprofile(request):
 @csrf_exempt
 def edit_profile_change(request):
 	input1=json.loads(request.body)
+	Email=input1['Email']
 	institute=institute_list.objects.get(institute_name=input1['Institute_Name'])
 	profession=profession_list.objects.get(profession_name=input1['Profession_Name'])
 	city=city_list.objects.get(city_name=input1['CityName'])
