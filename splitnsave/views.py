@@ -52,7 +52,7 @@ def editprofile(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	u=users.objects.get(email=Email)
-	d={'details':{'user_id':u.user_id,'first_name':u.first_name,'last_name':u.last_name,'email':u.email,'password':u.password,'verified':u.verified,'contact_number':u.contact_number,'city':u.city.city_name,'institute':u.institute.institute_name,'birthday':u.birthday,'profession':u.profession.profession_name,'gender':u.gender,'status':u.status}}
+	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'Contact_Number':u.contact_number,'City':u.city.city_name,'Institute':u.institute.institute_name,'Birthdate':u.birthday,'Profession':u.profession.profession_name,'Gender':u.gender,'Status':u.status,'Image_Link':u.image_url}}
 	return JsonResponse(d)
 
 @csrf_exempt
