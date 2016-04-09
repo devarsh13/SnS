@@ -93,6 +93,7 @@ class categories(models.Model):
 
 class products(models.Model):
 	user_id=models.ForeignKey(users)
+	product_name=models.CharField(default='',null=False,max_length=100)
 	category_id=models.ForeignKey(categories)
 	product_id=models.IntegerField(default=product_number,primary_key=True)
 	number_of_sharers=models.IntegerField(default=1)
@@ -103,7 +104,8 @@ class products(models.Model):
 	status=models.IntegerField(default=0)
 	image_url=models.URLField(default=0)
 	price=models.IntegerField(default=0,null=False)
-
+	confirm_date=models.DateField(null=True)
+	location=models.CharField(max_length=100)
 	def __str__(self):
 		return str(self.product_id)
 
