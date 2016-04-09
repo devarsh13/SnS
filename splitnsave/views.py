@@ -134,7 +134,7 @@ def transactions(request):
 			if j.seeker not in sharers:
 				sharers.append(j.seeker)
 		for k in sharers:
-			user_details={'First_Name':k.First_Name,'Last_Name':k.Last_Name,'User_Id':k.user_id,'User_Image':k.image_url}
+			user_details={'First_Name':k.first_name,'Last_Name':k.last_name,'User_Id':k.user_id,'User_Image':k.image_url}
 			details['sharer'].append(user_details)
 		products.append(details)
 	d={'products':products}
