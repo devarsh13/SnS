@@ -58,7 +58,6 @@ def editprofile(request):
 @csrf_exempt
 def edit_profile_change(request):
 	input1=json.loads(request.body)
-	
 	institute=institute_list.objects.get(institute_name=input1['Institute_Name'])
 	profession=profession_list.objects.get(profession_name=input1['Profession_Name'])
 	city=city_list.objects.get(city_name=input1['CityName'])
@@ -116,5 +115,25 @@ def dashboard(request):
 def transactions(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
-
-	pass
+	t=transaction_history.objects.all()
+	transaction_list=[]
+	for i in t:
+		if(i.poster.email==Email or i.seeker.email==Email) :
+			transaction_list.append(i)
+	products=[]
+	for i in transaction_list:
+		temp=i.product_id
+		details={'Product_Name':temp.product_name,'Product_Image':temp.image_url,'Product_Id':temp.product_id,'Confirm_Date':temp.confirm_date,'Price':temp.price}
+		details['Sharer']=[]
+		sharers=[]
+		for i in transaction_history.objects.get(product_id=temp):
+			if i.poster not in sharers:
+				sharers.append(i)
+			if i.seeker not in sharers:
+				sharers.append(i)
+		for i in sharers:
+			user_details={'First_Name':i.First_Name,'Last_Name':i.Last_Name,'User_Id':i.user_id,'User_Image':i.image_url}
+			details['sharer'].append(user_details)
+		products.append(details)
+	d={'products':products}
+	return JsonResponse(d)
