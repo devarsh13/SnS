@@ -61,7 +61,7 @@ def edit_profile_change(request):
 	institute=institute_list.objects.get(institute_name=input1['Institute_Name'])
 	profession=profession_list.objects.get(profession_name=input1['Profession_Name'])
 	city=city_list.objects.get(city_name=input1['CityName'])
-	birthdate=strptime(input1['Birthdate'],'%d/%m/%Y')
+	birthdate=strptime(input1['Birthdate'],'%Y-%m-%d')
 	u=users.objects.get(email=Email)
 	u.first_name=input1['First_Name']
 	u.last_name=input1['Last_Name']
