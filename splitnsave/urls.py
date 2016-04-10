@@ -13,6 +13,6 @@ urlpatterns = [
     url(r'changepassword',views.change_password),
     url(r'transactions',views.transactions),
     url(r'updaterating',views.change_rating),
-    url(r'myposts',views.myposts),
+    url(r'myposts',views.my_posts),
 ]
 	
