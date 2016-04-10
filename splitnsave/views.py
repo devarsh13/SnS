@@ -137,7 +137,7 @@ def transactions(request):
 		for k in sharers:
 			rater=users.objects.get(email=Email)
 			rating=transaction_ratings.objects.get(rater=rater,ratee=k)
-			user_details={'First_Name':k.first_name,'Last_Name':k.last_name,'User_Id':k.user_id,'User_Image':k.image_url,'Rating':rating.rating,''}
+			user_details={'First_Name':k.first_name,'Last_Name':k.last_name,'User_Id':k.user_id,'User_Image':k.image_url,'Rating':rating.rating}
 			details['Sharer'].append(user_details)
 		products.append(details)
 	d={'products':products}
