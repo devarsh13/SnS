@@ -188,3 +188,12 @@ def my_posts(request):
 			temp['Sharer'].append(temp_user)
 		d['Products'].append(temp)
 	return JsonResponse(d)
+
+def delete_my_posts(request):
+	input1=json.loads(request.body)
+	Product_Id=input1['Product_Id']
+	p=products.objects.get(product_id=Product_Id)
+	p.delete()
+
+def update_my_posts(request):
+	pass

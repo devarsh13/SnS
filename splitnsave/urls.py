@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'transactions',views.transactions),
     url(r'updaterating',views.change_rating),
     url(r'myposts',views.my_posts),
+    url(r'deletepost',views.delete_my_posts)
 ]
 	
