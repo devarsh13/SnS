@@ -144,3 +144,18 @@ def transactions(request):
 	return JsonResponse(d)
 
 
+def change_rating(request):
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	User_Id=input1['User_Id']
+	raing=input1['Rating']
+	Product_Id=input1['Product_Id']
+	u=users.objects.get(email=Email)
+	u1=users.objects.get(user_id=User_Id)
+	p=products.objects.get(product_id=Product_Id)
+	t=transaction_ratings.objects.get(product_id=p,rater=u,ratee=u1)
+	t.rating=rating
+	t.save()
+
+	return JsonResponse({'status':0})
+	
