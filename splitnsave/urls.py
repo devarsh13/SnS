@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'settings',views.settings),
     url(r'changepassword',views.change_password),
     url(r'transactions',views.transactions),
+    url(r'updaterating',views.change_rating),
 ]
 	
