@@ -124,7 +124,7 @@ def transactions(request):
 	products=[]
 	for i in transaction_list:
 		temp=i.product_id
-		details={'Product_Name':temp.product_name,'Product_Image':temp.image_url,'Product_Id':temp.product_id,'Confirm_Date':temp.confirm_date,'Price':temp.price}
+		details={'Product_Name':temp.product_name,'Product_Image':temp.image_url,'Product_Id':temp.product_id,'Confirm_Date':temp.confirm_date,'Price':temp.price,'Location':temp.location}
 		details['Sharer']=[]
 		sharers=[]
 		aaa=transaction_history.objects.filter(product_id=temp)
@@ -137,7 +137,7 @@ def transactions(request):
 		for k in sharers:
 			rater=users.objects.get(email=Email)
 			rating=transaction_ratings.objects.get(rater=rater,ratee=k)
-			user_details={'First_Name':k.first_name,'Last_Name':k.last_name,'User_Id':k.user_id,'User_Image':k.image_url,'Rating':rating.rating}
+			user_details={'First_Name':k.first_name,'Last_Name':k.last_name,'User_Id':k.user_id,'User_Image':k.image_url,'Rating':rating.rating,''}
 			details['Sharer'].append(user_details)
 		products.append(details)
 	d={'products':products}
