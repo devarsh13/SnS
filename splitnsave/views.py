@@ -148,7 +148,7 @@ def change_rating(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	User_Id=input1['User_Id']
-	raing=input1['Rating']
+	rating=input1['Rating']
 	Product_Id=input1['Product_Id']
 	u=users.objects.get(email=Email)
 	u1=users.objects.get(user_id=User_Id)
@@ -171,4 +171,4 @@ def my_posts(request):
 	for i in my_products:
 		temp={}
 		temp['Product_Name']=i.product_name
-		pass
+		temp['Product_Image']=i.image_url
