@@ -143,7 +143,7 @@ def transactions(request):
 	d={'products':products}
 	return JsonResponse(d)
 
-
+@csrf_exempt
 def change_rating(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
@@ -158,4 +158,17 @@ def change_rating(request):
 	t.save()
 
 	return JsonResponse({'status':0})
-	
+
+def my_posts(request):
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	all_products=products.objects.all()
+	my_products=[]
+	for i in all_products:
+		if(i.user_id.email==Email):
+			my_products.appnend(i)
+	d={'Products':[]}
+	for i in my_products:
+		temp={}
+		temp['Product_Name']=i.product_name
+		pass
