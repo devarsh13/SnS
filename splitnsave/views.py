@@ -207,4 +207,13 @@ def update_my_posts(request):
 	ui=user_interested.objects.get(user_id=u,product_id=p)
 	ui.status=Status
 	ui.save()
+	if(Status==2):
+		ui.delete()
+	return JsonResponse({'status':0})
+@csrf_exempt
+def delete_account(request):
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	u=users.objects.get(email=Email)
+	u.delete()
 	return JsonResponse({'status':0})
