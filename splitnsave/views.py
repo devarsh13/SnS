@@ -158,7 +158,7 @@ def change_rating(request):
 	t.save()
 
 	return JsonResponse({'status':0})
-
+@csrf_exempt
 def my_posts(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
@@ -166,7 +166,7 @@ def my_posts(request):
 	my_products=[]
 	for i in all_products:
 		if(i.user_id.email==Email):
-			my_products.appnend(i)
+			my_products.append(i)
 	d={'Products':[]}
 	for i in my_products:
 		temp={}
@@ -175,7 +175,8 @@ def my_posts(request):
 		temp['Product_Id']=i.product_id
 		temp['Location']=i.location
 		temp['Post_Date']=i.post_date
-		temp['Sharers']=[]
+		temp['Price']=i.price
+		temp['Sharer']=[]
 		u=user_interested.objects.filter(product_id=i)
 		for j in u:
 			temp_user={}
@@ -184,6 +185,6 @@ def my_posts(request):
 			temp_user['User_Id']=j.user_id.user_id
 			temp_user['User_Image']=j.user_id.image_url
 			temp_user['Status']=j.status
-			temp['Sharers'].append(temp_users)
+			temp['Sharer'].append(temp_user)
 		d['Products'].append(temp)
 	return JsonResponse(d)
