@@ -188,12 +188,23 @@ def my_posts(request):
 			temp['Sharer'].append(temp_user)
 		d['Products'].append(temp)
 	return JsonResponse(d)
-
+@csrf_exempt
 def delete_my_posts(request):
 	input1=json.loads(request.body)
 	Product_Id=input1['Product_Id']
 	p=products.objects.get(product_id=Product_Id)
 	p.delete()
-
+	return JsonResponse({'status':0})
+@csrf_exempt
 def update_my_posts(request):
-	pass
+	input1=json.loads(request.body)
+	Product_Id=input1['Product_Id']
+	Email=input1['Email']
+	User_Id=input1['User_Id']
+	Status=input1['Status']
+	u=users.objects.get(user_id=User_Id)
+	p=products.objects.get(product_id=Product_Id)
+	ui=user_interested.objects.get(user_id=u,product_id=p)
+	ui.status=Status
+	ui.save()
+	return JsonResponse({'status':0})

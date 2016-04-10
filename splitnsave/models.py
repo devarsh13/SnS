@@ -240,6 +240,6 @@ class books(models.Model):
 	tag3=models.ForeignKey(tag_list,default='',related_name='tag3')
 
 class user_interested(models.Model):
-	user_id=models.ForeignKey(users)
-	product_id=models.ForeignKey(products)
+	user_id=models.ForeignKey(users,primary_key=True)
+	product_id=models.ForeignKey(products,primary_key=True)
 	status=models.IntegerField(default=0)
