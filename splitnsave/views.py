@@ -89,7 +89,7 @@ def settings(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	u=users.objects.get(email=Email)
-	d={'old_password':u.password}
+	d={'Old_Password':u.password}
 	return JsonResponse(d)
 
 @csrf_exempt
@@ -133,11 +133,14 @@ def transactions(request):
 				sharers.append(j.poster)
 			if j.seeker not in sharers:
 				sharers.append(j.seeker)
+		sharers.remove(users.objects.get(email=Email))
 		for k in sharers:
 			rater=users.objects.get(email=Email)
-			#rating=transaction_ratings.objects.get(rater=rater,ratee=k)
-			user_details={'First_Name':k.first_name,'Last_Name':k.last_name,'User_Id':k.user_id,'User_Image':k.image_url,'Rating':5}
+			rating=transaction_ratings.objects.get(rater=rater,ratee=k)
+			user_details={'First_Name':k.first_name,'Last_Name':k.last_name,'User_Id':k.user_id,'User_Image':k.image_url,'Rating':rating.rating}
 			details['Sharer'].append(user_details)
 		products.append(details)
 	d={'products':products}
 	return JsonResponse(d)
+
+
