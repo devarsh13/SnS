@@ -240,5 +240,4 @@ class books(models.Model):
 class user_interested(models.Model):
 	user_id=models.ForeignKey(users)
 	product_id=models.ForeignKey(products)
-	status=models.IntegerField(deafult=0)
-	
+	status=models.IntegerField(default=0)
