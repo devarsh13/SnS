@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 import json
 from django.db import models
+import datetime
 
 def number():
 		no=users.objects.count()
@@ -105,7 +106,7 @@ class products(models.Model):
 	image_url=models.URLField(default=0)
 	price=models.IntegerField(default=0,null=False)
 	confirm_date=models.DateField(null=True,default=None)
-	post_date=models.DateField(default=None,null=True)
+	post_date=models.DateField(default=datetime.date.today(),null=True)
 	location=models.CharField(max_length=100,default=None,null=True)
 	def __str__(self):
 		return str(self.product_id)
