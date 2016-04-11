@@ -250,9 +250,9 @@ class books(models.Model):
 	enddate=models.DateField()
 	author_first_name=models.CharField(default=0,max_length=100)
 	author_last_name=models.CharField(default=0,max_length=100)
-	tag1=models.ForeignKey(tag_list,default='',related_name='tag1')
-	tag2=models.ForeignKey(tag_list,default='',related_name='tag2')
-	tag3=models.ForeignKey(tag_list,default='',related_name='tag3')
+	tag1=models.CharField(max_length=100,default='')
+	tag2=models.CharField(max_length=100,default='')
+	tag3=models.CharField(max_length=100,default='')
 	location=models.CharField(max_length=100,default='')
 	college=models.CharField(max_length=100,default='')
 	def __str__(self):
