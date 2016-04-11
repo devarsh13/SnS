@@ -278,7 +278,7 @@ def create_post(request):
 		image_url=image_url,
 		number_of_sharers=number_of_sharers,
 		number_of_sharers_left=number_of_sharers_left,
-		gender=gender
+		
 		)
 	options=input1['options']
 	ed=input1['subproduct']
