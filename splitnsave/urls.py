@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'updatepost',views.update_my_posts),
     url(r'deleteaccount',views.delete_account),
     url(r'reportuser',views.report_a_user),
+    url(r'createpost',views.create_post)
 
 ]
 	

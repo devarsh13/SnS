@@ -253,6 +253,8 @@ def create_post():
 	Email=input1['Email']
 	category=""
 	Category_Id=input1['Category_Id']
+	u=users.objects.get(email=Email)
+
 	if(Category_Id==1):
 		category='Apartments'
 	elif(Category_Id==2):
@@ -269,6 +271,7 @@ def create_post():
 	number_of_sharers_left=input1['product']['Sharers']
 	gender=input1['product']['Gender']
 	p=products.objects.create(
+		user_id=u,
 		price=price,
 		description=description,
 		product_name=product_name,
@@ -277,3 +280,86 @@ def create_post():
 		number_of_sharers_left=number_of_sharers_left,
 		gender=gender
 		)
+	options=input1['options']
+	ed=input1['subproduct']
+	if(category=='Apartments'):
+		a=apartments.objects.create(
+			kitchen=options[0]['Option_Value'],
+			internet=options[1]['Option_Value'],
+			television=options[2]['Option_Value'],
+			air_conditioner=options[3]['Option_Value'],
+			heater=options[4]['Option_Value'],
+			washing_machine=options[5]['Option_Value'],
+			parking=options[6]['Option_Value'],
+			smoking=options[7]['Option_Value'],
+			wheelchair=options[8]['Option_Value'],
+			elevator=options[9]['Option_Value'],
+			gym=options[10]['Option_Value'],
+			pool=options[11]['Option_Value'],
+			fire_alarm=options[12]['Option_Value'],
+			medical_aid=options[13]['Option_Value'],
+			other_details=p,
+			rooms=ed['Rooms'],
+			number_of_bedrooms=ed['Bed_Rooms'],
+			number_of_bathrooms=ed['Bath_Rooms'],
+			bathroom_type=ed['BathRoom_Type'],
+			in_time=ed['IN_Time_Value'],
+			out_time=ed['OUT_Time_Value'],
+		)
+	elif(category='Cabs'):
+		
+		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
+		end=strptime(ed['End_Date'],'%Y-%m-%d'))
+		
+		c=cabs.objects.create(
+			other_details=p,
+			start_date=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
+			end_date=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
+			start_time=ed['Start_Time'],
+			end_time=ed['End_Time'],
+			car_type=ed['CarType'],
+			car_name=ed['CarName'],
+			car_service=ed['CarService'],
+			smoking=options[0]['Option_Value'],
+			kids=options[1]['Option_Value'],
+			luggage=options[2]['Option_Value'],
+			pets=options[3]['Option_Value'],
+			music=options[4]['Option_Value'],
+			non_stop_journey=options[5]['Option_Value'],
+			destination=ed['Location']
+			)
+
+	elif(category=='Books'):
+		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
+		end=strptime(ed['End_Date'],'%Y-%m-%d'))
+		b=books.objects.create(
+			other_details=p,
+			start_date=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
+			end_date=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
+			author_first_name=ed['Author_First_Name'],
+			author_last_name=ed['Author_Last_Name'],
+			location=ed['Location'],
+			tag1=ed['Tag1'],
+			tag2=ed['Tag2'],
+			tag3=ed['Tag3'],
+			college=ed['College']
+			)
+	else:
+		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
+		end=strptime(ed['End_Date'],'%Y-%m-%d'))
+		l=books.objects.create(
+			other_details=p,
+			start_date=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
+			end_date=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
+			start_time=ed['Start_Time'],
+			end_time=ed['End_Time'],
+			weight=ed['Weight'],
+			white_clothes=options[0]['Option_Value'],
+			light_clothes=options[1]['Option_Value'],
+			cotton_clothes=options[2]['Option_Value'],
+			silk_clothes=options[3]['Option_Value'],
+			dry_cleaning=options[4]['Option_Value'],
+			steam_press=options[5]['Option_Value'],
+			fabric_softner=options[6]['Option_Value'],
+			)
+	return JsonResponse({'status':0})

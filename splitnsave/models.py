@@ -156,15 +156,15 @@ class car_name_list(models.Model):
 class cabs(models.Model):
 	other_details=models.ForeignKey(products,default=None)
 	startdate=models.DateField()
-	starttime=models.TimeField()
+	starttime=models.CharField(max_length=100)
 	enddate=models.DateField()
-	endtime=models.TimeField()
+	endtime=models.CharField(max_length=100)
 	smoking=models.BooleanField(default=False)
-	car_type_id=models.ForeignKey(car_type_list,default=None)
-	car_service_id=models.ForeignKey(car_service_list,default=None)
-	car_name_id=models.ForeignKey(car_name_list,default=None)
+	car_type=models.CharField(max_length=100)
+	car_service=models.CharField(max_length=100)
+	car_name=models.CharField(max_length=100)
 	pet=models.BooleanField(default=False)
-	Music=models.BooleanField(default=False)
+	music=models.BooleanField(default=False)
 	luggage=models.BooleanField(default=False)
 	kids=models.BooleanField(default=False)
 	non_stop_journey=models.BooleanField(default=False)
@@ -174,10 +174,18 @@ class cabs(models.Model):
 class laundary(models.Model):
 	other_details=models.ForeignKey(products,default=None)
 	startdate=models.DateField()
-	starttime=models.TimeField()
+	starttime=models.CharField(max_length=100,default='')
 	enddate=models.DateField()
-	endtime=models.TimeField()
+	endtime=models.CharField(max_length=100,default='')
 	weight=models.IntegerField(default=0)
+	white_clothes=models.BooleanField(default=False)
+	fabric_softner=models.BooleanField(default=False)
+	steam_press=models.BooleanField(default=False)
+	dry_cleaning=models.BooleanField(default=False)
+	silk_clothes=models.BooleanField(default=False)
+	cotton_clothes=models.BooleanField(default=False)
+	light_clothes=models.BooleanField(default=False)
+
 	def __str__(self):
 		return self.other_details.product_name
 class sub_category_list(models.Model):
@@ -206,8 +214,8 @@ class apartments(models.Model):
 	number_of_bedrooms=models.IntegerField(default=1)
 	number_of_bathrooms=models.IntegerField(default=1)
 	bathroom_type=models.CharField(default=None,max_length=100)
-	in_time=models.TimeField()
-	out_time=models.TimeField()
+	in_time=models.CharField(max_length=100,default='')
+	out_time=models.CharField(max_length=100,default='')
 	kitchen=models.BooleanField(default=False)
 	television=models.BooleanField(default=False)
 	heater=models.BooleanField(default=False)
@@ -226,6 +234,7 @@ class apartments(models.Model):
 	laptop_friendly=models.BooleanField(default=False)
 	pool=models.BooleanField(default=False)
 	gym=models.BooleanField(default=False)
+	location=models.CharField(max_length=100,default='')
 	family_friends_kids_friendly=models.BooleanField(default=False)
 	def __str__(self):
 		return self.other_details.product_name
@@ -238,12 +247,13 @@ class books(models.Model):
 	other_details=models.ForeignKey(products,default=None)
 	startdate=models.DateField()
 	enddate=models.DateField()
-	bookname=models.CharField(default=None,max_length=100)
 	author_first_name=models.CharField(default=0,max_length=100)
 	author_last_name=models.CharField(default=0,max_length=100)
 	tag1=models.ForeignKey(tag_list,default='',related_name='tag1')
 	tag2=models.ForeignKey(tag_list,default='',related_name='tag2')
 	tag3=models.ForeignKey(tag_list,default='',related_name='tag3')
+	location=modelsCharField(max_length=100,default='')
+	college=models.CharField(max_length=100,default='')
 	def __str__(self):
 		return self.other_details.product_name
 class user_interested(models.Model):
