@@ -90,7 +90,8 @@ class categories(models.Model):
 	category_id=models.IntegerField(default=0,primary_key=True)
 	CATEGORIES=[('',''),('Cabs','Cabs'),('Books','Books'),('Laundary','Laundary'),('Apartments','Apartments')]
 	category_name=models.CharField(default='',max_length=100,choices=CATEGORIES,null=False)
-
+	def __str__(self):
+		return self.category_name
 
 class products(models.Model):
 	user_id=models.ForeignKey(users)

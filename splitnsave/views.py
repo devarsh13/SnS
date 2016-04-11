@@ -270,7 +270,9 @@ def create_post(request):
 	number_of_sharers1=input1['product']['Sharers']
 	number_of_sharers_left1=input1['product']['Sharers']
 	gender1=input1['product']['Gender']
+	ci=categories.objects.get(category_name=category)
 	p=products.objects.create(
+		category_id=ci,
 		user_id=u,
 		price=price1,
 		description=description1,
