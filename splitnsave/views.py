@@ -255,9 +255,9 @@ def create_post():
 	Category_Id=input1['Category_Id']
 	if(Category_Id==1):
 		category='Apartments'
-	else if(Category_Id==2):
+	elif(Category_Id==2):
 		category='Cabs'
-	else if(Category_Id==3):
+	elif(Category_Id==3):
 		category='Books'
 	else:
 		category='Laundary'
