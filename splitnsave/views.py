@@ -248,7 +248,7 @@ def report_a_user(request):
 	return JsonResponse({'status':0})
 
 @csrf_exempt
-def create_post():
+def create_post(self):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	category=""
