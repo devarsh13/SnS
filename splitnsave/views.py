@@ -315,10 +315,10 @@ def create_post(request):
 		
 		c=cabs.objects.create(
 			other_details=p,
-			start_date=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
-			end_date=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
-			start_time=ed['Start_Time'],
-			end_time=ed['End_Time'],
+			startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
+			enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
+			starttime=ed['Start_Time'],
+			endtime=ed['End_Time'],
 			car_type=ed['CarType'],
 			car_name=ed['CarName'],
 			car_service=ed['CarService'],
@@ -336,8 +336,8 @@ def create_post(request):
 		end=strptime(ed['End_Date'],'%Y-%m-%d')
 		b=books.objects.create(
 			other_details=p,
-			start_date=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
-			end_date=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
+			startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
+			enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
 			author_first_name=ed['Author_First_Name'],
 			author_last_name=ed['Author_Last_Name'],
 			location=ed['Location'],
@@ -351,10 +351,10 @@ def create_post(request):
 		end=strptime(ed['End_Date'],'%Y-%m-%d')
 		l=books.objects.create(
 			other_details=p,
-			start_date=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
-			end_date=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
-			start_time=ed['Start_Time'],
-			end_time=ed['End_Time'],
+			startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
+			enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
+			starttime=ed['Start_Time'],
+			endtime=ed['End_Time'],
 			weight=ed['Weight'],
 			white_clothes=options[0]['Option_Value'],
 			light_clothes=options[1]['Option_Value'],
