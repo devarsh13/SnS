@@ -252,7 +252,7 @@ class books(models.Model):
 	tag1=models.ForeignKey(tag_list,default='',related_name='tag1')
 	tag2=models.ForeignKey(tag_list,default='',related_name='tag2')
 	tag3=models.ForeignKey(tag_list,default='',related_name='tag3')
-	location=modelsCharField(max_length=100,default='')
+	location=models.CharField(max_length=100,default='')
 	college=models.CharField(max_length=100,default='')
 	def __str__(self):
 		return self.other_details.product_name
