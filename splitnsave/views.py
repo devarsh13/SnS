@@ -263,22 +263,22 @@ def create_post(request):
 		category='Books'
 	else:
 		category='Laundary'
-	price=input1['product']['Pric']
-	description=input1['product']['Description']
-	product_name=input1['product']['Title']
-	image_url=input1['product']['Image_Link']
-	number_of_sharers=input1['product']['Sharers']
-	number_of_sharers_left=input1['product']['Sharers']
-	gender=input1['product']['Gender']
+	price1=input1['product']['Price']
+	description1=input1['product']['Description']
+	product_name1=input1['product']['Title']
+	image_url1=input1['product']['Image_Link']
+	number_of_sharers1=input1['product']['Sharers']
+	number_of_sharers_left1=input1['product']['Sharers']
+	gender1=input1['product']['Gender']
 	p=products.objects.create(
 		user_id=u,
-		price=price,
-		description=description,
-		product_name=product_name,
-		image_url=image_url,
-		number_of_sharers=number_of_sharers,
-		number_of_sharers_left=number_of_sharers_left,
-		gender=gender
+		price=price1,
+		description=description1,
+		product_name=product_name1,
+		image_url=image_url1,
+		number_of_sharers=number_of_sharers1,
+		number_of_sharers_left=number_of_sharers_left1,
+		gender=gender1,
 		)
 	options=input1['options']
 	ed=input1['subproduct']
