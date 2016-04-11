@@ -80,8 +80,21 @@ def edit_profile_change(request):
 def userprofile(request):
 	input1=json.loads(request.body)
 	user_id=input1['User_Id']
+	Email=input1['Email']
 	u=users.objects.get(user_id=user_id)
-	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city.city_name,'Institute':u.institute.institute_name,'Birthdate':u.birthday,'Profession_Name':u.profession.profession_name,'Gender':u.gender,'Status':u.status,'Institute_Name':u.institute.institute_name}}
+	
+	u1=users.objects.get(email=Email)
+	ui=user_interested.objects.filter(user_id=user_id)
+	temp=users.objects.get(email=Email)
+	p=products.objects.filter(user_id=temp)
+	status=0
+	for i in p:
+		for j in ui:
+
+			if i.product_id==j.product_id.product_id and j.status==1:
+				status=1
+				break
+	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city.city_name,'Institute':u.institute.institute_name,'Birthdate':u.birthday,'Profession_Name':u.profession.profession_name,'Gender':u.gender,'Status':status,'Institute_Name':u.institute.institute_name}}
 	return JsonResponse(d)
 
 @csrf_exempt
