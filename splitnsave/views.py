@@ -309,7 +309,7 @@ def create_post():
 	elif(category=='Cabs'):
 		
 		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
-		end=strptime(ed['End_Date'],'%Y-%m-%d'))
+		end=strptime(ed['End_Date'],'%Y-%m-%d')
 		
 		c=cabs.objects.create(
 			other_details=p,
@@ -331,7 +331,7 @@ def create_post():
 
 	elif(category=='Books'):
 		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
-		end=strptime(ed['End_Date'],'%Y-%m-%d'))
+		end=strptime(ed['End_Date'],'%Y-%m-%d')
 		b=books.objects.create(
 			other_details=p,
 			start_date=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
@@ -346,7 +346,7 @@ def create_post():
 			)
 	else:
 		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
-		end=strptime(ed['End_Date'],'%Y-%m-%d'))
+		end=strptime(ed['End_Date'],'%Y-%m-%d')
 		l=books.objects.create(
 			other_details=p,
 			start_date=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
