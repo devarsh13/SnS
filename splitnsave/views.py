@@ -255,15 +255,15 @@ def create_post(request):
 	Category_Id=input1['Category_Id']
 	u=users.objects.get(email=Email)
 
-	if(Category_Id==1):
+	if(Category_Id=='1'):
 		category='Apartments'
-	elif(Category_Id==2):
+	elif(Category_Id=='2'):
 		category='Cabs'
-	elif(Category_Id==3):
+	elif(Category_Id=='3'):
 		category='Books'
 	else:
 		category='Laundary'
-	price=input1['product']['Price']
+	price=input1['product']['Pric']
 	description=input1['product']['Description']
 	product_name=input1['product']['Title']
 	image_url=input1['product']['Image_Link']
@@ -278,7 +278,7 @@ def create_post(request):
 		image_url=image_url,
 		number_of_sharers=number_of_sharers,
 		number_of_sharers_left=number_of_sharers_left,
-		
+		gender=gender
 		)
 	options=input1['options']
 	ed=input1['subproduct']
