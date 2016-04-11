@@ -96,7 +96,7 @@ def userprofile(request):
 				break
 	try:
 		ur=user_reporting.objects.get(reporter=u1,reportee=u)
-		status=2:
+		status=2
 	except:
 		pass
 	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city.city_name,'Institute':u.institute.institute_name,'Birthdate':u.birthday,'Profession_Name':u.profession.profession_name,'Gender':u.gender,'Status':status,'Institute_Name':u.institute.institute_name}}
