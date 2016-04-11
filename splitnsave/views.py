@@ -244,5 +244,5 @@ def report_a_user(request):
 	User_Id=input1['User_Id']
 	u=users.objects.get(email=Email)
 	u1=users.objects.get(user_id=User_Id)
-	user_reporting.objects.create(reporter=u,repotee=u1,status=1)
+	user_reporting.objects.create(reporter=u,reportee=u1,status=1)
 	return JsonResponse({'status':0})
