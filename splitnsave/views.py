@@ -94,6 +94,11 @@ def userprofile(request):
 			if i.product_id==j.product_id.product_id and j.status==1:
 				status=1
 				break
+	try:
+		ur=user_reporting.objects.get(reporter=u1,reportee=u)
+		status=2:
+	except:
+		pass
 	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city.city_name,'Institute':u.institute.institute_name,'Birthdate':u.birthday,'Profession_Name':u.profession.profession_name,'Gender':u.gender,'Status':status,'Institute_Name':u.institute.institute_name}}
 	return JsonResponse(d)
 
@@ -230,4 +235,14 @@ def delete_account(request):
 	Email=input1['Email']
 	u=users.objects.get(email=Email)
 	u.delete()
+	return JsonResponse({'status':0})
+
+@csrf_exempt
+def report_a_user(request):
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	User_Id=input1['User_Id']
+	u=users.objects.get(email=Email)
+	u1=users.objects.get(user_id=User_Id)
+	user_reporting.objects.create(reporter=u,repotee=u1,status=1)
 	return JsonResponse({'status':0})
