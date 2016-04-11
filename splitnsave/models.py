@@ -88,7 +88,7 @@ class chat_history(models.Model):
 
 class categories(models.Model):
 	category_id=models.IntegerField(default=0,primary_key=True)
-	CATEGORIES=[('',''),('Cabs','Cabs'),('Books','Books')]
+	CATEGORIES=[('',''),('Cabs','Cabs'),('Books','Books'),('Laundary','Laundary'),('Apartments','Apartments')]
 	category_name=models.CharField(default='',max_length=100,choices=CATEGORIES,null=False)
 
 
@@ -107,15 +107,17 @@ class products(models.Model):
 	price=models.IntegerField(default=0,null=False)
 	confirm_date=models.DateField(null=True,blank=True,default=None)
 	post_date=models.DateField(default=datetime.date.today(),null=True)
-	location=models.CharField(max_length=100,default=None,null=True)
+	location=models.CharField(max_length=100,default=None,null=True,blank=True)
 	def __str__(self):
-		return str(self.product_id)
+		return str(self.product_name)
 
 class transaction_ratings(models.Model):
 	product_id=models.ForeignKey(products,default=None)
 	rater=models.ForeignKey(users,default=None,related_name='rater')
 	ratee=models.ForeignKey(users,default=None,related_name='ratee')
 	rating=models.IntegerField(default=0)
+	def __str__(self):
+		return str(self.rater.user_id)+"->"str(self.ratee.user_id)
 
 class transaction_history(models.Model):
 	product_id=models.ForeignKey(products,default=None,primary_key=True)
@@ -123,7 +125,8 @@ class transaction_history(models.Model):
 	seeker=models.ForeignKey(users,default=None,related_name='seeker',primary_key=True)
 	transact_status=models.IntegerField(default=0,primary_key=True)
 	rating=models.ForeignKey(transaction_ratings,default=None)
-
+	def __str__(self):
+		return str(self.poster.user_id)+"->"str(self.seeker.user_id)		
 
 class post_reporting(models.Model):
 	product_id=models.ForeignKey(products,default=None)
@@ -166,7 +169,8 @@ class cabs(models.Model):
 	kids=models.BooleanField(default=False)
 	non_stop_journey=models.BooleanField(default=False)
 	destination=models.CharField(default=None,max_length=1000)
-
+	def __str__(self):
+		return self.other_details.product_name
 class laundary(models.Model):
 	other_details=models.ForeignKey(products,default=None)
 	startdate=models.DateField()
@@ -174,7 +178,8 @@ class laundary(models.Model):
 	enddate=models.DateField()
 	endtime=models.TimeField()
 	weight=models.IntegerField(default=0)
-
+	def __str__(self):
+		return self.other_details.product_name
 class sub_category_list(models.Model):
 	sub_category_id=models.IntegerField(default=0,primary_key=True)
 	SUBCATEGORIES=[('',''),('ABC','ABC')]
@@ -193,7 +198,8 @@ class equipment(models.Model):
 	keyword_id1=models.ForeignKey(keyword_list,related_name='keyword1')
 	keyword_id2=models.ForeignKey(keyword_list,related_name='keyword2')
 	keyword_id3=models.ForeignKey(keyword_list,related_name='keyword3')
-
+	def __str__(self):
+		return self.other_details.product_name
 class apartments(models.Model):
 	other_details=models.ForeignKey(products,default=None)
 	rooms=models.IntegerField(default=1)
@@ -221,7 +227,8 @@ class apartments(models.Model):
 	pool=models.BooleanField(default=False)
 	gym=models.BooleanField(default=False)
 	family_friends_kids_friendly=models.BooleanField(default=False)
-
+	def __str__(self):
+		return self.other_details.product_name
 class tag_list(models.Model):
 	tag_id=models.IntegerField(default=0,primary_key=True)
 	TAGS=[('',''),('ABC','ABC')]
@@ -234,11 +241,11 @@ class books(models.Model):
 	bookname=models.CharField(default=None,max_length=100)
 	author_first_name=models.CharField(default=0,max_length=100)
 	author_last_name=models.CharField(default=0,max_length=100)
-	sharing_type=models.CharField(default=0,max_length=100)
 	tag1=models.ForeignKey(tag_list,default='',related_name='tag1')
 	tag2=models.ForeignKey(tag_list,default='',related_name='tag2')
 	tag3=models.ForeignKey(tag_list,default='',related_name='tag3')
-
+	def __str__(self):
+		return self.other_details.product_name
 class user_interested(models.Model):
 	user_id=models.ForeignKey(users,primary_key=True)
 	product_id=models.ForeignKey(products,primary_key=True)

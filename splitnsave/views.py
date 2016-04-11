@@ -246,3 +246,34 @@ def report_a_user(request):
 	u1=users.objects.get(user_id=User_Id)
 	user_reporting.objects.create(reporter=u,reportee=u1,status=1)
 	return JsonResponse({'status':0})
+
+@csrf_exempt
+def create_post():
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	category=""
+	Category_Id=input1['Category_Id']
+	if(Category_Id==1):
+		category='Apartments'
+	else if(Category_Id==2):
+		category='Cabs'
+	else if(Category_Id==3):
+		category='Books'
+	else:
+		category='Laundary'
+	price=input1['product']['Price']
+	description=input1['product']['Description']
+	product_name=input1['product']['Title']
+	image_url=input1['product']['Image_Link']
+	number_of_sharers=input1['product']['Sharers']
+	number_of_sharers_left=input1['product']['Sharers']
+	gender=input1['product']['Gender']
+	p=products.objects.create(
+		price=price,
+		description=description,
+		product_name=product_name,
+		image_url=image_url,
+		number_of_sharers=number_of_sharers,
+		number_of_sharers_left=number_of_sharers_left,
+		gender=gender
+		)
