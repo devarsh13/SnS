@@ -306,7 +306,7 @@ def create_post():
 			in_time=ed['IN_Time_Value'],
 			out_time=ed['OUT_Time_Value'],
 		)
-	elif(category='Cabs'):
+	elif(category=='Cabs'):
 		
 		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
 		end=strptime(ed['End_Date'],'%Y-%m-%d'))
