@@ -347,15 +347,18 @@ def create_post(request):
 			college=ed['College']
 			)
 	else:
-		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
-		end=strptime(ed['End_Date'],'%Y-%m-%d')
+		try:
+			sd=strptime(ed['Start_Date'],'%Y-%m-%d')
+			end=strptime(ed['End_Date'],'%Y-%m-%d')
+		except:
+			pass
 		l=books.objects.create(
 			other_details=p,
 			startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
 			enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
 			starttime=ed['Start_Time'],
 			endtime=ed['End_Time'],
-			weight=ed['Weight'],
+			weight=ed['Weights'],
 			white_clothes=options[0]['Option_Value'],
 			light_clothes=options[1]['Option_Value'],
 			cotton_clothes=options[2]['Option_Value'],
