@@ -352,7 +352,7 @@ def create_post(request):
 			end=strptime(ed['End_Date'],'%Y-%m-%d')
 		except:
 			pass
-		l=books.objects.create(
+		l=laundary.objects.create(
 			other_details=p,
 			startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
 			enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
