@@ -262,4 +262,12 @@ class user_interested(models.Model):
 	product_id=models.ForeignKey(products,primary_key=True)
 	status=models.IntegerField(default=0)
 
-class user_report_post(models.Model)
+class user_report_post(models.Model):
+	user_id=models.ForeignKey(users)
+	product_id=models.ForeignKey(products)
+	status=models.IntegerField(default=0)
+
+class user_report_user(models.Model):
+	user1=models.ForeignKey(users,related_name='user1')
+	user2=models.ForeignKey(users,related_name='user2')
+	status=models.IntegerField(default=0)
