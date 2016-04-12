@@ -240,7 +240,15 @@ def update_my_posts(request):
 	
 	
 	return JsonResponse({'status':0})
-
+@csrf_exempt	
+def confirm_post(request):
+	input1=json.loads(request.body)
+	Product_Id=input1['Product_Id']
+	p=products.objects.get(product_id=Product_Id)
+	u=user_interested.objects.filter(product_id=p,status=2)
+	for i in u:
+		transaction_history.create(seeker=u,product_id=p,poster=p.user_id)
+	return JsonResponse({'status':0})
 @csrf_exempt
 def delete_account(request):
 	input1=json.loads(request.body)
