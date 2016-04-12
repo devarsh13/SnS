@@ -195,6 +195,8 @@ def my_posts(request):
 			my_products.append(i)
 	d={'Products':[]}
 	for i in my_products:
+		if i.status==3:
+			continue
 		temp={}
 		temp['Product_Name']=i.product_name
 		temp['Product_Image']=i.image_url
@@ -246,6 +248,7 @@ def confirm_post(request):
 	Product_Id=input1['Product_Id']
 	p=products.objects.get(product_id=Product_Id)
 	u=user_interested.objects.filter(product_id=p,status=2)
+	p.status=3
 	for i in u:
 		transaction_history.create(seeker=u,product_id=p,poster=p.user_id)
 	return JsonResponse({'status':0})
