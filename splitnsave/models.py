@@ -263,6 +263,6 @@ class user_interested(models.Model):
 	status=models.IntegerField(default=0)
 
 class user_to_user(models.Model):
-	user1=models.ForeignKey(users,primary_key=True,related_name='user1')
+	user1=models.ForeignKey(users,related_name='user1')
 	user2=models.ForeignKey(users,related_name='user2')
 	status=models.IntegerField(default=0)
