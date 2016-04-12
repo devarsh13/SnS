@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'reportuser',views.report_a_user),
     url(r'createpost',views.create_post),
     url(r'editpost',views.edit_post),
+    url(r'editdata',views.edit_data),
 
 ]
 	

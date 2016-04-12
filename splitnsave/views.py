@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 import ast
 from time import strptime
+import smtplib
 # Create your views here.
 def index(request):
 	return render(request,'index.html')
@@ -399,7 +400,7 @@ def edit_post(request):
 	d['product']['Post_Date']=p.post_date
 	d['product']['Location']=p.location
 
-	if(d["Category_Id"]==3):
+	if(d["Category_Id"]=='3'):
 		d['subproduct']['Start_Date']=sp.startdate
 		d['subproduct']['End_Date']=sp.enddate
 		d['subproduct']['Author_First_Name']=sp.author_first_name
@@ -410,7 +411,7 @@ def edit_post(request):
 		d['subproduct']['Location']=sp.location
 		d['subproduct']['College']=sp.college
 
-	if(d['Category_Id']==1):
+	if(d['Category_Id']=='1'):
 		d['options'].append({'Option_Name':'Kitchen','Option_Value':sp.kitchen})
 		d['options'].append({'Option_Name':'Internet','Option_Value':sp.internet})
 		d['options'].append({'Option_Name':'Television','Option_Value':sp.television})
@@ -432,7 +433,7 @@ def edit_post(request):
 		d['subproduct']['OUT_Time_Value']=sp.out_time
 		d['subproduct']['Location']=sp.location
 
-	if(d['Category_Id']==2):
+	if(d['Category_Id']=='2'):
 		d['options'].append({'Option_Name':'Smoking','Option_Value':sp.smoking})
 		d['options'].append({'Option_Name':'Kids','Option_Value':sp.kids})
 		d['options'].append({'Option_Name':'Luggage','Option_Value':sp.luggage})
@@ -448,7 +449,7 @@ def edit_post(request):
 		d['subproduct']['CarName']=sp.car_name
 		d['subproduct']['CarType']=sp.car_type
 
-	if(d['Category_Id']==4):
+	if(d['Category_Id']=='4'):
 		d['options'].append({'Option_Name':'White Clothes','Option_Value':sp.white_clothes})
 		d['options'].append({'Option_Name':'Light Clothes','Option_Value':sp.light_clothes})
 		d['options'].append({'Option_Name':'Cotton Clothes','Option_Value':sp.cotton_clothes})
@@ -588,3 +589,23 @@ def edit_data(request):
 		l.fabric_softner=options[6]['Option_Value']
 		l.save()
 	return JsonResponse({'status':0})
+
+def send_email(request):
+
+	try:
+		to = 'devarshseth13@ygmail.com'
+		user = '201301423@daiict.ac.in'
+		pwd = 'Lionking13@@'
+		smtpserver = smtplib.SMTP("webmail.daiict.ac.in")
+		smtpserver.ehlo()
+		smtpserver.starttls()
+		smtpserver.ehlo() # extra characters to permit edit
+		smtpserver.login(user, pwd)
+		header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject:testing \n'
+		print header
+		msg = header + '\n this is test msg from mkyong.com \n\n'
+		smtpserver.sendmail(gmail_user, to, msg)
+		print 'done!'
+		smtpserver.quit()
+	except:
+		pass
