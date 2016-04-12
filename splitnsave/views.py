@@ -601,9 +601,10 @@ def send_email(request):
 	smtpserver.starttls()
 	smtpserver.ehlo() # extra characters to permit edit
 	smtpserver.login(user, pwd)
-	header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject:testing \n'
+	header = 'To:' + to + '\n' + 'From: ' + user + '\n' + 'Subject:testing \n'
 	print header
 	msg = header + '\n this is test msg from splitnsave \n\n'
 	smtpserver.sendmail(user, to, msg)
 	print 'done!'
 	smtpserver.quit()
+	return JsonResponse({'status':0})
