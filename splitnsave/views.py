@@ -793,10 +793,22 @@ def category_products(request):
 	name=''
 	sp=None
 	products=[]
+	if(Category_Id==1 or Category_Id=='1'):
+		name='Apartments'
+	if(Category_Id==2 or Category_Id=='2'):
+		name='Cabs'
+		
+	if(Category_Id==3 or Category_Id=='3'):
+		name='Books'
+		
+	if(Category_Id==4 or Category_Id=='4'):
+		name='Laundary'
+	c=categories.objects.get(category_name=name)
+	p=products.objects.filter(category_id=c,status=0)
 	d={'Category_Id':0,'product':{'options':[]},'user':{}}
 	if(Category_Id==1 or Category_Id=='1'):
 		sp=apartments.objects.get(other_details=p)
-		name='Apartments'
+		
 		d["Category_Id"]='1'
 	if(Category_Id==2 or Category_Id=='2'):
 		sp=csbs.objects.get(other_details=p)
@@ -811,10 +823,10 @@ def category_products(request):
 		d["Category_Id"]='4'
 		sp=laundary.objects.get(other_details=p)
 	
-	c=categories.objects.get(category_name=name)
-	p=products.objects.filter(category_id=c,status=0)
+	
+	
 	for i in p:
-		d['products']={'options':[]}
+		
 		d['product']['Price']=p.price
 		d['product']['Description']=p.description
 		d['product']['Title']=p.product_name
