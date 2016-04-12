@@ -741,4 +741,4 @@ def login(request):
 	if(flag==0):
 		return JsonResponse({'status':0,'First_Name':u.first_name})
 	else:
-		return JsonResponse({'status':1'First_Name':''})
+		return JsonResponse({'status':1,'First_Name':''})
