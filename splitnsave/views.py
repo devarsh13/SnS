@@ -743,3 +743,6 @@ def login(request):
 		return JsonResponse({'status':0,'First_Name':u.first_name})
 	else:
 		return JsonResponse({'status':1,'First_Name':''})
+
+def send_request(request):
+	pass

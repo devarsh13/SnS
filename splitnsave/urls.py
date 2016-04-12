@@ -22,7 +22,8 @@ urlpatterns = [
     url(r'editpost',views.edit_post),
     url(r'editdata',views.edit_data),
     url(r'sendmail',views.send_email),
-    url(r'productdetail',views.product_details)
+    url(r'productdetail',views.product_details),
+    url(r'login',views.login)
 
 ]
 	
