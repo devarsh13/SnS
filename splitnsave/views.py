@@ -48,7 +48,7 @@ def signup(request):
 		image_url=input1['Image_Link'])	
 
 
-	return JsonResponse({status:'0'})
+	return JsonResponse({'status':0,'First_Name':u.first_name})
 
 @csrf_exempt
 def editprofile(request):
@@ -717,11 +717,28 @@ def product_details(request):
 	d['user']['rating']=u.rating
 	d['user']['User_Id']=u.user_id
 	try:
-		d['user']['Status_Confirm']=user_interested.objects.get(user_id=u,product_id=p).status
 		u1=users.objects.get(email=Email)
+		d['user']['Status_Confirm']=user_interested.objects.get(user_id=u1,product_id=p).status
+		
 		d['user']['Status_Report']=user_report_post.objects.get(user_id=u1,product_id=p).status
 	except:
-		d['user']['Status_Confirm']='-1'
-		d['user']['Status_Report']='-1'
+		d['user']['Status_Confirm']='0'
+		d['user']['Status_Report']='0'
 
 	return JsonResponse(d)
+
+@csrf_exempt
+def login(request):
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	password=input1['Password']
+	flag=1
+	try:
+		u=users.objects.get(email=Email,password=Password)
+		flag=0
+	except:
+		pass
+	if(flag==0):
+		return JsonResponse({'status':0,'First_Name':u.first_name})
+	else:
+		return JsonResponse({'status':1'First_Name':''})
