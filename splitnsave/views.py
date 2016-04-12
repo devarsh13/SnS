@@ -793,7 +793,7 @@ def category_products(request):
 	name=''
 	sp=None
 	products=[]
-	
+	d={'Category_Id':0,'product':{'options':[]},'user':{}}
 	if(Category_Id==1 or Category_Id=='1'):
 		sp=apartments.objects.get(other_details=p)
 		name='Apartments'
@@ -814,7 +814,7 @@ def category_products(request):
 	c=categories.objects.get(category_name=name)
 	p=products.objects.filter(category_id=c,status=0)
 	for i in p:
-		d={'Category_Id':0,'product':{'options':[]},'user':{}}
+		d['products']={'options':[]}
 		d['product']['Price']=p.price
 		d['product']['Description']=p.description
 		d['product']['Title']=p.product_name
