@@ -900,10 +900,6 @@ def category_products(request):
 			d['product']['End_Time']=sp.endtime
 			d['product']['Weights']=sp.weight
 
-		d['user']['First_Name']=u.first_name
-		d['user']['Last_Name']=u.last_name
-		d['user']['Image_Link']=u.image_url
-		d['user']['rating']=u.rating
-		d['user']['User_Id']=u.user_id
+		
 		products1.append(d)
 	return JsonResponse(products1)
