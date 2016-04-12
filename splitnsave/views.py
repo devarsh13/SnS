@@ -792,7 +792,7 @@ def category_products(request):
 	Category_Id=input1['Category_Id']
 	name=''
 	sp=None
-	products=[]
+	products1=[]
 	if(Category_Id==1 or Category_Id=='1'):
 		name='Apartments'
 	if(Category_Id==2 or Category_Id=='2'):
@@ -905,5 +905,5 @@ def category_products(request):
 		d['user']['Image_Link']=u.image_url
 		d['user']['rating']=u.rating
 		d['user']['User_Id']=u.user_id
-		products.append(d)
-	return JsonResponse(products)
+		products1.append(d)
+	return JsonResponse(products1)
