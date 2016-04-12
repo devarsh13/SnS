@@ -127,7 +127,7 @@ class transaction_history(models.Model):
 	transact_status=models.IntegerField(default=0,primary_key=True)
 	rating=models.ForeignKey(transaction_ratings,default=None)
 	def __str__(self):
-		return str(self.poster.user_id)+"->"+str(self.seeker.user_id)		
+		return str(self.poster.first_name)+"->"+str(self.seeker.last_name)		
 
 class post_reporting(models.Model):
 	product_id=models.ForeignKey(products,default=None)
