@@ -235,8 +235,10 @@ def update_my_posts(request):
 	ui=user_interested.objects.get(user_id=u,product_id=p)
 	ui.status=Status
 	ui.save()
-	if(ui.status=='2' or ui.status==2):
+	if(ui.status=='3' or ui.status==3):
 		ui.delete()
+	
+	
 	return JsonResponse({'status':0})
 
 @csrf_exempt
