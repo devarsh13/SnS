@@ -604,6 +604,6 @@ def send_email(request):
 	header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject:testing \n'
 	print header
 	msg = header + '\n this is test msg from splitnsave \n\n'
-	smtpserver.sendmail(gmail_user, to, msg)
+	smtpserver.sendmail(user, to, msg)
 	print 'done!'
 	smtpserver.quit()
