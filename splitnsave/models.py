@@ -28,7 +28,7 @@ def profession_number():
 		else:
 			return no3+1
 def product_number():
-		no=products.objects.count()
+		no=products.objects.all().order_by("-product_id")[0]
 		if no==None:
 			return 1
 		else:
@@ -262,3 +262,7 @@ class user_interested(models.Model):
 	product_id=models.ForeignKey(products,primary_key=True)
 	status=models.IntegerField(default=0)
 
+class user_to_user(models.Model):
+	user1=models.ForeignKey(users,primary_key=True)
+	user2=models.ForeignKey(users,primary_key=True)
+	status=models.IntegerField(default=0)

@@ -462,3 +462,129 @@ def edit_post(request):
 		d['subproduct']['End_Time']=sp.endtime
 		d['subproduct']['Weights']=sp.weight
 
+	return JsonResponse(d)
+
+
+def edit_data(request):
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	category=""
+	Category_Id=input1['Category_Id']
+	u=users.objects.get(email=Email)
+	Product_Id=input1['Product_Id']
+	p=products.objects.get(product_id=Product_Id)
+	if(Category_Id=='1'):
+		category='Apartments'
+	elif(Category_Id=='2'):
+		category='Cabs'
+	elif(Category_Id=='3'):
+		category='Books'
+	else:
+		category='Laundary'
+	price1=input1['product']['Price']
+	description1=input1['product']['Description']
+	product_name1=input1['product']['Title']
+	image_url1=input1['product']['Image_Link']
+	number_of_sharers1=input1['product']['Sharers']
+	number_of_sharers_left1=input1['product']['Sharers']
+	gender1=input1['product']['Gender']
+	ci=categories.objects.get(category_name=category)
+	
+	p.category_id=ci
+	p.user_id=u
+	p.price=price1
+	p.description=description1
+	p.product_name=product_name1
+	p.image_url=image_url1
+	p.number_of_sharers=number_of_sharers1
+	p.number_of_sharers_left=number_of_sharers_left1
+	p.gender=gender1
+	p.save()
+	options=input1['options']
+	ed=input1['subproduct']
+
+	if(category=='Apartments'):
+		a=apartments.objects.get(other_details=p)
+		
+		a.kitchen=options[0]['Option_Value']
+		a.internet=options[1]['Option_Value']
+		a.television=options[2]['Option_Value']
+		a.air_conditioner=options[3]['Option_Value']
+		a.heater=options[4]['Option_Value']
+		a.washing_machine=options[5]['Option_Value']
+		a.parking=options[6]['Option_Value']
+		a.smoking=options[7]['Option_Value']
+		a.wheelchair=options[8]['Option_Value']
+		a.elevator=options[9]['Option_Value']
+		a.gym=options[10]['Option_Value']
+		a.pool=options[11]['Option_Value']
+		a.fire_alarm=options[12]['Option_Value']
+		a.medical_aid=options[13]['Option_Value']
+		a.other_details=p
+		a.rooms=ed['Rooms']
+		a.number_of_bedrooms=ed['Bed_Rooms']
+		a.number_of_bathrooms=ed['Bath_Rooms']
+		a.bathroom_type=ed['BathRoom_Type']
+		a.in_time=ed['IN_Time_Value']
+		a.out_time=ed['OUT_Time_Value']
+		a.save()
+	elif(category=='Cabs'):
+		
+		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
+		end=strptime(ed['End_Date'],'%Y-%m-%d')
+		c=apartments.objects.get(other_details=p)
+		
+		c.other_details=p
+		c.startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday)
+		c.enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday)
+		c.starttime=ed['Start_Time']
+		c.endtime=ed['End_Time']
+		c.car_type=ed['CarType']
+		c.car_name=ed['CarName']
+		c.car_service=ed['CarService']
+		c.smoking=options[0]['Option_Value']
+		c.kids=options[1]['Option_Value']
+		c.luggage=options[2]['Option_Value']
+		c.pets=options[3]['Option_Value']
+		c.music=options[4]['Option_Value']
+		c.non_stop_journey=options[5]['Option_Value']
+		c.destination=ed['Location']
+			
+	elif(category=='Books'):
+		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
+		end=strptime(ed['End_Date'],'%Y-%m-%d')
+		b=books.objects.get(other_details=p)
+		
+		b.other_details=p
+		b.startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday)
+		b.enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday)
+		b.author_first_name=ed['Author_First_Name']
+		b.author_last_name=ed['Author_Last_Name']
+		b.location=ed['Location']
+		b.tag1=ed['Tag1']
+		b.tag2=ed['Tag2']
+		b.tag3=ed['Tag3']
+		b.college=ed['College']
+		b.save()
+	else:
+		
+		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
+		end=strptime(ed['End_Date'],'%Y-%m-%d')
+		l=laundary.objects.get(other_details=p)
+
+		
+		l.other_details=p
+		l.startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday)
+		l.enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday)
+		l.starttime=ed['Start_Time']
+		l.endtime=ed['End_Time']
+		l.weight=ed['Weights']
+		l.white_clothes=options[0]['Option_Value']
+		l.light_clothes=options[1]['Option_Value']
+		l.cotton_clothes=options[2]['Option_Value']
+		l.silk_clothes=options[3]['Option_Value']
+		l.dry_cleaning=options[4]['Option_Value']
+		l.steam_press=options[5]['Option_Value']
+		l.fabric_softner=options[6]['Option_Value']
+		l.save()
+	return JsonResponse({'status':0})
