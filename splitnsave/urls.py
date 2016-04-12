@@ -23,7 +23,8 @@ urlpatterns = [
     url(r'editdata',views.edit_data),
     url(r'sendmail',views.send_email),
     url(r'productdetail',views.product_details),
-    url(r'login',views.login)
-
+    url(r'login',views.login),
+    url(r'sendrequest',views.send_request),
+    url(r'reportproduct',views.report_product),
 ]
 	
