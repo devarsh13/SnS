@@ -262,7 +262,3 @@ class user_interested(models.Model):
 	product_id=models.ForeignKey(products,primary_key=True)
 	status=models.IntegerField(default=0)
 
-class user_to_user(models.Model):
-	user1=models.ForeignKey(users,default=None,related_name='user1')
-	user2=models.ForeignKey(users,default=None,related_name='user2')
-	status=models.IntegerField(default=0)
