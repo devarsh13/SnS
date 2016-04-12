@@ -594,7 +594,7 @@ def send_email(request):
 
 	
 	to = 'devarshseth13@gmail.com'
-	user = 'devarshseth13@gmail.com'
+	user = 'devarshsheth13@gmail.com'
 	pwd = 'idontknowits13'
 	smtpserver = smtplib.SMTP("smtp.gmail.com",587)
 	smtpserver.ehlo()
