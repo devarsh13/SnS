@@ -250,7 +250,7 @@ def confirm_post(request):
 	u=user_interested.objects.filter(product_id=p,status=2)
 	p.status=3
 	for i in u:
-		transaction_history.create(seeker=u,product_id=p,poster=p.user_id)
+		transaction_history.objects.create(seeker=u,product_id=p,poster=p.user_id)
 	return JsonResponse({'status':0})
 @csrf_exempt
 def delete_account(request):
