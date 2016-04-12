@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'createpost',views.create_post),
     url(r'editpost',views.edit_post),
     url(r'editdata',views.edit_data),
+    url(r'sendmail',views.send_email),
 
 ]
 	

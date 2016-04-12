@@ -592,20 +592,18 @@ def edit_data(request):
 
 def send_email(request):
 
-	try:
-		to = 'devarshseth13@ygmail.com'
-		user = '201301423@daiict.ac.in'
-		pwd = 'Lionking13@@'
-		smtpserver = smtplib.SMTP("webmail.daiict.ac.in")
-		smtpserver.ehlo()
-		smtpserver.starttls()
-		smtpserver.ehlo() # extra characters to permit edit
-		smtpserver.login(user, pwd)
-		header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject:testing \n'
-		print header
-		msg = header + '\n this is test msg from mkyong.com \n\n'
-		smtpserver.sendmail(gmail_user, to, msg)
-		print 'done!'
-		smtpserver.quit()
-	except:
-		pass
+	
+	to = 'devarshseth13@ygmail.com'
+	user = '201301423@daiict.ac.in'
+	pwd = 'Lionking13@@'
+	smtpserver = smtplib.SMTP("webmail.daiict.ac.in")
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo() # extra characters to permit edit
+	smtpserver.login(user, pwd)
+	header = 'To:' + to + '\n' + 'From: ' + gmail_user + '\n' + 'Subject:testing \n'
+	print header
+	msg = header + '\n this is test msg from mkyong.com \n\n'
+	smtpserver.sendmail(gmail_user, to, msg)
+	print 'done!'
+	smtpserver.quit()
