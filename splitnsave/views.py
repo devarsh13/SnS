@@ -902,4 +902,4 @@ def category_products(request):
 
 		
 		products1.append(d)
-	return JsonResponse(products1)
+	return JsonResponse({'products':products1})
