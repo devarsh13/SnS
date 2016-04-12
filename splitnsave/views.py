@@ -100,10 +100,10 @@ def userprofile(request):
 				break
 	try:
 		ur=user_reporting.objects.get(reporter=u1,reportee=u)
-		status=2
+		report_status=1
 	except:
 		pass
-	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city.city_name,'Institute':u.institute.institute_name,'Birthdate':u.birthday,'Profession_Name':u.profession.profession_name,'Gender':u.gender,'Status':status,'Institute_Name':u.institute.institute_name}}
+	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city.city_name,'Institute':u.institute.institute_name,'Birthdate':u.birthday,'Profession_Name':u.profession.profession_name,'Gender':u.gender,'Status_Confirm':status,'Status_Report':report_status,Institute_Name':u.institute.institute_name}}
 	return JsonResponse(d)
 
 @csrf_exempt
@@ -743,7 +743,7 @@ def login(request):
 		return JsonResponse({'status':0,'First_Name':u.first_name})
 	else:
 		return JsonResponse({'status':1,'First_Name':''})
-
+@csrf_exempt
 def send_request(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
@@ -754,7 +754,7 @@ def send_request(request):
 
 
 	return JsonResponse({'status':0})
-
+@csrf_exempt
 def report_product(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
