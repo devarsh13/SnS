@@ -36,21 +36,21 @@ def product_number():
 # Create your models here
 class city_list(models.Model):
 	
-	city_id=models.IntegerField(primary_key=True,default=city_number)
+	city_id=models.IntegerField(default=city_number)
 	CITIES=[('',''),('Ahmedabad','Ahmedabad'),('Gandhinagar','Gandhinagar')]
 	city_name=models.CharField(default='',max_length=100,choices=CITIES)
 	
 	def __str__(self):
 		return self.city_name
 class institute_list(models.Model):
-	institute_id=models.IntegerField(primary_key=True,default=institute_number)
+	institute_id=models.IntegerField(default=institute_number)
 	INSTITUTES=[('',''),('DA-IICT','DA-IICT'),('Nirma Institute of Technology','Nirma Institute of Technology')]
 	institute_name=models.CharField(default='',max_length=100,choices=INSTITUTES,null=False)
 	
 	def __str__(self):
 		return self.institute_name
 class profession_list(models.Model):
-	profession_id=models.IntegerField(primary_key=True,default=profession_number)
+	profession_id=models.IntegerField(default=profession_number)
 	PROFESSIONS=[('',''),('Student','Student'),('abc','abc')]
 	profession_name=models.CharField(default='',max_length=100,choices=PROFESSIONS,null=True)
 
@@ -87,7 +87,7 @@ class chat_history(models.Model):
 	delivered_status=models.BooleanField(default=False)
 
 class categories(models.Model):
-	category_id=models.IntegerField(default=0,primary_key=True)
+	category_id=models.IntegerField(default=0,)
 	CATEGORIES=[('',''),('Cabs','Cabs'),('Books','Books'),('Laundary','Laundary'),('Apartments','Apartments')]
 	category_name=models.CharField(default='',max_length=100,choices=CATEGORIES,null=False)
 	def __str__(self):
@@ -97,7 +97,7 @@ class products(models.Model):
 	user_id=models.ForeignKey(users)
 	product_name=models.CharField(default='',null=False,max_length=100)
 	category_id=models.ForeignKey(categories)
-	product_id=models.IntegerField(default=product_number,primary_key=True)
+	product_id=models.IntegerField(default=product_number,)
 	number_of_sharers=models.IntegerField(default=1)
 	number_of_sharers_left=models.IntegerField(default=0)
 	GENDER=[('M','Male'),('F','Female')]
@@ -121,10 +121,10 @@ class transaction_ratings(models.Model):
 		return str(self.rater.user_id)+"->"+str(self.ratee.user_id)
 
 class transaction_history(models.Model):
-	product_id=models.ForeignKey(products,default=None,primary_key=True)
-	poster=models.ForeignKey(users,default=None,related_name='poster',primary_key=True)
-	seeker=models.ForeignKey(users,default=None,related_name='seeker',primary_key=True)
-	transact_status=models.IntegerField(default=0,primary_key=True)
+	product_id=models.ForeignKey(products,default=None,)
+	poster=models.ForeignKey(users,default=None,related_name='poster',)
+	seeker=models.ForeignKey(users,default=None,related_name='seeker',)
+	transact_status=models.IntegerField(default=0,)
 	rating=models.ForeignKey(transaction_ratings,default=None)
 	def __str__(self):
 		return str(self.poster.user_id)+"->"+str(self.seeker.user_id)		
@@ -140,17 +140,17 @@ class user_reporting(models.Model):
 	status=models.IntegerField(default=0)
 
 class car_service_list(models.Model):
-	car_service_id=models.IntegerField(default=0,primary_key=True)
+	car_service_id=models.IntegerField(default=0,)
 	CARSERIVCE=[('',''),('Uber','Uber')]
 	car_service=models.CharField(default='',choices=CARSERIVCE,max_length=100)
 
 class car_type_list(models.Model):
-	car_type_id=models.IntegerField(default=0,primary_key=True)
+	car_type_id=models.IntegerField(default=0,)
 	CARTYPE=[('',''),('Sedan','Sedan')]
 	car_type=models.CharField(default='',choices=CARTYPE,max_length=100)
 
 class car_name_list(models.Model):
-	car_name_id=models.IntegerField(default=0,primary_key=True)
+	car_name_id=models.IntegerField(default=0,)
 	CARNAME=[('',''),('ABC','ABC')]
 	car_name=models.CharField(default='',choices=CARNAME,max_length=100)	
 
@@ -190,12 +190,12 @@ class laundary(models.Model):
 	def __str__(self):
 		return self.other_details.product_name
 class sub_category_list(models.Model):
-	sub_category_id=models.IntegerField(default=0,primary_key=True)
+	sub_category_id=models.IntegerField(default=0,)
 	SUBCATEGORIES=[('',''),('ABC','ABC')]
 	sub_category_name=models.CharField(max_length=100,choices=SUBCATEGORIES,default=None)
 
 class keyword_list(models.Model):
-	keyword_id=models.IntegerField(default=0,primary_key=True)
+	keyword_id=models.IntegerField(default=0,)
 	KEYWORDS=[('',''),('ABC','ABC')]
 	keyword_name=models.CharField(max_length=100,choices=KEYWORDS,default=None)	
 
@@ -240,7 +240,7 @@ class apartments(models.Model):
 	def __str__(self):
 		return self.other_details.product_name
 class tag_list(models.Model):
-	tag_id=models.IntegerField(default=0,primary_key=True)
+	tag_id=models.IntegerField(default=0,)
 	TAGS=[('',''),('ABC','ABC')]
 	tag_name=models.CharField(max_length=100,choices=TAGS,default=None)		
 
@@ -258,7 +258,7 @@ class books(models.Model):
 	def __str__(self):
 		return self.other_details.product_name
 class user_interested(models.Model):
-	user_id=models.ForeignKey(users,primary_key=True)
-	product_id=models.ForeignKey(products,primary_key=True)
+	user_id=models.ForeignKey(users,)
+	product_id=models.ForeignKey(products,)
 	status=models.IntegerField(default=0)
 
