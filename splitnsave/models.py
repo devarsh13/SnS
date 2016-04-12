@@ -261,3 +261,4 @@ class user_interested(models.Model):
 	user_id=models.ForeignKey(users,primary_key=True)
 	product_id=models.ForeignKey(products,primary_key=True)
 	status=models.IntegerField(default=0)
+
