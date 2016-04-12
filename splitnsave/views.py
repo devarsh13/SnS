@@ -465,7 +465,7 @@ def edit_post(request):
 
 	return JsonResponse(d)
 
-
+@csrf_exempt
 def edit_data(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
@@ -590,10 +590,11 @@ def edit_data(request):
 		l.save()
 	return JsonResponse({'status':0})
 
+@csrf_exempt
 def send_email(request):
 
 	
-	to = 'tanayagn@gmail.com'
+	to = 'tanayagl@gmail.com'
 	user = 'devarshsheth13@gmail.com'
 	pwd = 'idontknowits13'
 	smtpserver = smtplib.SMTP("smtp.gmail.com",587)
