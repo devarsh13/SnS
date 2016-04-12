@@ -620,7 +620,7 @@ def send_email(request):
 @csrf_exempt
 def product_details(request):
 	input1=json.loads(request.body)
-	Email=input1['Email']
+	
 	Product_Id=input1['Product_Id']
 	p=products.objects.get(product_id=Product_Id)
 	u=p.user_id
@@ -717,6 +717,7 @@ def product_details(request):
 	d['user']['rating']=u.rating
 	d['user']['User_Id']=u.user_id
 	try:
+		Email=input1['Email']
 		u1=users.objects.get(email=Email)
 		d['user']['Status_Confirm']=user_interested.objects.get(user_id=u1,product_id=p).status
 		
