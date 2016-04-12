@@ -58,7 +58,7 @@ class users(models.Model):
 	
 	GENDER=[('M','Male'),('F','Female')]
 	STATUS=[('-1','Not Active'),('0','Not Verified'),('1','Active')]
-	user_id=models.IntegerField(primary_key=True,default=number)
+	user_id=models.IntegerField(default=number)
 	first_name=models.CharField(max_length=50)
 	last_name=models.CharField(max_length=50)
 	email=models.EmailField(primary_key=True,null=False)
