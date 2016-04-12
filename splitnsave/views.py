@@ -27,6 +27,7 @@ def signup_check(request):
 	
 	msg['email']=Email
 	return JsonResponse(msg)
+
 @csrf_exempt
 def signup(request):
 	input1=json.loads(request.body)
@@ -48,6 +49,7 @@ def signup(request):
 
 
 	return JsonResponse({status:'0'})
+
 @csrf_exempt
 def editprofile(request):
 	input1=json.loads(request.body)
@@ -77,6 +79,7 @@ def edit_profile_change(request):
 	u.image_url=input1['Image_Link']
 	u.save()
 	return JsonResponse({'status':'0'})
+
 @csrf_exempt
 def userprofile(request):
 	input1=json.loads(request.body)
@@ -119,6 +122,7 @@ def change_password(request):
 	u.password=input1['New_Password']
 	u.save()
 	return JsonResponse({'status':0})
+
 @csrf_exempt
 def dashboard(request):
 	input1=json.loads(request.body)
@@ -178,6 +182,7 @@ def change_rating(request):
 	t.save()
 
 	return JsonResponse({'status':0})
+
 @csrf_exempt
 def my_posts(request):
 	input1=json.loads(request.body)
@@ -208,6 +213,7 @@ def my_posts(request):
 			temp['Sharer'].append(temp_user)
 		d['Products'].append(temp)
 	return JsonResponse(d)
+
 @csrf_exempt
 def delete_my_posts(request):
 	input1=json.loads(request.body)
@@ -215,6 +221,7 @@ def delete_my_posts(request):
 	p=products.objects.get(product_id=Product_Id)
 	p.delete()
 	return JsonResponse({'status':0})
+
 @csrf_exempt
 def update_my_posts(request):
 	input1=json.loads(request.body)
@@ -230,6 +237,7 @@ def update_my_posts(request):
 	if(ui.status=='2' or ui.status==2):
 		ui.delete()
 	return JsonResponse({'status':0})
+
 @csrf_exempt
 def delete_account(request):
 	input1=json.loads(request.body)
@@ -369,7 +377,6 @@ def create_post(request):
 			fabric_softner=options[6]['Option_Value'],
 			)
 	return JsonResponse({'status':0})
-
 
 @csrf_exempt
 def edit_post(request):
@@ -609,3 +616,112 @@ def send_email(request):
 	print 'done!'
 	smtpserver.quit()
 	return JsonResponse({'status':0})
+
+@csrf_exempt
+def product_details(request):
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	Product_Id=input1['Product_Id']
+	p=products.objects.get(product_id=Product_Id)
+	u=p.user_id
+	sp=None
+	d={'Category_Id':0,'product':{},'options':[],'user':{}}
+	if(p.category_id.category_name=='Books'):
+		sp=books.objects.get(other_details=p)
+		d["Category_Id"]='3'
+	elif(p.category_id.category_name=='Apartments'):
+		sp=apartments.objects.get(other_details=p)
+		d["Category_Id"]='1'
+	elif(p.category_id.category_name=='Laundary'):
+		sp=laundary.objects.get(other_details=p)
+		d["Category_Id"]='4'
+	else:
+		sp=cabs.objects.get(other_details=p)
+		d["Category_Id"]='2'
+	d['product']['Price']=p.price
+	d['product']['Description']=p.description
+	d['product']['Title']=p.product_name
+	d['product']['Image_Link']=p.image_url
+	d['product']['Sharers']=p.number_of_sharers
+	d['product']['Sharers_Left']=p.number_of_sharers_left
+	d['product']['Gender']=p.gender
+	d['product']['Post_Date']=p.post_date
+	d['product']['Location']=p.location
+
+	if(d["Category_Id"]=='3'):
+		d['product']['Start_Date']=sp.startdate
+		d['product']['End_Date']=sp.enddate
+		d['product']['Author_First_Name']=sp.author_first_name
+		d['product']['Author_Last_Name']=sp.author_last_name
+		d['product']['Tag1']=sp.tag1
+		d['product']['Tag2']=sp.tag2
+		d['product']['Tag3']=sp.tag3
+		d['product']['Location']=sp.location
+		d['product']['College']=sp.college
+
+	if(d['Category_Id']=='1'):
+		d['options'].append({'Option_Name':'Kitchen','Option_Value':sp.kitchen})
+		d['options'].append({'Option_Name':'Internet','Option_Value':sp.internet})
+		d['options'].append({'Option_Name':'Television','Option_Value':sp.television})
+		d['options'].append({'Option_Name':'A.C','Option_Value':sp.air_conditioner})
+		d['options'].append({'Option_Name':'Heater','Option_Value':sp.heater})
+		d['options'].append({'Option_Name':'Washing Machine','Option_Value':sp.washing_machine})
+		d['options'].append({'Option_Name':'Parking Space','Option_Value':sp.parking})
+		d['options'].append({'Option_Name':'No Smoking','Option_Value':sp.smoking})
+		d['options'].append({'Option_Name':'Wheelchair Support','Option_Value':sp.wheelchair})
+		d['options'].append({'Option_Name':'Elevator','Option_Value':sp.elevator})
+		d['options'].append({'Option_Name':'Gym','Option_Value':sp.gym})
+		d['options'].append({'Option_Name':'Pool','Option_Value':sp.pool})
+		d['options'].append({'Option_Name':'Fire exit alarm','Option_Value':sp.fire_alarm})
+		d['options'].append({'Option_Name':'First-Aid-Kit','Option_Value':sp.medical_aid})
+		d['product']['Rooms']=sp.rooms
+		d['product']['Bed_Rooms']=sp.number_of_bedrooms
+		d['product']['Bath_Rooms']=sp.number_of_bathrooms
+		d['product']['IN_Time_Value']=sp.in_time
+		d['product']['OUT_Time_Value']=sp.out_time
+		d['product']['Location']=sp.location
+
+	if(d['Category_Id']=='2'):
+		d['options'].append({'Option_Name':'Smoking','Option_Value':sp.smoking})
+		d['options'].append({'Option_Name':'Kids','Option_Value':sp.kids})
+		d['options'].append({'Option_Name':'Luggage','Option_Value':sp.luggage})
+		d['options'].append({'Option_Name':'Pets','Option_Value':sp.pets})
+		d['options'].append({'Option_Name':'Music','Option_Value':sp.music})
+		d['options'].append({'Option_Name':'Non Stop Journey','Option_Value':sp.non_stop_journey})
+		d['product']['Location']=sp.location
+		d['product']['Start_Date']=sp.startdate
+		d['product']['Start_Time']=sp.starttime
+		d['product']['End_Date']=sp.enddate
+		d['product']['End_Time']=sp.endtime
+		d['product']['CarService']=sp.car_service
+		d['product']['CarName']=sp.car_name
+		d['product']['CarType']=sp.car_type
+
+	if(d['Category_Id']=='4'):
+		d['options'].append({'Option_Name':'White Clothes','Option_Value':sp.white_clothes})
+		d['options'].append({'Option_Name':'Light Clothes','Option_Value':sp.light_clothes})
+		d['options'].append({'Option_Name':'Cotton Clothes','Option_Value':sp.cotton_clothes})
+		d['options'].append({'Option_Name':'Silk Clothes','Option_Value':sp.silk_clothes})
+		d['options'].append({'Option_Name':'Dry Cleaning','Option_Value':sp.dry_cleaning})
+		d['options'].append({'Option_Name':'Steam Press','Option_Value':sp.steam_press})
+		d['options'].append({'Option_Name':'Fabric Softner','Option_Value':sp.fabric_softner})
+		d['product']['Start_Date']=sp.startdate
+		d['product']['End_Date']=sp.enddate
+		d['product']['Start_Time']=sp.starttime
+		d['product']['End_Time']=sp.endtime
+		d['product']['Weights']=sp.weight
+
+	d['user']['First_Name']=u.first_name
+	d['user']['Last_Name']=u.last_name
+	d['user']['Image_Link']=u.image_url
+	d['user']['rating']=u.rating
+	d['user']['User_Id']=u.user_id
+	try:
+		d['user']['Status_Confirm']=user_interested.objects.get(user_id=u,product_id=p).status
+		u1=users.objects.get(email=Email)
+		d['user']['Status_Report']=user_report_post.objects.get(user_id=u1,product_id=p).status
+	except:
+		d['user']['Status_Confirm']='-1'
+		d['user']['Status_Report']='-1'
+
+	return JsonResponse(d)

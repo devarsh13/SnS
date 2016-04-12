@@ -262,3 +262,4 @@ class user_interested(models.Model):
 	product_id=models.ForeignKey(products,primary_key=True)
 	status=models.IntegerField(default=0)
 
+class user_report_post(models.Model)
