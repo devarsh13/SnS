@@ -647,7 +647,7 @@ def product_details(request):
 	d['product']['Gender']=p.gender
 	d['product']['Post_Date']=p.post_date
 	d['product']['Location']=p.location
-
+	d['product']['Product_Id']=p.product_id
 	if(d["Category_Id"]=='3'):
 		d['product']['Start_Date']=sp.startdate
 		d['product']['End_Date']=sp.enddate
