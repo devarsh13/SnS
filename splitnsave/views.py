@@ -732,7 +732,7 @@ def product_details(request):
 def login(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
-	password=input1['Password']
+	Password=input1['Password']
 	flag=1
 	try:
 		u=users.objects.get(email=Email,password=Password)
