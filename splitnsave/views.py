@@ -720,7 +720,10 @@ def product_details(request):
 		Email=input1['Email']
 		u1=users.objects.get(email=Email)
 		d['user']['Status_Confirm']=user_interested.objects.get(user_id=u1,product_id=p).status
-		
+		try:
+			d['user']['Status_Report']=user_report_post.objects.get(user_id=u1,product_id=p).status
+		except:
+			d['user']['Status_Report']='0'
 	except:
 		d['user']['Status_Confirm']='0'
 		try:
