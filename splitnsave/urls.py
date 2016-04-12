@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'login',views.login),
     url(r'sendrequest',views.send_request),
     url(r'reportproduct',views.report_product),
-    url(r'confirmdeal',views.confirm_post)
-    url(r'productresults',views.category_post)
+    url(r'confirmdeal',views.confirm_post),
+    url(r'productresults',views.category_post),
 ]
 	
