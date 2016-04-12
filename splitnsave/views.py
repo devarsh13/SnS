@@ -149,7 +149,7 @@ def transactions(request):
 	products=[]
 	for i in transaction_list:
 		temp=i.product_id
-		details={'Product_Name':temp.product_name,'Product_Image':temp.image_url,'Product_Id':temp.product_id,'Confirm_Date':temp.confirm_date,'Price':temp.price,'Location':temp.location}
+		details={'Product_Name':temi.product_name,'Product_Image':temi.image_url,'Product_Id':temi.product_id,'Confirm_Date':temi.confirm_date,'Price':temi.price,'Location':temi.location}
 		details['Sharer']=[]
 		sharers=[]
 		aaa=transaction_history.objects.filter(product_id=temp)
@@ -222,7 +222,7 @@ def delete_my_posts(request):
 	input1=json.loads(request.body)
 	Product_Id=input1['Product_Id']
 	p=products.objects.get(product_id=Product_Id)
-	p.delete()
+	i.delete()
 	return JsonResponse({'status':0})
 
 @csrf_exempt
@@ -248,11 +248,11 @@ def confirm_post(request):
 	Product_Id=input1['Product_Id']
 	p=products.objects.get(product_id=Product_Id)
 	u=user_interested.objects.filter(product_id=p,status=2)
-	p.status=3
-	p.save()
+	i.status=3
+	i.save()
 	for i in u:
-		r=transaction_ratings.objects.create(product_id=p,rater=p.user_id,ratee=i.user_id,rating=0)
-		transaction_history.objects.create(seeker=i.user_id,product_id=p,poster=p.user_id,rating=r,transact_status=0)
+		r=transaction_ratings.objects.create(product_id=p,rater=i.user_id,ratee=i.user_id,rating=0)
+		transaction_history.objects.create(seeker=i.user_id,product_id=p,poster=i.user_id,rating=r,transact_status=0)
 	return JsonResponse({'status':0})
 @csrf_exempt
 def delete_account(request):
@@ -401,90 +401,90 @@ def edit_post(request):
 	p=products.objects.get(product_id=Product_Id)
 	sp=None
 	d={'Category_Id':0,'product':{},'options':[],'subproduct':{}}
-	if(p.category_id.category_name=='Books'):
+	if(i.category_id.category_name=='Books'):
 		sp=books.objects.get(other_details=p)
 		d["Category_Id"]='3'
-	elif(p.category_id.category_name=='Apartments'):
+	elif(i.category_id.category_name=='Apartments'):
 		sp=apartments.objects.get(other_details=p)
 		d["Category_Id"]='1'
-	elif(p.category_id.category_name=='Laundary'):
+	elif(i.category_id.category_name=='Laundary'):
 		sp=laundary.objects.get(other_details=p)
 		d["Category_Id"]='4'
 	else:
 		sp=cabs.objects.get(other_details=p)
 		d["Category_Id"]='2'
-	d['product']['Price']=p.price
-	d['product']['Description']=p.description
-	d['product']['Title']=p.product_name
-	d['product']['Image_Link']=p.image_url
-	d['product']['Sharers']=p.number_of_sharers
-	d['product']['Sharers_Left']=p.number_of_sharers_left
-	d['product']['Gender']=p.gender
-	d['product']['Post_Date']=p.post_date
-	d['product']['Location']=p.location
+	d['product']['Price']=i.price
+	d['product']['Description']=i.description
+	d['product']['Title']=i.product_name
+	d['product']['Image_Link']=i.image_url
+	d['product']['Sharers']=i.number_of_sharers
+	d['product']['Sharers_Left']=i.number_of_sharers_left
+	d['product']['Gender']=i.gender
+	d['product']['Post_Date']=i.post_date
+	d['product']['Location']=i.location
 
 	if(d["Category_Id"]=='3'):
-		d['subproduct']['Start_Date']=sp.startdate
-		d['subproduct']['End_Date']=sp.enddate
-		d['subproduct']['Author_First_Name']=sp.author_first_name
-		d['subproduct']['Author_Last_Name']=sp.author_last_name
-		d['subproduct']['Tag1']=sp.tag1
-		d['subproduct']['Tag2']=sp.tag2
-		d['subproduct']['Tag3']=sp.tag3
-		d['subproduct']['Location']=sp.location
-		d['subproduct']['College']=sp.college
+		d['subproduct']['Start_Date']=si.startdate
+		d['subproduct']['End_Date']=si.enddate
+		d['subproduct']['Author_First_Name']=si.author_first_name
+		d['subproduct']['Author_Last_Name']=si.author_last_name
+		d['subproduct']['Tag1']=si.tag1
+		d['subproduct']['Tag2']=si.tag2
+		d['subproduct']['Tag3']=si.tag3
+		d['subproduct']['Location']=si.location
+		d['subproduct']['College']=si.college
 
 	if(d['Category_Id']=='1'):
-		d['options'].append({'Option_Name':'Kitchen','Option_Value':sp.kitchen})
-		d['options'].append({'Option_Name':'Internet','Option_Value':sp.internet})
-		d['options'].append({'Option_Name':'Television','Option_Value':sp.television})
-		d['options'].append({'Option_Name':'A.C','Option_Value':sp.air_conditioner})
-		d['options'].append({'Option_Name':'Heater','Option_Value':sp.heater})
-		d['options'].append({'Option_Name':'Washing Machine','Option_Value':sp.washing_machine})
-		d['options'].append({'Option_Name':'Parking Space','Option_Value':sp.parking})
-		d['options'].append({'Option_Name':'No Smoking','Option_Value':sp.smoking})
-		d['options'].append({'Option_Name':'Wheelchair Support','Option_Value':sp.wheelchair})
-		d['options'].append({'Option_Name':'Elevator','Option_Value':sp.elevator})
-		d['options'].append({'Option_Name':'Gym','Option_Value':sp.gym})
-		d['options'].append({'Option_Name':'Pool','Option_Value':sp.pool})
-		d['options'].append({'Option_Name':'Fire exit alarm','Option_Value':sp.fire_alarm})
-		d['options'].append({'Option_Name':'First-Aid-Kit','Option_Value':sp.medical_aid})
-		d['subproduct']['Rooms']=sp.rooms
-		d['subproduct']['Bed_Rooms']=sp.number_of_bedrooms
-		d['subproduct']['Bath_Rooms']=sp.number_of_bathrooms
-		d['subproduct']['IN_Time_Value']=sp.in_time
-		d['subproduct']['OUT_Time_Value']=sp.out_time
-		d['subproduct']['Location']=sp.location
+		d['options'].append({'Option_Name':'Kitchen','Option_Value':si.kitchen})
+		d['options'].append({'Option_Name':'Internet','Option_Value':si.internet})
+		d['options'].append({'Option_Name':'Television','Option_Value':si.television})
+		d['options'].append({'Option_Name':'A.C','Option_Value':si.air_conditioner})
+		d['options'].append({'Option_Name':'Heater','Option_Value':si.heater})
+		d['options'].append({'Option_Name':'Washing Machine','Option_Value':si.washing_machine})
+		d['options'].append({'Option_Name':'Parking Space','Option_Value':si.parking})
+		d['options'].append({'Option_Name':'No Smoking','Option_Value':si.smoking})
+		d['options'].append({'Option_Name':'Wheelchair Support','Option_Value':si.wheelchair})
+		d['options'].append({'Option_Name':'Elevator','Option_Value':si.elevator})
+		d['options'].append({'Option_Name':'Gym','Option_Value':si.gym})
+		d['options'].append({'Option_Name':'Pool','Option_Value':si.pool})
+		d['options'].append({'Option_Name':'Fire exit alarm','Option_Value':si.fire_alarm})
+		d['options'].append({'Option_Name':'First-Aid-Kit','Option_Value':si.medical_aid})
+		d['subproduct']['Rooms']=si.rooms
+		d['subproduct']['Bed_Rooms']=si.number_of_bedrooms
+		d['subproduct']['Bath_Rooms']=si.number_of_bathrooms
+		d['subproduct']['IN_Time_Value']=si.in_time
+		d['subproduct']['OUT_Time_Value']=si.out_time
+		d['subproduct']['Location']=si.location
 
 	if(d['Category_Id']=='2'):
-		d['options'].append({'Option_Name':'Smoking','Option_Value':sp.smoking})
-		d['options'].append({'Option_Name':'Kids','Option_Value':sp.kids})
-		d['options'].append({'Option_Name':'Luggage','Option_Value':sp.luggage})
-		d['options'].append({'Option_Name':'Pets','Option_Value':sp.pets})
-		d['options'].append({'Option_Name':'Music','Option_Value':sp.music})
-		d['options'].append({'Option_Name':'Non Stop Journey','Option_Value':sp.non_stop_journey})
-		d['subproduct']['Location']=sp.location
-		d['subproduct']['Start_Date']=sp.startdate
-		d['subproduct']['Start_Time']=sp.starttime
-		d['subproduct']['End_Date']=sp.enddate
-		d['subproduct']['End_Time']=sp.endtime
-		d['subproduct']['CarService']=sp.car_service
-		d['subproduct']['CarName']=sp.car_name
-		d['subproduct']['CarType']=sp.car_type
+		d['options'].append({'Option_Name':'Smoking','Option_Value':si.smoking})
+		d['options'].append({'Option_Name':'Kids','Option_Value':si.kids})
+		d['options'].append({'Option_Name':'Luggage','Option_Value':si.luggage})
+		d['options'].append({'Option_Name':'Pets','Option_Value':si.pets})
+		d['options'].append({'Option_Name':'Music','Option_Value':si.music})
+		d['options'].append({'Option_Name':'Non Stop Journey','Option_Value':si.non_stop_journey})
+		d['subproduct']['Location']=si.location
+		d['subproduct']['Start_Date']=si.startdate
+		d['subproduct']['Start_Time']=si.starttime
+		d['subproduct']['End_Date']=si.enddate
+		d['subproduct']['End_Time']=si.endtime
+		d['subproduct']['CarService']=si.car_service
+		d['subproduct']['CarName']=si.car_name
+		d['subproduct']['CarType']=si.car_type
 
 	if(d['Category_Id']=='4'):
-		d['options'].append({'Option_Name':'White Clothes','Option_Value':sp.white_clothes})
-		d['options'].append({'Option_Name':'Light Clothes','Option_Value':sp.light_clothes})
-		d['options'].append({'Option_Name':'Cotton Clothes','Option_Value':sp.cotton_clothes})
-		d['options'].append({'Option_Name':'Silk Clothes','Option_Value':sp.silk_clothes})
-		d['options'].append({'Option_Name':'Dry Cleaning','Option_Value':sp.dry_cleaning})
-		d['options'].append({'Option_Name':'Steam Press','Option_Value':sp.steam_press})
-		d['options'].append({'Option_Name':'Fabric Softner','Option_Value':sp.fabric_softner})
-		d['subproduct']['Start_Date']=sp.startdate
-		d['subproduct']['End_Date']=sp.enddate
-		d['subproduct']['Start_Time']=sp.starttime
-		d['subproduct']['End_Time']=sp.endtime
-		d['subproduct']['Weights']=sp.weight
+		d['options'].append({'Option_Name':'White Clothes','Option_Value':si.white_clothes})
+		d['options'].append({'Option_Name':'Light Clothes','Option_Value':si.light_clothes})
+		d['options'].append({'Option_Name':'Cotton Clothes','Option_Value':si.cotton_clothes})
+		d['options'].append({'Option_Name':'Silk Clothes','Option_Value':si.silk_clothes})
+		d['options'].append({'Option_Name':'Dry Cleaning','Option_Value':si.dry_cleaning})
+		d['options'].append({'Option_Name':'Steam Press','Option_Value':si.steam_press})
+		d['options'].append({'Option_Name':'Fabric Softner','Option_Value':si.fabric_softner})
+		d['subproduct']['Start_Date']=si.startdate
+		d['subproduct']['End_Date']=si.enddate
+		d['subproduct']['Start_Time']=si.starttime
+		d['subproduct']['End_Time']=si.endtime
+		d['subproduct']['Weights']=si.weight
 
 	return JsonResponse(d)
 
@@ -514,16 +514,16 @@ def edit_data(request):
 	gender1=input1['product']['Gender']
 	ci=categories.objects.get(category_name=category)
 	
-	p.category_id=ci
-	p.user_id=u
-	p.price=price1
-	p.description=description1
-	p.product_name=product_name1
-	p.image_url=image_url1
-	p.number_of_sharers=number_of_sharers1
-	p.number_of_sharers_left=number_of_sharers_left1
-	p.gender=gender1
-	p.save()
+	i.category_id=ci
+	i.user_id=u
+	i.price=price1
+	i.description=description1
+	i.product_name=product_name1
+	i.image_url=image_url1
+	i.number_of_sharers=number_of_sharers1
+	i.number_of_sharers_left=number_of_sharers_left1
+	i.gender=gender1
+	i.save()
 	options=input1['options']
 	ed=input1['subproduct']
 
@@ -620,7 +620,7 @@ def send_email(request):
 	to = 'tanayagl@gmail.com'
 	user = 'devarshsheth13@gmail.com'
 	pwd = 'idontknowits13'
-	smtpserver = smtplib.SMTP("smtp.gmail.com",587)
+	smtpserver = smtplib.SMTP("smti.gmail.com",587)
 	smtpserver.ehlo()
 	smtpserver.starttls()
 	smtpserver.ehlo() # extra characters to permit edit
@@ -639,93 +639,93 @@ def product_details(request):
 	
 	Product_Id=input1['Product_Id']
 	p=products.objects.get(product_id=Product_Id)
-	u=p.user_id
+	u=i.user_id
 	sp=None
 	d={'Category_Id':0,'product':{},'options':[],'user':{}}
-	if(p.category_id.category_name=='Books'):
+	if(i.category_id.category_name=='Books'):
 		sp=books.objects.get(other_details=p)
 		d["Category_Id"]='3'
-	elif(p.category_id.category_name=='Apartments'):
+	elif(i.category_id.category_name=='Apartments'):
 		sp=apartments.objects.get(other_details=p)
 		d["Category_Id"]='1'
-	elif(p.category_id.category_name=='Laundary'):
+	elif(i.category_id.category_name=='Laundary'):
 		sp=laundary.objects.get(other_details=p)
 		d["Category_Id"]='4'
 	else:
 		sp=cabs.objects.get(other_details=p)
 		d["Category_Id"]='2'
-	d['product']['Price']=p.price
-	d['product']['Description']=p.description
-	d['product']['Title']=p.product_name
-	d['product']['Image_Link']=p.image_url
-	d['product']['Sharers']=p.number_of_sharers
-	d['product']['Sharers_Left']=p.number_of_sharers_left
-	d['product']['Gender']=p.gender
-	d['product']['Post_Date']=p.post_date
-	d['product']['Location']=p.location
-	d['product']['Product_Id']=p.product_id
+	d['product']['Price']=i.price
+	d['product']['Description']=i.description
+	d['product']['Title']=i.product_name
+	d['product']['Image_Link']=i.image_url
+	d['product']['Sharers']=i.number_of_sharers
+	d['product']['Sharers_Left']=i.number_of_sharers_left
+	d['product']['Gender']=i.gender
+	d['product']['Post_Date']=i.post_date
+	d['product']['Location']=i.location
+	d['product']['Product_Id']=i.product_id
 	if(d["Category_Id"]=='3'):
-		d['product']['Start_Date']=sp.startdate
-		d['product']['End_Date']=sp.enddate
-		d['product']['Author_First_Name']=sp.author_first_name
-		d['product']['Author_Last_Name']=sp.author_last_name
-		d['product']['Tag1']=sp.tag1
-		d['product']['Tag2']=sp.tag2
-		d['product']['Tag3']=sp.tag3
-		d['product']['Location']=sp.location
-		d['product']['College']=sp.college
+		d['product']['Start_Date']=si.startdate
+		d['product']['End_Date']=si.enddate
+		d['product']['Author_First_Name']=si.author_first_name
+		d['product']['Author_Last_Name']=si.author_last_name
+		d['product']['Tag1']=si.tag1
+		d['product']['Tag2']=si.tag2
+		d['product']['Tag3']=si.tag3
+		d['product']['Location']=si.location
+		d['product']['College']=si.college
 
 	if(d['Category_Id']=='1'):
-		d['options'].append({'Option_Name':'Kitchen','Option_Value':sp.kitchen})
-		d['options'].append({'Option_Name':'Internet','Option_Value':sp.internet})
-		d['options'].append({'Option_Name':'Television','Option_Value':sp.television})
-		d['options'].append({'Option_Name':'A.C','Option_Value':sp.air_conditioner})
-		d['options'].append({'Option_Name':'Heater','Option_Value':sp.heater})
-		d['options'].append({'Option_Name':'Washing Machine','Option_Value':sp.washing_machine})
-		d['options'].append({'Option_Name':'Parking Space','Option_Value':sp.parking})
-		d['options'].append({'Option_Name':'No Smoking','Option_Value':sp.smoking})
-		d['options'].append({'Option_Name':'Wheelchair Support','Option_Value':sp.wheelchair})
-		d['options'].append({'Option_Name':'Elevator','Option_Value':sp.elevator})
-		d['options'].append({'Option_Name':'Gym','Option_Value':sp.gym})
-		d['options'].append({'Option_Name':'Pool','Option_Value':sp.pool})
-		d['options'].append({'Option_Name':'Fire exit alarm','Option_Value':sp.fire_alarm})
-		d['options'].append({'Option_Name':'First-Aid-Kit','Option_Value':sp.medical_aid})
-		d['product']['Rooms']=sp.rooms
-		d['product']['Bed_Rooms']=sp.number_of_bedrooms
-		d['product']['Bath_Rooms']=sp.number_of_bathrooms
-		d['product']['IN_Time_Value']=sp.in_time
-		d['product']['OUT_Time_Value']=sp.out_time
-		d['product']['Location']=sp.location
+		d['options'].append({'Option_Name':'Kitchen','Option_Value':si.kitchen})
+		d['options'].append({'Option_Name':'Internet','Option_Value':si.internet})
+		d['options'].append({'Option_Name':'Television','Option_Value':si.television})
+		d['options'].append({'Option_Name':'A.C','Option_Value':si.air_conditioner})
+		d['options'].append({'Option_Name':'Heater','Option_Value':si.heater})
+		d['options'].append({'Option_Name':'Washing Machine','Option_Value':si.washing_machine})
+		d['options'].append({'Option_Name':'Parking Space','Option_Value':si.parking})
+		d['options'].append({'Option_Name':'No Smoking','Option_Value':si.smoking})
+		d['options'].append({'Option_Name':'Wheelchair Support','Option_Value':si.wheelchair})
+		d['options'].append({'Option_Name':'Elevator','Option_Value':si.elevator})
+		d['options'].append({'Option_Name':'Gym','Option_Value':si.gym})
+		d['options'].append({'Option_Name':'Pool','Option_Value':si.pool})
+		d['options'].append({'Option_Name':'Fire exit alarm','Option_Value':si.fire_alarm})
+		d['options'].append({'Option_Name':'First-Aid-Kit','Option_Value':si.medical_aid})
+		d['product']['Rooms']=si.rooms
+		d['product']['Bed_Rooms']=si.number_of_bedrooms
+		d['product']['Bath_Rooms']=si.number_of_bathrooms
+		d['product']['IN_Time_Value']=si.in_time
+		d['product']['OUT_Time_Value']=si.out_time
+		d['product']['Location']=si.location
 
 	if(d['Category_Id']=='2'):
-		d['options'].append({'Option_Name':'Smoking','Option_Value':sp.smoking})
-		d['options'].append({'Option_Name':'Kids','Option_Value':sp.kids})
-		d['options'].append({'Option_Name':'Luggage','Option_Value':sp.luggage})
-		d['options'].append({'Option_Name':'Pets','Option_Value':sp.pets})
-		d['options'].append({'Option_Name':'Music','Option_Value':sp.music})
-		d['options'].append({'Option_Name':'Non Stop Journey','Option_Value':sp.non_stop_journey})
-		d['product']['Location']=sp.location
-		d['product']['Start_Date']=sp.startdate
-		d['product']['Start_Time']=sp.starttime
-		d['product']['End_Date']=sp.enddate
-		d['product']['End_Time']=sp.endtime
-		d['product']['CarService']=sp.car_service
-		d['product']['CarName']=sp.car_name
-		d['product']['CarType']=sp.car_type
+		d['options'].append({'Option_Name':'Smoking','Option_Value':si.smoking})
+		d['options'].append({'Option_Name':'Kids','Option_Value':si.kids})
+		d['options'].append({'Option_Name':'Luggage','Option_Value':si.luggage})
+		d['options'].append({'Option_Name':'Pets','Option_Value':si.pets})
+		d['options'].append({'Option_Name':'Music','Option_Value':si.music})
+		d['options'].append({'Option_Name':'Non Stop Journey','Option_Value':si.non_stop_journey})
+		d['product']['Location']=si.location
+		d['product']['Start_Date']=si.startdate
+		d['product']['Start_Time']=si.starttime
+		d['product']['End_Date']=si.enddate
+		d['product']['End_Time']=si.endtime
+		d['product']['CarService']=si.car_service
+		d['product']['CarName']=si.car_name
+		d['product']['CarType']=si.car_type
 
 	if(d['Category_Id']=='4'):
-		d['options'].append({'Option_Name':'White Clothes','Option_Value':sp.white_clothes})
-		d['options'].append({'Option_Name':'Light Clothes','Option_Value':sp.light_clothes})
-		d['options'].append({'Option_Name':'Cotton Clothes','Option_Value':sp.cotton_clothes})
-		d['options'].append({'Option_Name':'Silk Clothes','Option_Value':sp.silk_clothes})
-		d['options'].append({'Option_Name':'Dry Cleaning','Option_Value':sp.dry_cleaning})
-		d['options'].append({'Option_Name':'Steam Press','Option_Value':sp.steam_press})
-		d['options'].append({'Option_Name':'Fabric Softner','Option_Value':sp.fabric_softner})
-		d['product']['Start_Date']=sp.startdate
-		d['product']['End_Date']=sp.enddate
-		d['product']['Start_Time']=sp.starttime
-		d['product']['End_Time']=sp.endtime
-		d['product']['Weights']=sp.weight
+		d['options'].append({'Option_Name':'White Clothes','Option_Value':si.white_clothes})
+		d['options'].append({'Option_Name':'Light Clothes','Option_Value':si.light_clothes})
+		d['options'].append({'Option_Name':'Cotton Clothes','Option_Value':si.cotton_clothes})
+		d['options'].append({'Option_Name':'Silk Clothes','Option_Value':si.silk_clothes})
+		d['options'].append({'Option_Name':'Dry Cleaning','Option_Value':si.dry_cleaning})
+		d['options'].append({'Option_Name':'Steam Press','Option_Value':si.steam_press})
+		d['options'].append({'Option_Name':'Fabric Softner','Option_Value':si.fabric_softner})
+		d['product']['Start_Date']=si.startdate
+		d['product']['End_Date']=si.enddate
+		d['product']['Start_Time']=si.starttime
+		d['product']['End_Time']=si.endtime
+		d['product']['Weights']=si.weight
 
 	d['user']['First_Name']=u.first_name
 	d['user']['Last_Name']=u.last_name
@@ -827,16 +827,16 @@ def category_products(request):
 			name='Laundary'
 			d["Category_Id"]='4'
 			sp=laundary.objects.get(other_details=i)
-		d['product']['Price']=p.price
-		d['product']['Description']=p.description
-		d['product']['Title']=p.product_name
-		d['product']['Image_Link']=p.image_url
-		d['product']['Sharers']=p.number_of_sharers
-		d['product']['Sharers_Left']=p.number_of_sharers_left
-		d['product']['Gender']=p.gender
-		d['product']['Post_Date']=p.post_date
-		d['product']['Location']=p.location
-		d['product']['Product_Id']=p.product_id
+		d['product']['Price']=i.price
+		d['product']['Description']=i.description
+		d['product']['Title']=i.product_name
+		d['product']['Image_Link']=i.image_url
+		d['product']['Sharers']=i.number_of_sharers
+		d['product']['Sharers_Left']=i.number_of_sharers_left
+		d['product']['Gender']=i.gender
+		d['product']['Post_Date']=i.post_date
+		d['product']['Location']=i.location
+		d['product']['Product_Id']=i.product_id
 		if(d["Category_Id"]=='3'):
 			d['product']['Start_Date']=sp.startdate
 			d['product']['End_Date']=sp.enddate
