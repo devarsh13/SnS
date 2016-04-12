@@ -594,9 +594,9 @@ def send_email(request):
 
 	
 	to = 'devarshseth13@gmail.com'
-	user = '201301423@daiict.ac.in'
-	pwd = 'Lionking13@@'
-	smtpserver = smtplib.SMTP("smtp.daiict.ac.in")
+	user = 'devarshseth13@gmail.com'
+	pwd = 'idontknowits13'
+	smtpserver = smtplib.SMTP("smtp.gmail.com")
 	smtpserver.ehlo()
 	smtpserver.starttls()
 	smtpserver.ehlo() # extra characters to permit edit
