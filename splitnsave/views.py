@@ -32,14 +32,14 @@ def signup_check(request):
 @csrf_exempt
 def signup(request):
 	input1=json.loads(request.body)
-	birthdate=strptime(input1['Birthdate'],'%d/%m/%Y')
+	
 	u=users.objects.create(first_name=input1['First_Name'],
 		last_name=input1['Last_Name'],
 		contact_number=input1['ContactNumber'],
 		password=input1['Password'],
 		email=input1['Email'],
 		city=input1['City_Name'],
-		birthday=str(birthdate.tm_year)+'-'+str(birthdate.tm_mon)+'-'+str(birthdate.tm_mday),
+		birthday=input1['Birthdate'],
 		gender=input1['Gender'],
 		institute=input1['Institute_Name'],
 		profession=input1['Profession_Name'],
