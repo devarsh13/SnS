@@ -824,7 +824,7 @@ def category_products(request):
 		
 			d["Category_Id"]='1'
 		if(Category_Id==2 or Category_Id=='2'):
-			sp=csbs.objects.get(other_details=i)
+			sp=cabs.objects.get(other_details=i)
 			name='Cabs'
 			d["Category_Id"]='2'
 		if(Category_Id==3 or Category_Id=='3'):
