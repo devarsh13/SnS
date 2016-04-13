@@ -805,7 +805,10 @@ def category_products(request):
 	if(Category_Id==4 or Category_Id=='4'):
 		name='Laundary'
 	c=categories.objects.get(category_name=name)
-	p=products.objects.filter(category_id=c,status=0)
+	try:
+		p=products.objects.filter(category_id=c,status=0)
+	except:
+		return JsonResponse({'products':products1})
 	d={'Category_Id':0,'product':{'options':[]},'user':{}}
 	
 	
