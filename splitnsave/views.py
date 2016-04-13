@@ -888,7 +888,7 @@ def category_products(request):
 			d['product']['options'].append({'Option_Name':'Pets','Option_Value':sp.pet})
 			d['product']['options'].append({'Option_Name':'Music','Option_Value':sp.music})
 			d['product']['options'].append({'Option_Name':'Non Stop Journey','Option_Value':sp.non_stop_journey})
-			d['product']['Location']=sp.location
+			d['product']['Location']=sp.destination
 			d['product']['Start_Date']=sp.startdate
 			d['product']['Start_Time']=sp.starttime
 			d['product']['End_Date']=sp.enddate
