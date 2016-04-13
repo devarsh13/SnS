@@ -787,6 +787,7 @@ def report_product(request):
 	Product_Id=input1['Product_Id']
 	p=products.objects.get(product_id=Product_Id)
 	u=users.objects.get(email=Email)
+	return JsonResponse({'a':p.product_name,'b':u.first_name})
 	user_report_post.objects.create(product_id=p,user_id=u,status=1)
 
 	return JsonResponse({'status':0})
