@@ -31,21 +31,18 @@ def signup_check(request):
 #Get the user data upon signup from frontend and store it into database
 @csrf_exempt
 def signup(request):
-	input1=json.loads(request.body)
-	institute=institute_list.objects.get(institute_name=input1['Institute_Name'])
-	profession=profession_list.objects.get(profession_name=input1['Profession_Name'])
-	city=city_list.objects.get(city_name=input1['CityName'])
+	
 	birthdate=strptime(input1['Birthdate'],'%d/%m/%Y')
 	u=users.objects.create(first_name=input1['First_Name'],
 		last_name=input1['Last_Name'],
 		contact_number=input1['ContactNumber'],
 		password=input1['Password'],
 		email=input1['Email'],
-		city=city,
+		city=input1['City_Name']),
 		birthday=str(birthdate.tm_year)+'-'+str(birthdate.tm_mon)+'-'+str(birthdate.tm_mday),
 		gender=input1['Gender'],
-		institute=institute,
-		profession=profession,
+		institute=input1['Institute_Name']),
+		profession=input1['Profession_Name']),
 		image_url=input1['Image_Link'])	
 
 
