@@ -961,7 +961,7 @@ def verify_user(request):
 	to = Email
 	user = 'devarshsheth13@gmail.com'
 	pwd = 'idontknowits13'
-	smtpserver = smtplib.SMTP("smti.gmail.com",587)
+	smtpserver = smtplib.SMTP("smtp.gmail.com",587)
 	smtpserver.ehlo()
 	smtpserver.starttls()
 	smtpserver.ehlo() # extra characters to permit edit
