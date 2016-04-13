@@ -903,3 +903,20 @@ def category_products(request):
 		
 		products1.append(d)
 	return JsonResponse({'products':products1})
+
+
+def chat_history(request):
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	User_Id=input1['User_Id']
+	u1=users.objects.get(email=Email)
+	u2=users.objects.get(user_id=User_Id)
+	ch=chat_history.filter(sender=u1,receiver=u2)
+	chats={'chats':[]}
+	for i in ch:
+		chat={'User1':i.sender.first_name,'User2':i.receiver.first_name,'Message':i.message,'Timestamp':i.timestamp}
+		chats['chats'].append(chat)
+
+	return JsonResponse(chats)
+
+

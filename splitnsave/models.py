@@ -71,20 +71,14 @@ class users(models.Model):
 	profession=models.ForeignKey(profession_list,on_delete=models.CASCADE,default=None)
 	gender=models.CharField(max_length=1,choices=GENDER,default=None)
 	status=models.IntegerField(default=0,null=False)
-	verification_link=models.URLField(max_length=1000,default='')
+	verification_code=models.CharField(max_length=1000,default='asdfghjkl')
 	rating=models.CharField(max_length=4,default='0')
 	image_url=models.URLField(default=0)
+
 
 	def __str__(self):
 		return self.first_name+" "+self.last_name
 
-
-class chat_history(models.Model):
-	sender=models.ForeignKey(users,default=None,related_name='sender')
-	receiver=models.ForeignKey(users,default=None,related_name='receiver')
-	message=models.CharField(max_length=3000)
-	timestamp=models.DateTimeField(default=None)
-	delivered_status=models.BooleanField(default=False)
 
 class categories(models.Model):
 	category_id=models.IntegerField(default=0,primary_key=True)
@@ -271,3 +265,10 @@ class user_report_user(models.Model):
 	user1=models.ForeignKey(users,related_name='user1')
 	user2=models.ForeignKey(users,related_name='user2')
 	status=models.IntegerField(default=0)
+
+class chat_history(models.Model):
+	sender=models.ForeignKey(users,default=None)
+	receiver=models.ForeignKey(users,default=None)
+	message=models.CharField(max_length=100000,default=None)
+	timestamp=models.DateTimeField()
+	

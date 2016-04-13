@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'reportproduct',views.report_product),
     url(r'confirmdeal',views.confirm_post),
     url(r'productresults',views.category_products),
+    url(r'getchats',views.chat_history),
 ]
 	
