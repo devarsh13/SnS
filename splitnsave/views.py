@@ -499,7 +499,8 @@ def edit_data(request):
 	Category_Id=input1['Category_Id']
 	u=users.objects.get(email=Email)
 	Product_Id=input1['Product_Id']
-	i=products.objects.get(product_id=Product_Id)
+	p=products.objects.get(product_id=Product_Id)
+	i=p
 	if(Category_Id=='1'):
 		category='Apartments'
 	elif(Category_Id=='2'):
