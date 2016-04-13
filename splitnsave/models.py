@@ -254,7 +254,10 @@ class books(models.Model):
 	college=models.CharField(max_length=100,default='')
 	def __str__(self):
 		return self.other_details.product_name
-
+class user_interested(models.Model):
+	user_id=models.ForeignKey(users)
+	product_id=models.ForeignKey(products)
+	status=models.IntegerField(default=0)
 
 class user_report_post(models.Model):
 	user_id=models.ForeignKey(users)
