@@ -425,7 +425,7 @@ def edit_post(request):
 	d['product']['Gender']=i.gender
 	d['product']['Post_Date']=i.post_date
 	d['product']['Location']=i.location
-
+	d['product']['Product_Id']=Product_Id
 	if(d["Category_Id"]=='3'):
 		d['subproduct']['Start_Date']=si.startdate
 		d['subproduct']['End_Date']=si.enddate
