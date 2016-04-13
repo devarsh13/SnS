@@ -1005,4 +1005,5 @@ def forgot_password(request):
 
 	u=users.objects.get(email=Email)
 	u.password=code
+	u.save()
 	return JsonResponse({'status':0})
