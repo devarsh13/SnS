@@ -31,7 +31,8 @@ def product_number():
 		try:
 			no=products.objects.all().order_by("-product_id")[0]
 			return no
-		else:
+		except:
+			
 			return 1
 # Create your models here
 class city_list(models.Model):
