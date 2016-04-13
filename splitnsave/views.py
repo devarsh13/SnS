@@ -560,7 +560,7 @@ def edit_data(request):
 		
 		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
 		end=strptime(ed['End_Date'],'%Y-%m-%d')
-		c=apartments.objects.get(other_details=p)
+		c=cabs.objects.get(other_details=p)
 		
 		c.other_details=p
 		c.startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday)
