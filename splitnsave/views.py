@@ -28,7 +28,7 @@ def signup_check(request):
 	
 	msg['email']=Email
 	return JsonResponse(msg)
-
+#Get the user data upon signup from frontend and store it into database
 @csrf_exempt
 def signup(request):
 	input1=json.loads(request.body)
@@ -50,7 +50,7 @@ def signup(request):
 
 
 	return JsonResponse({'status':0,'First_Name':u.first_name})
-
+#Send data for a given user from database to the frontend
 @csrf_exempt
 def editprofile(request):
 	input1=json.loads(request.body)
@@ -58,7 +58,7 @@ def editprofile(request):
 	u=users.objects.get(email=Email)
 	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city.city_name,'Institute':u.institute.institute_name,'Birthdate':u.birthday,'Profession_Name':u.profession.profession_name,'Gender':u.gender,'Status':u.status,'Image_Link':u.image_url,'Institute_Name':u.institute.institute_name}}
 	return JsonResponse(d)
-
+#Update user data after the profile has changed
 @csrf_exempt
 def edit_profile_change(request):
 	input1=json.loads(request.body)
@@ -80,7 +80,7 @@ def edit_profile_change(request):
 	u.image_url=input1['Image_Link']
 	u.save()
 	return JsonResponse({'status':'0'})
-
+#Send data for a given user from database to the frontend
 @csrf_exempt
 def userprofile(request):
 	input1=json.loads(request.body)
@@ -107,7 +107,7 @@ def userprofile(request):
 		pass
 	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city.city_name,'Institute':u.institute.institute_name,'Birthdate':u.birthday,'Profession_Name':u.profession.profession_name,'Gender':u.gender,'Status_Confirm':status,'Status_Report':report_status,'Institute_Name':u.institute.institute_name}}
 	return JsonResponse(d)
-
+#Send old password to frontend
 @csrf_exempt
 def settings(request):
 	input1=json.loads(request.body)
@@ -115,7 +115,7 @@ def settings(request):
 	u=users.objects.get(email=Email)
 	d={'Old_Password':u.password}
 	return JsonResponse(d)
-
+#update the old password
 @csrf_exempt
 def change_password(request):
 	input1=json.loads(request.body)
@@ -124,7 +124,7 @@ def change_password(request):
 	u.password=input1['New_Password']
 	u.save()
 	return JsonResponse({'status':0})
-
+#Send Dashboard details to frontend
 @csrf_exempt
 def dashboard(request):
 	input1=json.loads(request.body)
@@ -137,7 +137,7 @@ def dashboard(request):
 		data['users'].append(temp_dict)
 	data['details']={'First_Name':u1.first_name,'Last_Name':u1.last_name,'User_Id':u1.user_id,'Image_Link':u1.image_url}
 	return JsonResponse(data)
-
+#Send transaction history to the frontend
 @csrf_exempt	
 def transactions(request):
 	input1=json.loads(request.body)
@@ -168,7 +168,7 @@ def transactions(request):
 		products.append(details)
 	d={'products':products}
 	return JsonResponse(d)
-
+#update rating of a given user
 @csrf_exempt
 def change_rating(request):
 	input1=json.loads(request.body)
@@ -961,7 +961,7 @@ def verify_user(request):
 	to = Email
 	user = 'devarshsheth13@gmail.com'
 	pwd = 'idontknowits13'
-	smtpserver = smtplib.SMTP("smti.gmail.com",587)
+	smtpserver = smtplib.SMTP("smtp.gmail.com",587)
 	smtpserver.ehlo()
 	smtpserver.starttls()
 	smtpserver.ehlo() # extra characters to permit edit
