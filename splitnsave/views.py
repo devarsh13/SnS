@@ -645,19 +645,19 @@ def product_details(request):
 	p=products.objects.get(product_id=Product_Id)
 	i=p
 	u=i.user_id
-	sp=None
+	si=None
 	d={'Category_Id':0,'product':{},'options':[],'user':{}}
 	if(i.category_id.category_name=='Books'):
-		sp=books.objects.get(other_details=p)
+		si=books.objects.get(other_details=p)
 		d["Category_Id"]='3'
 	elif(i.category_id.category_name=='Apartments'):
-		sp=apartments.objects.get(other_details=p)
+		si=apartments.objects.get(other_details=p)
 		d["Category_Id"]='1'
 	elif(i.category_id.category_name=='Laundary'):
-		sp=laundary.objects.get(other_details=p)
+		si=laundary.objects.get(other_details=p)
 		d["Category_Id"]='4'
 	else:
-		sp=cabs.objects.get(other_details=p)
+		si=cabs.objects.get(other_details=p)
 		d["Category_Id"]='2'
 	d['product']['Price']=i.price
 	d['product']['Description']=i.description
