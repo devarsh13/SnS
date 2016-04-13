@@ -58,7 +58,7 @@ class users(models.Model):
 	
 	GENDER=[('M','Male'),('F','Female')]
 	STATUS=[('-1','Not Active'),('0','Not Verified'),('1','Active')]
-	user_id=models.IntegerField(primary_key=True,default=number)
+	user_id=models.IntegerField(default=number)
 	first_name=models.CharField(max_length=50)
 	last_name=models.CharField(max_length=50)
 	email=models.EmailField(primary_key=True,null=False)
@@ -267,8 +267,7 @@ class user_report_user(models.Model):
 	status=models.IntegerField(default=0)
 
 class chat_history(models.Model):
-	sender=models.ForeignKey(users,default=None)
-	receiver=models.ForeignKey(users,default=None)
+	sender=models.ForeignKey(users,default=None,related_name='sender')
+	receiver=models.ForeignKey(users,default=None,related_name='receiver')
 	message=models.CharField(max_length=100000,default=None)
 	timestamp=models.DateTimeField()
-	
