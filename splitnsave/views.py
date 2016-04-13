@@ -959,8 +959,8 @@ def verify_user(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	to = Email
-	user = 'devarshsheth13@gmail.com'
-	pwd = 'idontknowits13'
+	user = 'splitnsave25@gmail.com'
+	pwd = 'splitnsave25@'
 	smtpserver = smtplib.SMTP("smtp.gmail.com",587)
 	smtpserver.ehlo()
 	smtpserver.starttls()
