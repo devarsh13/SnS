@@ -811,7 +811,7 @@ def category_products(request):
 	#return JsonResponse({'a':c.category_name})
 	try:
 		p=products.objects.filter(category_id=c,status=0)
-		return JsonResponse({'a':p.product_name})
+		
 	except:
 		return JsonResponse({'products':products1})
 	d={'Category_Id':0,'product':{'options':[]},'user':{}}
