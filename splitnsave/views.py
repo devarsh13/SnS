@@ -31,7 +31,6 @@ def signup_check(request):
 #Get the user data upon signup from frontend and store it into database
 @csrf_exempt
 def signup(request):
-	
 	birthdate=strptime(input1['Birthdate'],'%d/%m/%Y')
 	u=users.objects.create(first_name=input1['First_Name'],
 		last_name=input1['Last_Name'],
