@@ -954,7 +954,7 @@ def add_chat(request):
 
 	return JsonResponse({'status':0})
 
-
+@csrf_exempt
 def verify_user(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
@@ -979,3 +979,7 @@ def verify_user(request):
 	print 'done!'
 	smtpserver.quit()
 	return JsonResponse({'code':code})
+
+
+def forgot_password(request):
+	pass
