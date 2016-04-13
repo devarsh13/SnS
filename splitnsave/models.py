@@ -28,11 +28,11 @@ def profession_number():
 		else:
 			return no3+1
 def product_number():
-		no=products.objects.all().order_by("-product_id")[0]
-		if no==None:
-			return 1
+		try:
+			no=products.objects.all().order_by("-product_id")[0]
+			return no
 		else:
-			return no+1
+			return 1
 # Create your models here
 class city_list(models.Model):
 	

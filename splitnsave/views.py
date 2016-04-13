@@ -11,6 +11,7 @@ import smtplib
 def index(request):
 	return render(request,'index.html')
 @csrf_exempt
+#Check Whether the email already exists in the database or not
 def signup_check(request):
 	Email=json.loads(request.body)
 	exists=False
