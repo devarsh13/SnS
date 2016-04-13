@@ -982,4 +982,30 @@ def verify_user(request):
 
 
 def forgot_password(request):
-	pass
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	to = Email
+	user = 'splitnsave25@gmail.com'
+	pwd = 'splitnsave25@'
+	smtpserver = smtplib.SMTP("smtp.gmail.com",587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo() # extra characters to permit edit
+	smtpserver.login(user, pwd)
+	header = 'To:' + to + '\n' + 'From: ' + user + '\n' + 'Subject:Password Change \n'
+	print header
+	import random
+	import string
+
+	digits = "".join( [random.choice(string.digits) for i in xrange(4)] )
+	chars = "".join( [random.choice(string.letters) for i in xrange(4)] )
+	code = digits + chars
+	msg = header + '\n Your New Password is %s \n\n'%code
+	smtpserver.sendmail(user, to, msg)
+	print 'done!'
+	smtpserver.quit()
+	
+
+	u=users.objects.get(email=Email)
+	u.password=code
+	return JsonResponse({'status':0})
