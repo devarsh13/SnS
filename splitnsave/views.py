@@ -37,11 +37,11 @@ def signup(request):
 		contact_number=input1['ContactNumber'],
 		password=input1['Password'],
 		email=input1['Email'],
-		city=input1['City_Name']),
+		city=input1['City_Name'],
 		birthday=str(birthdate.tm_year)+'-'+str(birthdate.tm_mon)+'-'+str(birthdate.tm_mday),
 		gender=input1['Gender'],
-		institute=input1['Institute_Name']),
-		profession=input1['Profession_Name']),
+		institute=input1['Institute_Name'],
+		profession=input1['Profession_Name'],
 		image_url=input1['Image_Link'])	
 
 
