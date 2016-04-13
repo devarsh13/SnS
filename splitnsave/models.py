@@ -68,7 +68,7 @@ class users(models.Model):
 	verified=models.BooleanField(default=False)
 	contact_number=models.BigIntegerField(default=0)
 	city=models.CharField(max_length=100,default=None)
-	institute=models.CharField(max_length=100,None)
+	institute=models.CharField(max_length=100,default=None)
 	birthday=models.DateField(max_length=100,default=None)
 	profession=models.CharField(max_length=100,default=None)
 	gender=models.CharField(max_length=100,default=None)
