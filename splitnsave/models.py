@@ -76,7 +76,8 @@ class users(models.Model):
 	verification_code=models.CharField(max_length=1000,default='asdfghjkl')
 	rating=models.CharField(max_length=4,default='0')
 	image_url=models.URLField(default=0)
-
+	reported_by=models.IntegerField(default=0)
+	rated_by=models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.first_name+" "+self.last_name

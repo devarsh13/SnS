@@ -182,6 +182,9 @@ def change_rating(request):
 	t=transaction_ratings.objects.get(product_id=p,rater=u,ratee=u1)
 	t.rating=rating
 	t.save()
+	u1.rating=u1.rating*u1.rated_by
+	u1.rated_by=u1.rated_by+1
+	u1.rating=(u1.rating+rating)/u1.rated_by
 
 	return JsonResponse({'status':0})
 
@@ -271,6 +274,7 @@ def report_a_user(request):
 	u=users.objects.get(email=Email)
 	u1=users.objects.get(user_id=User_Id)
 	user_reporting.objects.create(reporter=u,reportee=u1,status=1)
+	u1.reported_by=u1.reported_by+1
 	return JsonResponse({'status':0})
 
 @csrf_exempt
@@ -949,3 +953,29 @@ def add_chat(request):
 	chat_history.objects.create(sender=u1,receiver=u2,message=Message)
 
 	return JsonResponse({'status':0})
+
+
+def verify_user(request):
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	to = Email
+	user = 'devarshsheth13@gmail.com'
+	pwd = 'idontknowits13'
+	smtpserver = smtplib.SMTP("smti.gmail.com",587)
+	smtpserver.ehlo()
+	smtpserver.starttls()
+	smtpserver.ehlo() # extra characters to permit edit
+	smtpserver.login(user, pwd)
+	header = 'To:' + to + '\n' + 'From: ' + user + '\n' + 'Subject:Verification \n'
+	print header
+	import random
+	import string
+
+	digits = "".join( [random.choice(string.digits) for i in xrange(8)] )
+	chars = "".join( [random.choice(string.letters) for i in xrange(15)] )
+	code = digits + chars
+	msg = header + '\n Your Verification Code is %s \n\n'%code
+	smtpserver.sendmail(user, to, msg)
+	print 'done!'
+	smtpserver.quit()
+	return JsonResponse({'code':code})
