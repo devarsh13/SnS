@@ -977,7 +977,7 @@ def verify_user(request):
 	smtpserver.quit()
 	return JsonResponse({'code':code})
 
-
+@csrf_exempt
 def forgot_password(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
