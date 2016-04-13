@@ -6,7 +6,7 @@ import datetime
 def number():
 		try:
 			no=users.objects.all().order_by("-user_id")[0]
-			return no.product_id+1
+			return no.user_id+1
 		except:
 
 			return 1

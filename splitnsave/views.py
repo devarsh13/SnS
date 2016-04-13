@@ -352,7 +352,7 @@ def create_post(request):
 			smoking=options[0]['Option_Value'],
 			kids=options[1]['Option_Value'],
 			luggage=options[2]['Option_Value'],
-			pets=options[3]['Option_Value'],
+			pet=options[3]['Option_Value'],
 			music=options[4]['Option_Value'],
 			non_stop_journey=options[5]['Option_Value'],
 			destination=ed['Location']
