@@ -30,9 +30,9 @@ def profession_number():
 def product_number():
 		try:
 			no=products.objects.all().order_by("-product_id")[0]
-			return no
+			return no.product_id+1
 		except:
-			
+
 			return 1
 # Create your models here
 class city_list(models.Model):

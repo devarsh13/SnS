@@ -812,6 +812,7 @@ def category_products(request):
 	
 	
 	for i in p:
+		d={'Category_Id':0,'product':{'options':[]},'user':{}}
 		if(Category_Id==1 or Category_Id=='1'):
 			sp=apartments.objects.get(other_details=i)
 		
