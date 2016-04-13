@@ -643,6 +643,7 @@ def product_details(request):
 	
 	Product_Id=input1['Product_Id']
 	p=products.objects.get(product_id=Product_Id)
+	i=p
 	u=i.user_id
 	sp=None
 	d={'Category_Id':0,'product':{},'options':[],'user':{}}
@@ -708,7 +709,7 @@ def product_details(request):
 		d['options'].append({'Option_Name':'Pets','Option_Value':si.pets})
 		d['options'].append({'Option_Name':'Music','Option_Value':si.music})
 		d['options'].append({'Option_Name':'Non Stop Journey','Option_Value':si.non_stop_journey})
-		d['product']['Location']=si.location
+		d['product']['Location']=si.destination
 		d['product']['Start_Date']=si.startdate
 		d['product']['Start_Time']=si.starttime
 		d['product']['End_Date']=si.enddate
