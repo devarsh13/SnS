@@ -255,8 +255,8 @@ class books(models.Model):
 	def __str__(self):
 		return self.other_details.product_name
 class user_interested(models.Model):
-	user_id=models.ForeignKey(users,primary_key=True)
-	product_id=models.ForeignKey(products,primary_key=True)
+	user_id=models.ForeignKey(users)
+	product_id=models.ForeignKey(products)
 	status=models.IntegerField(default=0)
 
 class user_report_post(models.Model):
