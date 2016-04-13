@@ -463,7 +463,7 @@ def edit_post(request):
 		d['options'].append({'Option_Name':'Smoking','Option_Value':si.smoking})
 		d['options'].append({'Option_Name':'Kids','Option_Value':si.kids})
 		d['options'].append({'Option_Name':'Luggage','Option_Value':si.luggage})
-		d['options'].append({'Option_Name':'Pets','Option_Value':si.pets})
+		d['options'].append({'Option_Name':'Pets','Option_Value':si.pet})
 		d['options'].append({'Option_Name':'Music','Option_Value':si.music})
 		d['options'].append({'Option_Name':'Non Stop Journey','Option_Value':si.non_stop_journey})
 		d['subproduct']['Location']=si.location
