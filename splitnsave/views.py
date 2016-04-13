@@ -820,7 +820,7 @@ def category_products(request):
 	
 	
 	for i in p:
-		
+
 		d={'Category_Id':0,'product':{'options':[]},'user':{}}
 		if(Category_Id==1 or Category_Id=='1'):
 			sp=apartments.objects.get(other_details=i)
@@ -885,7 +885,7 @@ def category_products(request):
 			d['product']['options'].append({'Option_Name':'Smoking','Option_Value':sp.smoking})
 			d['product']['options'].append({'Option_Name':'Kids','Option_Value':sp.kids})
 			d['product']['options'].append({'Option_Name':'Luggage','Option_Value':sp.luggage})
-			d['product']['options'].append({'Option_Name':'Pets','Option_Value':sp.pets})
+			d['product']['options'].append({'Option_Name':'Pets','Option_Value':sp.pet})
 			d['product']['options'].append({'Option_Name':'Music','Option_Value':sp.music})
 			d['product']['options'].append({'Option_Name':'Non Stop Journey','Option_Value':sp.non_stop_journey})
 			d['product']['Location']=sp.location
