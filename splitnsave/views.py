@@ -401,6 +401,7 @@ def edit_post(request):
 	input1=json.loads(request.body)
 	Product_Id=input1['Product_Id']
 	p=products.objects.get(product_id=Product_Id)
+	i=p
 	sp=None
 	d={'Category_Id':0,'product':{},'options':[],'subproduct':{}}
 	if(i.category_id.category_name=='Books'):
