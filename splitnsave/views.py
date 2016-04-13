@@ -737,6 +737,7 @@ def product_details(request):
 	d['user']['Image_Link']=u.image_url
 	d['user']['rating']=u.rating
 	d['user']['User_Id']=u.user_id
+	d['user']['Email']=u.Email
 	try:
 		Email=input1['Email']
 		u1=users.objects.get(email=Email)
