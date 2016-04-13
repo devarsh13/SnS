@@ -4,11 +4,12 @@ from django.db import models
 import datetime
 
 def number():
-		no=users.objects.count()
-		if no==None:
+		try:
+			no=users.objects.all().order_by("-user_id")[0]
+			return no.product_id+1
+		except:
+
 			return 1
-		else:
-			return no+1
 def institute_number():
 		no1=institute_list.objects.count()
 		if no1==None:
@@ -271,4 +272,6 @@ class chat_history(models.Model):
 	sender=models.ForeignKey(users,default=None,related_name='sender')
 	receiver=models.ForeignKey(users,default=None,related_name='receiver')
 	message=models.CharField(max_length=100000,default=None)
-	timestamp=models.DateTimeField()
+	timestamp=models.DateTimeField(default=datetime.datetime.now())
+
+

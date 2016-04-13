@@ -909,7 +909,7 @@ def category_products(request):
 		products1.append(d)
 	return JsonResponse({'products':products1})
 
-
+@csrf_exempt
 def chat_history(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
@@ -917,11 +917,35 @@ def chat_history(request):
 	u1=users.objects.get(email=Email)
 	u2=users.objects.get(user_id=User_Id)
 	ch=chat_history.filter(sender=u1,receiver=u2)
-	chats={'chats':[]}
+	users1=[]
+	chats=[]
+	try:
+		t=transaction_history.objects.filter(poster=u1)
+	except:
+		pass
+	for i in t:
+		user={}
+		user['First_Name']=i.seeker.first_name
+		user['Last_Name']=i.seeker.last_name
+		user['User_Id']=i.seeker.user_id
+		user['Image_Link']=i.seeker.image_url
+		users1.append(user)
 	for i in ch:
 		chat={'User1':i.sender.first_name,'User2':i.receiver.first_name,'Message':i.message,'Timestamp':i.timestamp}
-		chats['chats'].append(chat)
+		chats.append(chat)
 
-	return JsonResponse(chats)
+	return JsonResponse({'Users':users1,'Chats':chats})
 
 
+
+@csrf_exempt
+def add_chat(request):
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	User_Id=input1['User_Id']
+	u1=users.objects.get(email=Email)
+	u2=users.objects.get(user_id=User_Id)
+	Message=input1['Message']
+	chat_history.objects.create(sender=u1,receiver=u2,message=Message)
+
+	return JsonResponse({'status':0})
