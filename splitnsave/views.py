@@ -466,7 +466,7 @@ def edit_post(request):
 		d['options'].append({'Option_Name':'Pets','Option_Value':si.pet})
 		d['options'].append({'Option_Name':'Music','Option_Value':si.music})
 		d['options'].append({'Option_Name':'Non Stop Journey','Option_Value':si.non_stop_journey})
-		d['subproduct']['Location']=si.location
+		d['subproduct']['Location']=si.destination
 		d['subproduct']['Start_Date']=si.startdate
 		d['subproduct']['Start_Time']=si.starttime
 		d['subproduct']['End_Date']=si.enddate
