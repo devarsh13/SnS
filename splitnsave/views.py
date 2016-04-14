@@ -82,7 +82,7 @@ def userprofile(request):
 	user_id=input1['User_Id']
 	Email=input1['Email']
 	u=users.objects.get(user_id=user_id)
-	u1=users.objects.get(email=email)
+	u1=users.objects.get(email=Email)
 	
 	ui=user_interested.objects.filter(user_id=u)
 	temp=users.objects.get(email=Email)
