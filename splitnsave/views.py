@@ -103,9 +103,9 @@ def userprofile(request):
 		pass
 	ui1=user_interested.objects.filter(user_id=temp)
 	p1=products.objects.filter(user_id=u)
-	for i in p:
+	for i in p1:
 
-		for j in ui:
+		for j in ui1:
 
 			if i.product_id==j.product_id.product_id and (j.status=='2' or j.status==2):
 				status=1
