@@ -209,11 +209,12 @@ class equipment(models.Model):
 class apartments(models.Model):
 	other_details=models.ForeignKey(products,default=None)
 	rooms=models.IntegerField(default=1)
+	address=models.CharField(max_length=1000,default='',blank=True)
 	number_of_bedrooms=models.IntegerField(default=1)
 	number_of_bathrooms=models.IntegerField(default=1)
 	bathroom_type=models.CharField(default=None,max_length=100)
-	in_time=models.CharField(max_length=100,default='')
-	out_time=models.CharField(max_length=100,default='')
+	in_time=models.CharField(max_length=100,default='',blank=True)
+	out_time=models.CharField(max_length=100,default='',blank=True)
 	kitchen=models.BooleanField(default=False)
 	television=models.BooleanField(default=False)
 	heater=models.BooleanField(default=False)
@@ -234,6 +235,8 @@ class apartments(models.Model):
 	gym=models.BooleanField(default=False)
 	location=models.CharField(max_length=100,default='')
 	family_friends_kids_friendly=models.BooleanField(default=False)
+	startdate=models.CharField(max_length=100,default='')
+	enddate=models.CharField(max_length1=100,default='',blank=True)
 	def __str__(self):
 		return self.other_details.product_name
 class tag_list(models.Model):
