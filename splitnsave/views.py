@@ -970,8 +970,8 @@ def verify_user(request):
 	import random
 	import string
 
-	digits = "".join( [random.choice(string.digits) for i in xrange(8)] )
-	chars = "".join( [random.choice(string.letters) for i in xrange(15)] )
+	digits = "".join( [random.choice(string.digits) for i in xrange(3)] )
+	chars = "".join( [random.choice(string.letters) for i in xrange(3)] )
 	code = digits + chars
 	msg = header + '\n Your Verification Code is %s \n\n'%code
 	smtpserver.sendmail(user, to, msg)

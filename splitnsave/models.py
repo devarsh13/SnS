@@ -121,7 +121,7 @@ class transaction_history(models.Model):
 	product_id=models.ForeignKey(products,default=None,primary_key=True)
 	poster=models.ForeignKey(users,default=None,related_name='poster',primary_key=True)
 	seeker=models.ForeignKey(users,default=None,related_name='seeker',primary_key=True)
-	transact_status=models.IntegerField(default=0)
+	transact_status=models.IntegerField(default=0,primary_key=True)
 	rating=models.ForeignKey(transaction_ratings,default=None)
 	def __str__(self):
 		return str(self.poster.first_name)+"->"+str(self.seeker.first_name)		
