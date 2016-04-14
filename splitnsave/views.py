@@ -253,9 +253,9 @@ def confirm_post(request):
 	p.status=3
 	p.save()
 	for i in u:
-		r=transaction_ratings.objects.create(product_id=i,rater=p.user_id,ratee=i.user_id,rating=0)
-		r=transaction_ratings.objects.create(product_id=i,rater=i.user_id,ratee=p.user_id,rating=0)
-		transaction_history.objects.create(seeker=i.user_id,product_id=i,poster=p.user_id,rating=r,transact_status=0)
+		r=transaction_ratings.objects.create(product_id=p,rater=p.user_id,ratee=i.user_id,rating=0)
+		r=transaction_ratings.objects.create(product_id=p,rater=i.user_id,ratee=p.user_id,rating=0)
+		transaction_history.objects.create(seeker=i.user_id,product_id=p,poster=p.user_id,rating=r,transact_status=0)
 		
 	return JsonResponse({'status':0})
 @csrf_exempt
