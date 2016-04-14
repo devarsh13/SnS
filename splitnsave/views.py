@@ -83,7 +83,7 @@ def userprofile(request):
 	Email=input1['Email']
 	u=users.objects.get(user_id=user_id)
 	
-	u1=users.objects.get(email=Email)
+	
 	ui=user_interested.objects.filter(user_id=user_id)
 	temp=users.objects.get(email=Email)
 	p=products.objects.filter(user_id=temp)
@@ -91,7 +91,7 @@ def userprofile(request):
 	for i in p:
 		for j in ui:
 
-			if i.product_id==j.product_id.product_id and (j.status==2):
+			if i.product_id==j.product_id.product_id and (j.status=='2' or j.status==2):
 				status=1
 				break
 	try:
