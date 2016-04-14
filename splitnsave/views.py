@@ -463,7 +463,7 @@ def edit_post(request):
 		d['subproduct']['Location']=si.location
 
 	if(d['Category_Id']=='2'):
-		d['options'].append({'Option_Name':'Smoking','Option_Value':si.smoking})
+		d['options'].append({'Option_Name':'No Smoking','Option_Value':si.smoking})
 		d['options'].append({'Option_Name':'Kids','Option_Value':si.kids})
 		d['options'].append({'Option_Name':'Luggage','Option_Value':si.luggage})
 		d['options'].append({'Option_Name':'Pets','Option_Value':si.pet})
@@ -706,7 +706,7 @@ def product_details(request):
 		d['product']['Location']=si.location
 
 	if(d['Category_Id']=='2'):
-		d['options'].append({'Option_Name':'Smoking','Option_Value':si.smoking})
+		d['options'].append({'Option_Name':'No Smoking','Option_Value':si.smoking})
 		d['options'].append({'Option_Name':'Kids','Option_Value':si.kids})
 		d['options'].append({'Option_Name':'Luggage','Option_Value':si.luggage})
 		d['options'].append({'Option_Name':'Pets','Option_Value':si.pet})
@@ -889,7 +889,7 @@ def category_products(request):
 			d['product']['Location']=sp.location
 
 		if(d['Category_Id']=='2'):
-			d['product']['options'].append({'Option_Name':'Smoking','Option_Value':sp.smoking})
+			d['product']['options'].append({'Option_Name':'No Smoking','Option_Value':sp.smoking})
 			d['product']['options'].append({'Option_Name':'Kids','Option_Value':sp.kids})
 			d['product']['options'].append({'Option_Name':'Luggage','Option_Value':sp.luggage})
 			d['product']['options'].append({'Option_Name':'Pets','Option_Value':sp.pet})
