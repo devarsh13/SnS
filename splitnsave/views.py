@@ -348,9 +348,9 @@ def create_post(request):
 		c=cabs.objects.create(
 			other_details=p,
 			startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
-			enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
+			
 			starttime=ed['Start_Time'],
-			endtime=ed['End_Time'],
+			
 			car_type=ed['CarType'],
 			car_name=ed['CarName'],
 			car_service=ed['CarService'],
@@ -359,7 +359,7 @@ def create_post(request):
 			luggage=options[2]['Option_Value'],
 			pet=options[3]['Option_Value'],
 			music=options[4]['Option_Value'],
-			non_stop_journey=options[5]['Option_Value'],
+			
 			destination=ed['Location']
 			)
 
@@ -466,10 +466,10 @@ def edit_post(request):
 
 	if(d['Category_Id']=='2'):
 		d['options'].append({'Option_Name':'No Smoking','Option_Value':si.smoking})
-		d['options'].append({'Option_Name':'Kids','Option_Value':si.kids})
-		d['options'].append({'Option_Name':'Luggage','Option_Value':si.luggage})
-		d['options'].append({'Option_Name':'Pets','Option_Value':si.pet})
-		d['options'].append({'Option_Name':'Music','Option_Value':si.music})
+		d['options'].append({'Option_Name':'No Kids','Option_Value':si.kids})
+		d['options'].append({'Option_Name':'No Luggage','Option_Value':si.luggage})
+		d['options'].append({'Option_Name':'No Pets','Option_Value':si.pet})
+		d['options'].append({'Option_Name':'No Music','Option_Value':si.music})
 		d['options'].append({'Option_Name':'Non Stop Journey','Option_Value':si.non_stop_journey})
 		d['subproduct']['Location']=si.destination
 		d['subproduct']['Start_Date']=si.startdate
@@ -709,10 +709,10 @@ def product_details(request):
 
 	if(d['Category_Id']=='2'):
 		d['options'].append({'Option_Name':'No Smoking','Option_Value':si.smoking})
-		d['options'].append({'Option_Name':'Kids','Option_Value':si.kids})
-		d['options'].append({'Option_Name':'Luggage','Option_Value':si.luggage})
-		d['options'].append({'Option_Name':'Pets','Option_Value':si.pet})
-		d['options'].append({'Option_Name':'Music','Option_Value':si.music})
+		d['options'].append({'Option_Name':'No Kids','Option_Value':si.kids})
+		d['options'].append({'Option_Name':'No Luggage','Option_Value':si.luggage})
+		d['options'].append({'Option_Name':'No Pets','Option_Value':si.pet})
+		d['options'].append({'Option_Name':'No Music','Option_Value':si.music})
 		d['options'].append({'Option_Name':'Non Stop Journey','Option_Value':si.non_stop_journey})
 		d['product']['Location']=si.destination
 		d['product']['Start_Date']=si.startdate
