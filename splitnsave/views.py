@@ -327,6 +327,7 @@ def create_post(request):
 	number_of_sharers1=input1['product']['Sharers']
 	number_of_sharers_left1=input1['product']['Sharers']
 	gender1=input1['product']['Gender']
+	location=input1['product']['Location']
 	ci=categories.objects.get(category_name=category)
 	p=products.objects.create(
 		category_id=ci,
@@ -338,6 +339,7 @@ def create_post(request):
 		number_of_sharers=number_of_sharers1,
 		number_of_sharers_left=number_of_sharers_left1,
 		gender=gender1,
+		location=location
 		)
 	options=input1['options']
 	ed=input1['subproduct']
