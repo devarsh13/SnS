@@ -561,9 +561,9 @@ def edit_data(request):
 		
 		c.other_details=p
 		c.startdate=ed['Start_Date']
-		c.enddate=ed['End_Date']
+		
 		c.starttime=ed['Start_Time']
-		c.endtime=ed['End_Time']
+		
 		c.car_type=ed['CarType']
 		c.car_name=ed['CarName']
 		c.car_service=ed['CarService']
@@ -572,7 +572,7 @@ def edit_data(request):
 		c.luggage=options[2]['Option_Value']
 		c.pets=options[3]['Option_Value']
 		c.music=options[4]['Option_Value']
-		c.non_stop_journey=options[5]['Option_Value']
+		
 		c.destination=ed['Location']
 			
 	elif(category=='Books'):
@@ -599,15 +599,14 @@ def edit_data(request):
 		l.other_details=p
 		l.startdate=ed['Start_Date']
 		l.starttime=ed['Start_Time']
-		l.endtime=ed['End_Date']
+		
 		l.weight=ed['Weights']
 		l.white_clothes=options[0]['Option_Value']
 		l.light_clothes=options[1]['Option_Value']
-		l.cotton_clothes=options[2]['Option_Value']
-		l.silk_clothes=options[3]['Option_Value']
-		l.dry_cleaning=options[4]['Option_Value']
-		l.steam_press=options[5]['Option_Value']
-		l.fabric_softner=options[6]['Option_Value']
+		
+		l.dry_cleaning=options[2]['Option_Value']
+		l.steam_press=options[3]['Option_Value']
+		l.fabric_softner=options[4]['Option_Value']
 		l.save()
 	return JsonResponse({'status':0})
 
