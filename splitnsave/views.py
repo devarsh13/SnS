@@ -88,9 +88,11 @@ def userprofile(request):
 	temp=users.objects.get(email=Email)
 	p=products.objects.filter(user_id=temp)
 	status=0
-	for i in p:
+	ui1=user_interested.objects.filter(user_id=temp)
+	p1=products.objects.filter(user_id=u)
+	for i in p+p1:
 
-		for j in ui:
+		for j in ui+ui1:
 
 			if i.product_id==j.product_id.product_id and (j.status=='2' or j.status==2):
 				status=1
@@ -101,21 +103,8 @@ def userprofile(request):
 	except:
 		report_status=0
 		pass
-	ui=user_interested.objects.filter(user_id=temp)
-	p=products.objects.filter(user_id=u)
-	for i in p:
-
-		for j in ui:
-
-			if i.product_id==j.product_id.product_id and (j.status=='2' or j.status==2):
-				status=1
-				break
-	try:
-		ur=user_reporting.objects.get(reporter=u,reportee=u1)
-		report_status=1
-	except:
-		report_status=0
-		pass
+	
+	
 	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city,'Institute':u.institute,'Birthdate':u.birthday,'Profession_Name':u.profession,'Gender':u.gender,'Status_Confirm':status,'Status_Report':report_status,'Institute_Name':u.institute,'Rating':u.rating}}
 	return JsonResponse(d)
 #Send old password to frontend
