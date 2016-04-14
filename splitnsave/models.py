@@ -98,7 +98,7 @@ class products(models.Model):
 	number_of_sharers=models.IntegerField(default=1)
 	number_of_sharers_left=models.IntegerField(default=0)
 	GENDER=[('M','Male'),('F','Female')]
-	gender=models.CharField(max_length=1000,default='')
+	gender=models.CharField(max_length=1000,default='Male')
 	description=models.CharField(max_length=1000,default=None)
 	status=models.IntegerField(default=0)
 	image_url=models.URLField(default=0)
