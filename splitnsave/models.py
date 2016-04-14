@@ -236,7 +236,7 @@ class apartments(models.Model):
 	location=models.CharField(max_length=100,default='')
 	family_friends_kids_friendly=models.BooleanField(default=False)
 	startdate=models.CharField(max_length=100,default='')
-	enddate=models.CharField(max_length1=100,default='',blank=True)
+	enddate=models.CharField(max_length=100,default='',blank=True)
 	def __str__(self):
 		return self.other_details.product_name
 class tag_list(models.Model):
