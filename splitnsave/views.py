@@ -114,7 +114,7 @@ def userprofile(request):
 		ur=user_reporting.objects.get(reporter=u1,reportee=u)
 		report_status=1
 	except:
-		report_status=0
+
 		pass
 	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city,'Institute':u.institute,'Birthdate':u.birthday,'Profession_Name':u.profession,'Gender':u.gender,'Status_Confirm':status,'Status_Report':report_status,'Institute_Name':u.institute,'Rating':u.rating}}
 	return JsonResponse(d)
@@ -142,6 +142,8 @@ def dashboard(request):
 	Email=input1['Email']
 	u1=users.objects.get(email=Email)
 	p=products.objects.filter(user_id=u1)
+	abc=user_interested.objects.filter(user_id=u1)
+
 	u=[]
 	for i in p:
 
@@ -149,7 +151,9 @@ def dashboard(request):
 		for j in ui:
 			u.append(j.user_id)
 
-	
+	for i in abc:
+		if(i.status==2):
+			u.append(i.product_id.user_id)
 	data={'users':[],'notifications':[{'Message':'aaaaa','Type':1}],'details':[]}
 	for i in u:
 		temp_dict={'First_Name':i.first_name,'Last_Name':i.last_name,'User_Id':i.user_id,'Image_Link':i.image_url}
