@@ -148,7 +148,7 @@ def dashboard(request):
 
 	for i in abc:
 		if(i.status==2):
-			u.append(i.product_id.User_Id)
+			u.append(i.product_id.user_id)
 	data={'users':[],'notifications':[{'Message':'aaaaa','Type':1}],'details':[]}
 	for i in u:
 		temp_dict={'First_Name':i.first_name,'Last_Name':i.last_name,'User_Id':i.user_id,'Image_Link':i.image_url}
