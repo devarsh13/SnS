@@ -53,7 +53,7 @@ def editprofile(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	u=users.objects.get(email=Email)
-	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city,'Institute':u.institute,'Birthdate':u.birthday,'Profession_Name':u.profession,'Gender':u.gender,'Status':u.status,'Image_Link':u.image_url}}
+	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city,'Institute_Name':u.institute,'Birthdate':u.birthday,'Profession_Name':u.profession,'Gender':u.gender,'Status':u.status,'Image_Link':u.image_url}}
 	return JsonResponse(d)
 #Update user data after the profile has changed
 @csrf_exempt
@@ -100,7 +100,7 @@ def userprofile(request):
 	except:
 		report_status=0
 		pass
-	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city,'Institute':u.institute,'Birthdate':u.birthday,'Profession_Name':u.profession,'Gender':u.gender,'Status_Confirm':status,'Status_Report':report_status}}
+	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city,'Institute':u.institute,'Birthdate':u.birthday,'Profession_Name':u.profession,'Gender':u.gender,'Status_Confirm':status,'Status_Report':report_status,'Institute_Name':u.institute,'Rating':u.rating}}
 	return JsonResponse(d)
 #Send old password to frontend
 @csrf_exempt
