@@ -153,9 +153,9 @@ class car_name_list(models.Model):
 
 class cabs(models.Model):
 	other_details=models.ForeignKey(products,default=None)
-	startdate=models.DateField()
+	startdate=models.CharField(max_length=100,default='')
 	starttime=models.CharField(max_length=100)
-	enddate=models.DateField()
+	enddate=models.CharField(max_length=100,default='')
 	endtime=models.CharField(max_length=100)
 	smoking=models.BooleanField(default=False)
 	car_type=models.CharField(max_length=100,default='')
@@ -171,9 +171,9 @@ class cabs(models.Model):
 		return self.other_details.product_name
 class laundary(models.Model):
 	other_details=models.ForeignKey(products,default=None)
-	startdate=models.DateField()
+	startdate=models.CharField(max_length=100,default='')
 	starttime=models.CharField(max_length=100,default='')
-	enddate=models.DateField()
+	enddate=models.CharField(max_length=100,default='')
 	endtime=models.CharField(max_length=100,default='')
 	weight=models.IntegerField(default=0)
 	white_clothes=models.BooleanField(default=False)
@@ -246,8 +246,8 @@ class tag_list(models.Model):
 
 class books(models.Model):
 	other_details=models.ForeignKey(products,default=None)
-	startdate=models.DateField()
-	enddate=models.DateField()
+	startdate=models.CharField(max_length=100,default='')
+	enddate=models.CharField(max_length=100,default='')
 	author_first_name=models.CharField(default=0,max_length=100)
 	author_last_name=models.CharField(default=0,max_length=100)
 	tag1=models.CharField(max_length=100,default='')

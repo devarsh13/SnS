@@ -61,14 +61,14 @@ def edit_profile_change(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	
-	birthdate=strptime(input1['Birthdate'],'%Y-%m-%d')
+	
 	u=users.objects.get(email=Email)
 	u.first_name=input1['First_Name']
 	u.last_name=input1['Last_Name']
 	u.contact_number=input1['ContactNumber']
 	u.password=input1['Password']
 	u.city=input1['CityName']
-	u.birthday=str(birthdate.tm_year)+'-'+str(birthdate.tm_mon)+'-'+str(birthdate.tm_mday)
+	u.birthday=input1['Birthdate']
 	u.gender=input1['Gender']
 	u.institute=input1['Institute_Name']
 	u.profession=input1['Profession_Name']
@@ -342,12 +342,11 @@ def create_post(request):
 		)
 	elif(category=='Cabs'):
 		
-		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
-		end=strptime(ed['End_Date'],'%Y-%m-%d')
+		
 		
 		c=cabs.objects.create(
 			other_details=p,
-			startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
+			startdate=ed['Start_Date'],
 			
 			starttime=ed['Start_Time'],
 			
@@ -364,12 +363,11 @@ def create_post(request):
 			)
 
 	elif(category=='Books'):
-		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
-		end=strptime(ed['End_Date'],'%Y-%m-%d')
+		
 		b=books.objects.create(
 			other_details=p,
-			startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
-			enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
+			startdate=ed['Start_Date'],
+			enddate=ed['End_Date'],
 			author_first_name=ed['Author_First_Name'],
 			author_last_name=ed['Author_Last_Name'],
 			location=ed['Location'],
@@ -379,15 +377,11 @@ def create_post(request):
 			college=ed['College']
 			)
 	else:
-		try:
-			sd=strptime(ed['Start_Date'],'%Y-%m-%d')
-			end=strptime(ed['End_Date'],'%Y-%m-%d')
-		except:
-			pass
+		
 		l=laundary.objects.create(
 			other_details=p,
-			startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday),
-			enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday),
+			startdate=ed['Start_Date'],
+			enddate=ed['End_Date'],
 			starttime=ed['Start_Time'],
 			endtime=ed['End_Time'],
 			weight=ed['Weights'],
@@ -538,7 +532,8 @@ def edit_data(request):
 
 	if(category=='Apartments'):
 		a=apartments.objects.get(other_details=p)
-		
+		c.startdate=ed['Start_Date']
+		c.enddate=ed['End_Date']
 		a.kitchen=options[0]['Option_Value']
 		a.internet=options[1]['Option_Value']
 		a.television=options[2]['Option_Value']
@@ -563,13 +558,12 @@ def edit_data(request):
 		a.save()
 	elif(category=='Cabs'):
 		
-		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
-		end=strptime(ed['End_Date'],'%Y-%m-%d')
+		
 		c=cabs.objects.get(other_details=p)
 		
 		c.other_details=p
-		c.startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday)
-		c.enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday)
+		c.startdate=ed['Start_Date']
+		c.enddate=ed['End_Date']
 		c.starttime=ed['Start_Time']
 		c.endtime=ed['End_Time']
 		c.car_type=ed['CarType']
@@ -584,13 +578,12 @@ def edit_data(request):
 		c.destination=ed['Location']
 			
 	elif(category=='Books'):
-		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
-		end=strptime(ed['End_Date'],'%Y-%m-%d')
+		
 		b=books.objects.get(other_details=p)
 		
 		b.other_details=p
-		b.startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday)
-		b.enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday)
+		b.startdate=ed['Start_Date']
+		b.enddate=ed['End_Date']
 		b.author_first_name=ed['Author_First_Name']
 		b.author_last_name=ed['Author_Last_Name']
 		b.location=ed['Location']
@@ -601,16 +594,14 @@ def edit_data(request):
 		b.save()
 	else:
 		
-		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
-		end=strptime(ed['End_Date'],'%Y-%m-%d')
+		
 		l=laundary.objects.get(other_details=p)
 
 		
 		l.other_details=p
-		l.startdate=str(sd.tm_year)+'-'+str(sd.tm_mon)+'-'+str(sd.tm_mday)
-		l.enddate=str(end.tm_year)+'-'+str(end.tm_mon)+'-'+str(end.tm_mday)
+		l.startdate=ed['Start_Date']
 		l.starttime=ed['Start_Time']
-		l.endtime=ed['End_Time']
+		l.endtime=ed['End_Date']
 		l.weight=ed['Weights']
 		l.white_clothes=options[0]['Option_Value']
 		l.light_clothes=options[1]['Option_Value']
