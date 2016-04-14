@@ -125,7 +125,15 @@ def dashboard(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	u1=users.objects.get(email=Email)
-	u=users.objects.all()
+	p=products.objects.filter(user_id=u1)
+	u=[]
+	for i in p:
+
+		ui=user_interested.objects.filter(product_id=i,status=2)
+		for j in ui:
+			u.append(j)
+
+	
 	data={'users':[],'notifications':[{'Message':'aaaaa','Type':1}],'details':[]}
 	for i in u:
 		temp_dict={'First_Name':i.first_name,'Last_Name':i.last_name,'User_Id':i.user_id,'Image_Link':i.image_url}
