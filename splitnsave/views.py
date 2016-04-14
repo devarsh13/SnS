@@ -298,6 +298,7 @@ def report_a_user(request):
 	u1=users.objects.get(user_id=User_Id)
 	user_reporting.objects.create(reporter=u,reportee=u1,status=1)
 	u1.reported_by=u1.reported_by+1
+	u1.save()
 	return JsonResponse({'status':0})
 
 @csrf_exempt
