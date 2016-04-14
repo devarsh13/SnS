@@ -360,6 +360,7 @@ def create_post(request):
 			fire_alarm=options[12]['Option_Value'],
 			medical_aid=options[13]['Option_Value'],
 			other_details=p,
+			address=ed['Address']
 			rooms=ed['Rooms'],
 			number_of_bedrooms=ed['Bed_Rooms'],
 			number_of_bathrooms=ed['Bath_Rooms'],
@@ -723,7 +724,7 @@ def product_details(request):
 		d['product']['IN_Time_Value']=si.in_time
 		d['product']['OUT_Time_Value']=si.out_time
 		d['product']['Location']=si.location
-
+		d['product']['Address']=si.address
 	if(d['Category_Id']=='2'):
 		d['options'].append({'Option_Name':'No Smoking','Option_Value':si.smoking})
 		d['options'].append({'Option_Name':'No Kids','Option_Value':si.kids})
