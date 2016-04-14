@@ -942,7 +942,8 @@ def chat_history(request):
 	User_Id=input1['User_Id']
 	u1=users.objects.get(email=Email)
 	u2=users.objects.get(user_id=User_Id)
-	ch=chat_history.filter(sender=u1,receiver=u2)
+	ch=chat_history.objects.filter(sender=u1,receiver=u2)
+	ch=chat_history.objects.filter(sender=u2,receiver=u1)
 	users1=[]
 	chats=[]
 	try:
@@ -957,9 +958,12 @@ def chat_history(request):
 		user['Image_Link']=i.seeker.image_url
 		users1.append(user)
 	for i in ch:
-		chat={'User1':i.sender.first_name,'User2':i.receiver.first_name,'Message':i.message,'Timestamp':i.timestamp}
+		chat={'username':i.sender.first_name,'User2':i.receiver.first_name,'Message':i.cotent,'Timestamp':i.timestamp}
 		chats.append(chat)
-
+	for i in ch:
+		chat={'username':i.sender.first_name,'User2':i.receiver.first_name,'Message':i.content,'Timestamp':i.timestamp}
+		chats.append(chat)
+	chats=sorted(chats,key=lambda k:k['Timestamp'])
 	return JsonResponse({'Users':users1,'Chats':chats})
 
 
