@@ -131,7 +131,7 @@ def dashboard(request):
 
 		ui=user_interested.objects.filter(product_id=i,status=2)
 		for j in ui:
-			u.append(j)
+			u.append(j.user_id)
 
 	
 	data={'users':[],'notifications':[{'Message':'aaaaa','Type':1}],'details':[]}
