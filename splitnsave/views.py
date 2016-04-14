@@ -936,7 +936,7 @@ def category_products(request):
 	return JsonResponse({'products':products1})
 
 @csrf_exempt
-def chat_history(request):
+def chat_history_data(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	User_Id=input1['User_Id']
