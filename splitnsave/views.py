@@ -82,7 +82,7 @@ def userprofile(request):
 	user_id=input1['User_Id']
 	Email=input1['Email']
 	u=users.objects.get(user_id=user_id)
-	
+	u1=users.objects.get(email=email)
 	
 	ui=user_interested.objects.filter(user_id=u)
 	temp=users.objects.get(email=Email)
@@ -97,6 +97,21 @@ def userprofile(request):
 				break
 	try:
 		ur=user_reporting.objects.get(reporter=u1,reportee=u)
+		report_status=1
+	except:
+		report_status=0
+		pass
+	ui=user_interested.objects.filter(user_id=temp)
+	p=products.objects.filter(user_id=user_id)
+	for i in p:
+
+		for j in ui:
+
+			if i.product_id==j.product_id.product_id and (j.status=='2' or j.status==2):
+				status=1
+				break
+	try:
+		ur=user_reporting.objects.get(reporter=u,reportee=u1)
 		report_status=1
 	except:
 		report_status=0
