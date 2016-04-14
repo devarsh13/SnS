@@ -948,7 +948,7 @@ def chat_history_data(request):
 	u1=users.objects.get(email=Email)
 	u2=users.objects.get(user_id=User_Id)
 	ch=chat_history.objects.filter(sender=u1,receiver=u2)
-	ch=chat_history.objects.filter(sender=u2,receiver=u1)
+	ch1=chat_history.objects.filter(sender=u2,receiver=u1)
 	users1=[]
 	chats=[]
 	try:
@@ -965,7 +965,7 @@ def chat_history_data(request):
 	for i in ch:
 		chat={'username':i.sender.first_name,'User2':i.receiver.first_name,'content':i.message,'Timestamp':i.timestamp}
 		chats.append(chat)
-	for i in ch:
+	for i in ch1:
 		chat={'username':i.sender.first_name,'User2':i.receiver.first_name,'content':i.message,'Timestamp':i.timestamp}
 		chats.append(chat)
 	chats=sorted(chats,key=lambda k:k['Timestamp'])
