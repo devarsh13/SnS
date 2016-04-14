@@ -381,17 +381,15 @@ def create_post(request):
 		l=laundary.objects.create(
 			other_details=p,
 			startdate=ed['Start_Date'],
-			enddate=ed['End_Date'],
+			
 			starttime=ed['Start_Time'],
-			endtime=ed['End_Time'],
+			
 			weight=ed['Weights'],
 			white_clothes=options[0]['Option_Value'],
 			light_clothes=options[1]['Option_Value'],
-			cotton_clothes=options[2]['Option_Value'],
-			silk_clothes=options[3]['Option_Value'],
-			dry_cleaning=options[4]['Option_Value'],
-			steam_press=options[5]['Option_Value'],
-			fabric_softner=options[6]['Option_Value'],
+			dry_cleaning=options[2]['Option_Value'],
+			steam_press=options[3]['Option_Value'],
+			fabric_softner=options[4]['Option_Value'],
 			)
 	return JsonResponse({'status':0})
 
