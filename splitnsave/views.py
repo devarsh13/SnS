@@ -183,7 +183,7 @@ def change_rating(request):
 	u1.rated_by=u1.rated_by+1
 
 	u1.rating=str((int(u1.rating)+int(rating))/u1.rated_by)
-
+	u1.save()
 	return JsonResponse({'status':0})
 
 @csrf_exempt
