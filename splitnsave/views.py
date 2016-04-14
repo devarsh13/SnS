@@ -53,27 +53,25 @@ def editprofile(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	u=users.objects.get(email=Email)
-	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city.city_name,'Institute':u.institute.institute_name,'Birthdate':u.birthday,'Profession_Name':u.profession.profession_name,'Gender':u.gender,'Status':u.status,'Image_Link':u.image_url,'Institute_Name':u.institute.institute_name}}
+	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city,'Institute':u.institute,'Birthdate':u.birthday,'Profession_Name':u.profession,'Gender':u.gender,'Status':u.status,'Image_Link':u.image_url,'Institute_Name':u.institute.institute_name}}
 	return JsonResponse(d)
 #Update user data after the profile has changed
 @csrf_exempt
 def edit_profile_change(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
-	institute=institute_list.objects.get(institute_name=input1['Institute_Name'])
-	profession=profession_list.objects.get(profession_name=input1['Profession_Name'])
-	city=city_list.objects.get(city_name=input1['CityName'])
+	
 	birthdate=strptime(input1['Birthdate'],'%Y-%m-%d')
 	u=users.objects.get(email=Email)
 	u.first_name=input1['First_Name']
 	u.last_name=input1['Last_Name']
 	u.contact_number=input1['ContactNumber']
 	u.password=input1['Password']
-	u.city_name=city
+	u.city=input1['CityName']
 	u.birthday=str(birthdate.tm_year)+'-'+str(birthdate.tm_mon)+'-'+str(birthdate.tm_mday)
 	u.gender=input1['Gender']
-	u.institute=institute
-	u.profession=profession
+	u.institute=input1['Institute_Name']
+	u.profession=input1['Profession_Name']
 	u.image_url=input1['Image_Link']
 	u.save()
 	return JsonResponse({'status':'0'})
@@ -102,7 +100,7 @@ def userprofile(request):
 	except:
 		report_status=0
 		pass
-	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city.city_name,'Institute':u.institute.institute_name,'Birthdate':u.birthday,'Profession_Name':u.profession.profession_name,'Gender':u.gender,'Status_Confirm':status,'Status_Report':report_status,'Institute_Name':u.institute.institute_name}}
+	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city,'Institute':u.institute,'Birthdate':u.birthday,'Profession_Name':u.profession,'Gender':u.gender,'Status_Confirm':status,'Status_Report':report_status,'Institute_Name':u.institute.institute_name}}
 	return JsonResponse(d)
 #Send old password to frontend
 @csrf_exempt
@@ -177,6 +175,7 @@ def change_rating(request):
 	u1=users.objects.get(user_id=User_Id)
 	p=products.objects.get(product_id=Product_Id)
 	t=transaction_ratings.objects.get(product_id=p,rater=u,ratee=u1)
+	
 	t.rating=rating
 	t.save()
 	u1.rating=int(u1.rating)*u1.rated_by
