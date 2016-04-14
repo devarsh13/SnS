@@ -160,7 +160,7 @@ def transactions(request):
 		for k in sharers:
 			rater=users.objects.get(email=Email)
 			rating=transaction_ratings.objects.get(product_id=temp,rater=rater,ratee=k)
-			user_details={'First_Name':k.first_name,'Last_Name':k.last_name,'User_Id':k.user_id,'User_Image':k.image_url,'Rating':rating.rating}
+			user_details={'First_Name':k.first_name,'Last_Name':k.last_name,'User_Id':k.user_id,'User_Image':k.image_url,'Rating':str(rating.rating)}
 			details['Sharer'].append(user_details)
 		products.append(details)
 	d={'products':products}
@@ -181,7 +181,7 @@ def change_rating(request):
 	t.save()
 	u1.rating=u1.rating*u1.rated_by
 	u1.rated_by=u1.rated_by+1
-	u1.rating=(u1.rating+rating)/u1.rated_by
+	u1.rating=(u1.rating+int(rating))/u1.rated_by
 
 	return JsonResponse({'status':0})
 
