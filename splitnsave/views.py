@@ -872,6 +872,7 @@ def category_products(request):
 		d['product']['Post_Date']=i.post_date
 		d['product']['Location']=i.location
 		d['product']['Product_Id']=i.product_id
+		d['product']['Hosted']=str(i.user_id.first_name)+" "+str(i.user_id.last_name)
 		if(d["Category_Id"]=='3'):
 			d['product']['Start_Date']=sp.startdate
 			d['product']['End_Date']=sp.enddate
