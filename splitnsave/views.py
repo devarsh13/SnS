@@ -102,7 +102,7 @@ def userprofile(request):
 		report_status=0
 		pass
 	ui=user_interested.objects.filter(user_id=temp)
-	p=products.objects.filter(user_id=user_id)
+	p=products.objects.filter(user_id=u)
 	for i in p:
 
 		for j in ui:
