@@ -335,9 +335,10 @@ def create_post(request):
 			number_of_bedrooms=ed['Bed_Rooms'],
 			number_of_bathrooms=ed['Bath_Rooms'],
 			bathroom_type=ed['BathRoom_Type'],
+			startdate=ed['Start_Date'],
+			enddate=ed['End_Date'],
 			in_time=ed['IN_Time_Value'],
-			out_time=ed['OUT_Time_Value'],
-		)
+			)
 	elif(category=='Cabs'):
 		
 		sd=strptime(ed['Start_Date'],'%Y-%m-%d')
