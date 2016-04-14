@@ -208,10 +208,10 @@ class equipment(models.Model):
 		return self.other_details.product_name
 class apartments(models.Model):
 	other_details=models.ForeignKey(products,default=None)
-	rooms=models.IntegerField(default=1)
+	rooms=models.CharField(default='',blank=True)
 	address=models.CharField(max_length=1000,default='',blank=True)
-	number_of_bedrooms=models.IntegerField(default=1)
-	number_of_bathrooms=models.IntegerField(default=1)
+	number_of_bedrooms=models.CharField(default='',blank=True)
+	number_of_bathrooms=models.CharField(default='',blank=True)
 	bathroom_type=models.CharField(default=None,max_length=100)
 	in_time=models.CharField(max_length=100,default='',blank=True)
 	out_time=models.CharField(max_length=100,default='',blank=True)
