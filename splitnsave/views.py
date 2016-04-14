@@ -89,8 +89,9 @@ def userprofile(request):
 	p=products.objects.filter(user_id=temp)
 	status=0
 	for i in p:
+		return JsonResponse({'status':0})
 		for j in ui:
-			return JsonResponse({'status':0})
+
 			if i.product_id==j.product_id.product_id and (j.status=='2' or j.status==2):
 				status=1
 				break
