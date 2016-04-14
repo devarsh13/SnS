@@ -147,7 +147,7 @@ def transactions(request):
 	products=[]
 	for i in transaction_list:
 		temp=i.product_id
-		details={'Product_Name':temi.product_name,'Product_Image':temi.image_url,'Product_Id':temi.product_id,'Confirm_Date':temi.confirm_date,'Price':temi.price,'Location':temi.location}
+		details={'Product_Name':temp.product_name,'Product_Image':temp.image_url,'Product_Id':temp.product_id,'Confirm_Date':temp.confirm_date,'Price':temp.price,'Location':temp.location}
 		details['Sharer']=[]
 		sharers=[]
 		aaa=transaction_history.objects.filter(product_id=temp)
@@ -250,8 +250,8 @@ def confirm_post(request):
 	p=products.objects.get(product_id=Product_Id)
 	i=p
 	u=user_interested.objects.filter(product_id=p,status=2)
-	i.status=3
-	i.save()
+	p.status=3
+	p.save()
 	for i in u:
 		r=transaction_ratings.objects.create(product_id=p,rater=i.user_id,ratee=i.user_id,rating=0)
 		transaction_history.objects.create(seeker=i.user_id,product_id=p,poster=i.user_id,rating=r,transact_status=0)
