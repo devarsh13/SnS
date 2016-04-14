@@ -958,10 +958,10 @@ def chat_history_data(request):
 		user['Image_Link']=i.seeker.image_url
 		users1.append(user)
 	for i in ch:
-		chat={'username':i.sender.first_name,'User2':i.receiver.first_name,'Message':i.cotent,'Timestamp':i.timestamp}
+		chat={'username':i.sender.first_name,'User2':i.receiver.first_name,'Content':i.message,'Timestamp':i.timestamp}
 		chats.append(chat)
 	for i in ch:
-		chat={'username':i.sender.first_name,'User2':i.receiver.first_name,'Message':i.content,'Timestamp':i.timestamp}
+		chat={'username':i.sender.first_name,'User2':i.receiver.first_name,'Content':i.message,'Timestamp':i.timestamp}
 		chats.append(chat)
 	chats=sorted(chats,key=lambda k:k['Timestamp'])
 	return JsonResponse({'Users':users1,'Chats':chats})
