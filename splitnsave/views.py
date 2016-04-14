@@ -181,7 +181,7 @@ def change_rating(request):
 	t.save()
 	u1.rating=u1.rating*u1.rated_by
 	u1.rated_by=u1.rated_by+1
-	u1.rating=str((u1.rating+int(rating))/u1.rated_by)
+	u1.rating=str((int(u1.rating)+int(rating))/u1.rated_by)
 
 	return JsonResponse({'status':0})
 
