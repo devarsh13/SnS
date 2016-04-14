@@ -91,7 +91,7 @@ def userprofile(request):
 	for i in p:
 		for j in ui:
 
-			if i.product_id==j.product_id.product_id and j.status==1:
+			if i.product_id==j.product_id.product_id and (j.status==2):
 				status=1
 				break
 	try:
