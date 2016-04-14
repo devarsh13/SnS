@@ -360,7 +360,7 @@ def create_post(request):
 			fire_alarm=options[12]['Option_Value'],
 			medical_aid=options[13]['Option_Value'],
 			other_details=p,
-			address=ed['Address']
+			address=ed['Address'],
 			rooms=ed['Rooms'],
 			number_of_bedrooms=ed['Bed_Rooms'],
 			number_of_bathrooms=ed['Bath_Rooms'],
