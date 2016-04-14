@@ -212,7 +212,7 @@ class apartments(models.Model):
 	address=models.CharField(max_length=1000,default='',blank=True)
 	number_of_bedrooms=models.CharField(max_length=100,default='',blank=True)
 	number_of_bathrooms=models.CharField(max_length=100,default='',blank=True)
-	bathroom_type=models.CharField(max_length=100,default=None,max_length=100)
+	bathroom_type=models.CharField(max_length=100,default=None)
 	in_time=models.CharField(max_length=100,default='',blank=True)
 	out_time=models.CharField(max_length=100,default='',blank=True)
 	kitchen=models.BooleanField(default=False)
