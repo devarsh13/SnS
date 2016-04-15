@@ -278,7 +278,11 @@ def update_my_posts(request):
 	ui=user_interested.objects.get(user_id=u,product_id=p)
 	ui.status=Status
 	ui.save()
+	if(ui.status=='2' or ui.status==2):
+		p.number_of_sharers_left=p.number_of_sharers_left-1
+
 	if(ui.status=='3' or ui.status==3):
+		p.number_of_sharers_left=p.number_of_sharers_left+1
 		ui.delete()
 	
 	
