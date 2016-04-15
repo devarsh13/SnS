@@ -983,7 +983,13 @@ def send_users(request):
 	for i in u2:
 		if(i.status==2 or i.status=='2'):
 			users2.append(i.user_id)
-	for i in users2:
+	output = []
+	seen = set()
+	for value in users2:
+		if value not in seen:
+			output.append(value)
+			seen.add(value)
+	for i in output:
 		temp={'First_Name':i.first_name,'Last_Name':i.last_name,'Image_Link':i.image_url,'User_Id':i.user_id}
 		users1.append(temp)
 	return JsonResponse({'Users':users1})
