@@ -591,6 +591,7 @@ def edit_data(request):
 		a.address=ed['Address']
 		a.startdate=ed['Start_Date']
 		a.enddate=ed['End_Date']
+		a.location=ed['Location']
 		a.save()
 	elif(category=='Cabs'):
 		
