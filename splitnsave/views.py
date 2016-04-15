@@ -245,6 +245,7 @@ def my_posts(request):
 		temp['Location']=i.location
 		temp['Post_Date']=i.post_date
 		temp['Price']=i.price
+		temp['Sharers_Left']=i.number_of_sharers_left
 		temp['Sharer']=[]
 		u=user_interested.objects.filter(product_id=i)
 		for j in u:
