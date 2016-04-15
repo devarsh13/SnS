@@ -1111,7 +1111,7 @@ def admin_data(request):
 	p=products.objects.all()
 	products1=[]
 	for i in p:
-		temp={'Title':p.product_name,'Product_Id':p.product_id,'Reports':user_report_post.objects.filter(product_id=p).count(),'Image_Link':p.image_url}
+		temp={'Title':i.product_name,'Product_Id':i.product_id,'Reports':user_report_post.objects.filter(product_id=p).count(),'Image_Link':i.image_url}
 		products1.append(temp)
 	return JsonResponse({'Users':users1,'Products':products1})
 
@@ -1137,18 +1137,18 @@ def notifications(request):
 	u=users.objects.get(email=Email)
 	for i in ui:
 		if i.status==2 or i.status=='2':
-			temp={'Product_Id':i.product_id.product_id,'Product_Name':i.product_name,'Message':'Your request for Product %s has been accepted' % i.product_name,'Message_Type':1}
+			temp={'Product_Id':i.product_id.product_id,'Product_Name':i.product_id.product_name,'Message':'Your request for Product %s has been accepted' % i.product_id.product_name,'Message_Type':1}
 			a.append(temp)
 	b=[]
 	for i in ui:
 		if i.status==3 or i.status=='3':
-			temp={'Product_Id':i.product_id.product_id,'Product_Name':i.product_name,'Message':'Your request for Product %s has been confirmed' % i.product_name,'Message_Type':2}
+			temp={'Product_Id':i.product_id.product_id,'Product_Name':i.product_id.product_name,'Message':'Your request for Product %s has been confirmed' % i.product_id.product_name,'Message_Type':2}
 			b.append(temp)
 	p=products.objects.filter(user_id=u)
 	ui=user_interested.objects.filter(product_id=p)
 	for i in ui:
 		if i.status==2 or i.status=='2':
-			temp={'Product_Id':i.product_id.product_id,'Product_Name':i.product_name,'Message':'You have received a request for %s' % i.product_name,'Message_Type':3}
+			temp={'Product_Id':i.product_id.product_id,'Product_Name':i.product_id.product_name,'Message':'You have received a request for %s' % i.product_id.product_name,'Message_Type':3}
 			c.append(temp)
 
 	return JsonResponse({'Accepted':a,'Confirmed':b,'Requested':c})
