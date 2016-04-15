@@ -744,9 +744,9 @@ def product_details(request):
 		d['options'].append({'Option_Name':'Non Stop Journey','Option_Value':si.non_stop_journey})
 		d['product']['Location']=si.destination
 		d['product']['Start_Date']=si.startdate
-		d['product']['Start_Time']=si.starttime
+		
 		d['product']['End_Date']=si.enddate
-		d['product']['End_Time']=si.endtime
+		
 		d['product']['CarService']=si.car_service
 		d['product']['CarName']=si.car_name
 		d['product']['CarType']=si.car_type
@@ -761,8 +761,7 @@ def product_details(request):
 		d['options'].append({'Option_Name':'Fabric Softner','Option_Value':si.fabric_softner})
 		d['product']['Start_Date']=si.startdate
 		d['product']['End_Date']=si.enddate
-		d['product']['Start_Time']=si.starttime
-		d['product']['End_Time']=si.endtime
+		
 		d['product']['Weights']=si.weight
 
 	d['user']['First_Name']=u.first_name
@@ -928,9 +927,9 @@ def category_products(request):
 			d['product']['options'].append({'Option_Name':'Non Stop Journey','Option_Value':sp.non_stop_journey})
 			d['product']['Location']=sp.destination
 			d['product']['Start_Date']=sp.startdate
-			d['product']['Start_Time']=sp.starttime
+			
 			d['product']['End_Date']=sp.enddate
-			d['product']['End_Time']=sp.endtime
+			
 			d['product']['CarService']=sp.car_service
 			d['product']['CarName']=sp.car_name
 			d['product']['CarType']=sp.car_type
@@ -945,8 +944,8 @@ def category_products(request):
 			d['product']['options'].append({'Option_Name':'Fabric Softner','Option_Value':sp.fabric_softner})
 			d['product']['Start_Date']=sp.startdate
 			d['product']['End_Date']=sp.enddate
-			d['product']['Start_Time']=sp.starttime
-			d['product']['End_Time']=sp.endtime
+			
+			
 			d['product']['Weights']=sp.weight
 
 		
