@@ -5,6 +5,7 @@ from models import *
 from django.views.decorators.csrf import csrf_exempt
 import json
 import ast
+from random import randint
 from time import strptime
 import smtplib
 from datetime import datetime
@@ -303,7 +304,7 @@ def confirm_post(request):
 	for i in u:
 		r=transaction_ratings.objects.create(product_id=p,rater=p.user_id,ratee=i.user_id,rating=0)
 		r=transaction_ratings.objects.create(product_id=p,rater=i.user_id,ratee=p.user_id,rating=0)
-		transaction_history.objects.create(seeker=i.user_id,product_id=p,poster=p.user_id,rating=r)
+		transaction_history.objects.create(seeker=i.user_id,product_id=p,poster=p.user_id,rating=r,transact_status=randint(1,100000))
 		
 	return JsonResponse({'status':0})
 @csrf_exempt
