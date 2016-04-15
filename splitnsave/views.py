@@ -998,7 +998,8 @@ def chat_history_data(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	User_Id=input1['User_Id']
-	
+	u1=users.objects.get(email=Email)
+	u2=users.objects.get(user_id=User_Id)
 	ch=chat_history.objects.filter(sender=u1,receiver=u2)
 	ch1=chat_history.objects.filter(sender=u2,receiver=u1)
 	users1=[]
