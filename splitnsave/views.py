@@ -1012,7 +1012,7 @@ def chat_history_data(request):
 		chat={'username':i.sender.first_name,'User2':i.receiver.first_name,'content':i.message,'Timestamp':i.timestamp}
 		chats.append(chat)
 	for i in xrange(0,len(chats)):
-		for j in xrange(i,len(chats)):
+		for j in xrange(i,len(chats)-1):
 			if(chats[j]['Timestamp']<chats[j+1]['Timestamp']):
 				temp=chats[j]
 				chats[j]=chats[j+1]
