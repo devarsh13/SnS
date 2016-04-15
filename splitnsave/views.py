@@ -955,27 +955,35 @@ def category_products(request):
 	return JsonResponse({'products':products1})
 
 @csrf_exempt
+def send_users(request):
+	input1=json.loads(request.body)
+	Email=input1['Email']
+	u1=users_interested.objects.filter(email=Email)
+	p=product.objects.filter(email=Email)
+	u2=users_interested.objects.filter(product_id=p)
+	users=[]
+	users1=[]
+	for i in u1:
+		if(i.status==2 or i.status=='2'):
+			users.append(i.product_id.user_id)
+	for i in u2:
+		if(i.status==2 or i.status=='2'):
+			users.append(i.user_id)
+	for i in users:
+		temp={'First_Name':i.first_name,'Last_Name':i.last_name,'Image_Link':i.image_url,'User_Id':i.user_id}
+		users1.append(temp)
+	return JsonResponse({'Users':users1})
+@csrf_exempt
 def chat_history_data(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
 	User_Id=input1['User_Id']
-	u1=users.objects.get(email=Email)
-	u2=users.objects.get(user_id=User_Id)
+	
 	ch=chat_history.objects.filter(sender=u1,receiver=u2)
 	ch1=chat_history.objects.filter(sender=u2,receiver=u1)
 	users1=[]
 	chats=[]
-	try:
-		t=transaction_history.objects.filter(poster=u1)
-	except:
-		pass
-	for i in t:
-		user={}
-		user['First_Name']=i.seeker.first_name
-		user['Last_Name']=i.seeker.last_name
-		user['User_Id']=i.seeker.user_id
-		user['Image_Link']=i.seeker.image_url
-		users1.append(user)
+	
 	for i in ch:
 		chat={'username':i.sender.first_name,'User2':i.receiver.first_name,'content':i.message,'Timestamp':i.timestamp}
 		chats.append(chat)

@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'getchats',views.chat_history_data),
     url(r'addchat',views.add_chat),
     url(r'verify',views.verify_user),
-    url(r'forgotpassword',views.forgot_password)
+    url(r'forgotpassword',views.forgot_password),
+    url(r'getusers',views.send_users)
 ]
 	
