@@ -10,24 +10,28 @@ def number():
 		except:
 
 			return 1
+
 def institute_number():
 		no1=institute_list.objects.count()
 		if no1==None:
 			return 1
 		else:
 			return no1+1
+
 def city_number():
 		no2=city_list.objects.count()
 		if no2==None:
 			return 1
 		else:
 			return no2+1
+
 def profession_number():
 		no3=profession_list.objects.count()
 		if no3==None:
 			return 1
 		else:
 			return no3+1
+
 def product_number():
 		try:
 			no=products.objects.all().order_by("-product_id")[0]
@@ -36,28 +40,30 @@ def product_number():
 
 			return 1
 # Create your models here
+#Store All the cities list
 class city_list(models.Model):
-	
 	city_id=models.IntegerField(primary_key=True,default=city_number)
 	CITIES=[('',''),('Ahmedabad','Ahmedabad'),('Gandhinagar','Gandhinagar')]
 	city_name=models.CharField(default='',max_length=100,choices=CITIES)
-	
 	def __str__(self):
 		return self.city_name
+
+#Store all the institute list
 class institute_list(models.Model):
 	institute_id=models.IntegerField(primary_key=True,default=institute_number)
 	INSTITUTES=[('',''),('DA-IICT','DA-IICT'),('Nirma Institute of Technology','Nirma Institute of Technology')]
 	institute_name=models.CharField(default='',max_length=100,choices=INSTITUTES,null=False)
-	
 	def __str__(self):
 		return self.institute_name
+
+#Store all the profession list
 class profession_list(models.Model):
 	profession_id=models.IntegerField(primary_key=True,default=profession_number)
 	PROFESSIONS=[('',''),('Student','Student'),('abc','abc')]
 	profession_name=models.CharField(default='',max_length=100,choices=PROFESSIONS,null=True)
 
+#Store all the user detials
 class users(models.Model):
-	
 	GENDER=[('M','Male'),('F','Female')]
 	STATUS=[('-1','Not Active'),('0','Not Verified'),('1','Active')]
 	user_id=models.IntegerField(default=number)
@@ -78,7 +84,6 @@ class users(models.Model):
 	image_url=models.URLField(default=0)
 	reported_by=models.IntegerField(default=0)
 	rated_by=models.IntegerField(default=0)
-
 	def __str__(self):
 		return self.first_name+" "+self.last_name
 
@@ -106,7 +111,6 @@ class products(models.Model):
 	confirm_date=models.DateField(null=True,blank=True,default=None)
 	post_date=models.DateField(default=datetime.date.today(),null=True)
 	location=models.CharField(max_length=100,default=None,null=True,blank=True)
-
 	def __str__(self):
 		return str(self.product_name)
 
@@ -170,6 +174,7 @@ class cabs(models.Model):
 	destination=models.CharField(default=None,max_length=1000)
 	def __str__(self):
 		return self.other_details.product_name
+
 class laundary(models.Model):
 	other_details=models.ForeignKey(products,default=None)
 	startdate=models.CharField(max_length=100,default='')
@@ -184,9 +189,9 @@ class laundary(models.Model):
 	silk_clothes=models.BooleanField(default=False)
 	cotton_clothes=models.BooleanField(default=False)
 	light_clothes=models.BooleanField(default=False)
-
 	def __str__(self):
 		return self.other_details.product_name
+
 class sub_category_list(models.Model):
 	sub_category_id=models.IntegerField(default=0,primary_key=True)
 	SUBCATEGORIES=[('',''),('ABC','ABC')]
@@ -207,6 +212,7 @@ class equipment(models.Model):
 	keyword_id3=models.ForeignKey(keyword_list,related_name='keyword3')
 	def __str__(self):
 		return self.other_details.product_name
+
 class apartments(models.Model):
 	other_details=models.ForeignKey(products,default=None)
 	rooms=models.CharField(max_length=100,default='',blank=True)
@@ -240,10 +246,12 @@ class apartments(models.Model):
 	enddate=models.CharField(max_length=100,default='',blank=True)
 	def __str__(self):
 		return self.other_details.product_name
+
 class tag_list(models.Model):
 	tag_id=models.IntegerField(default=0,primary_key=True)
 	TAGS=[('',''),('ABC','ABC')]
 	tag_name=models.CharField(max_length=100,choices=TAGS,default=None)		
+
 
 class books(models.Model):
 	other_details=models.ForeignKey(products,default=None)
@@ -258,6 +266,7 @@ class books(models.Model):
 	college=models.CharField(max_length=100,default='')
 	def __str__(self):
 		return self.other_details.product_name
+
 class user_interested(models.Model):
 	user_id=models.ForeignKey(users)
 	product_id=models.ForeignKey(products)
