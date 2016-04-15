@@ -327,7 +327,7 @@ def create_post(request):
 	number_of_sharers1=input1['product']['Sharers']
 	number_of_sharers_left1=input1['product']['Sharers']
 	gender1=input1['product']['Gender']
-	location=input1['product']['Location']
+	
 	ci=categories.objects.get(category_name=category)
 	p=products.objects.create(
 		category_id=ci,
@@ -339,11 +339,12 @@ def create_post(request):
 		number_of_sharers=number_of_sharers1,
 		number_of_sharers_left=number_of_sharers_left1,
 		gender=gender1,
-		location=location
+		
 		)
 	options=input1['options']
 	ed=input1['subproduct']
 	if(category=='Apartments'):
+
 		a=apartments.objects.create(
 			kitchen=options[0]['Option_Value'],
 			internet=options[1]['Option_Value'],
@@ -369,6 +370,7 @@ def create_post(request):
 			enddate=ed['End_Date'],
 			in_time=ed['IN_Time_Value'],
 			out_time=ed['OUT_Time_Value'],
+			location=ed['Location']
 		)
 	elif(category=='Cabs'):
 		
