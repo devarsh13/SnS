@@ -1014,7 +1014,7 @@ def chat_history_data(request):
 		chats.append(chat)
 	for i in xrange(0,len(chats)):
 		for j in xrange(i,len(chats)-1):
-			if(chats[j]['Timestamp']<chats[j+1]['Timestamp']):
+			if(chats[j]['Timestamp']>chats[j+1]['Timestamp']):
 				temp=chats[j]
 				chats[j]=chats[j+1]
 				chats[j+1]=temp
@@ -1031,6 +1031,7 @@ def add_chat(request):
 	u2=users.objects.get(user_id=User_Id)
 	Message=input1['Message']
 	chat_history.objects.create(sender=u1,receiver=u2,message=Message,timestamp=datetime.now())
+
 
 	return JsonResponse({'status':0})
 
