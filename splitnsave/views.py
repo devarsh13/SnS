@@ -1114,7 +1114,7 @@ def admin_data(request):
 		temp={'Title':i.product_name,'Product_Id':i.product_id,'Reports':user_report_post.objects.filter(product_id=p).count(),'Image_Link':str(i.image_url)}
 		products1.append(temp)
 	return JsonResponse({'Users':users1,'Products':products1})
-
+@csrf_exempt
 def delete_user(request):
 	input1=json.loads(request.body)
 	user_id=input1['User_Id']
@@ -1122,6 +1122,7 @@ def delete_user(request):
 	u.delete()
 	return JsonResponse({'status':0})
 
+@csrf_exempt
 def delete_product(request):
 	input1=json.loads(request.body)
 	product_id=input1['Product_Id']
@@ -1129,6 +1130,7 @@ def delete_product(request):
 	p.delete()
 	return JsonResponse({'status':0})
 
+@csrf_exempt
 def notifications(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
