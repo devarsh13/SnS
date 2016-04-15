@@ -111,7 +111,7 @@ def userprofile(request):
 	except:
 		report_status=0
 		pass
-	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city,'Institute':u.institute,'Birthdate':u.birthday,'Profession_Name':u.profession,'Gender':u.gender,'Status_Confirm':status,'Status_Report':report_status,'Institute_Name':u.institute,'Rating':u.rating}}
+	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city,'Institute':u.institute,'Birthdate':u.birthday,'Profession_Name':u.profession,'Gender':u.gender,'Status_Confirm':status,'Status_Report':report_status,'Institute_Name':u.institute,'Rating':u.rating,'Image_Link':u.image_url}}
 	return JsonResponse(d)
 #Send old password to frontend
 @csrf_exempt
@@ -184,7 +184,7 @@ def transactions(request):
 			Status=0
 			if(rating!=0):
 				Status=1
-			user_details={'First_Name':k.first_name,'Last_Name':k.last_name,'User_Id':k.user_id,'User_Image':k.image_url,'Rating':str(rating.rating),'Status':Status}
+			user_details={'First_Name':k.first_name,'Last_Name':k.last_name,'User_Id':k.user_id,'User_Image':k.image_url,'Rating':str(rating.rating),'Status':Status,'Image_Link':k.image_url}
 			details['Sharer'].append(user_details)
 		products.append(details)
 	d={'products':products}
