@@ -106,7 +106,7 @@ class products(models.Model):
 	confirm_date=models.DateField(null=True,blank=True,default=None)
 	post_date=models.DateField(default=datetime.date.today(),null=True)
 	location=models.CharField(max_length=100,default=None,null=True,blank=True)
-	
+
 	def __str__(self):
 		return str(self.product_name)
 
@@ -280,5 +280,7 @@ class chat_history(models.Model):
 	timestamp=models.DateTimeField(default=datetime.datetime.now())
 
 class notifications(models.Model):
-	user_id=models.ForeignKey(users,default=None)
+	poster=models.ForeignKey(users,default=None,related_name='poster')
+	seeker=models.ForeignKey(users,default=None,related_name='seeker')
 	product_id=models.ForeignKey(products,default=None)
+	status=models.IntegerField(default=0)
