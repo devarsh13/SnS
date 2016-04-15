@@ -265,7 +265,7 @@ def delete_my_posts(request):
 	input1=json.loads(request.body)
 	Product_Id=input1['Product_Id']
 	p=products.objects.get(product_id=Product_Id)
-	i.delete()
+	p.delete()
 	return JsonResponse({'status':0})
 
 @csrf_exempt
