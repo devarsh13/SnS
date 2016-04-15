@@ -281,9 +281,10 @@ def update_my_posts(request):
 	ui.save()
 	if(ui.status=='2' or ui.status==2):
 		p.number_of_sharers_left=p.number_of_sharers_left-1
-		ui.save()
+		p.save()
 	if(ui.status=='3' or ui.status==3):
 		p.number_of_sharers_left=p.number_of_sharers_left+1
+		p.save()
 		ui.delete()
 	
 	
