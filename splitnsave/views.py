@@ -298,6 +298,7 @@ def confirm_post(request):
 	i=p
 	u=user_interested.objects.filter(product_id=p,status=2)
 	p.status=3
+	p.number_of_sharers_left=0
 	p.save()
 	for i in u:
 		r=transaction_ratings.objects.create(product_id=p,rater=p.user_id,ratee=i.user_id,rating=0)
@@ -1098,3 +1099,4 @@ def forgot_password(request):
 	u.password=code
 	u.save()
 	return JsonResponse({'status':0})
+
