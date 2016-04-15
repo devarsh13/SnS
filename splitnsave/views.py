@@ -10,10 +10,8 @@ from time import strptime
 import smtplib
 from datetime import datetime
 # Create your views here.
-def index(request):
-	return render(request,'index.html')
-@csrf_exempt
 #Check Whether the email already exists in the database or not
+@csrf_exempt
 def signup_check(request):
 	Email=json.loads(request.body)
 	exists=False
@@ -30,6 +28,7 @@ def signup_check(request):
 	
 	msg['email']=Email
 	return JsonResponse(msg)
+
 #Get the user data upon signup from frontend and store it into database
 @csrf_exempt
 def signup(request):
@@ -49,6 +48,7 @@ def signup(request):
 
 
 	return JsonResponse({'status':0,'First_Name':u.first_name})
+
 #Send data for a given user from database to the frontend
 @csrf_exempt
 def editprofile(request):
@@ -57,6 +57,7 @@ def editprofile(request):
 	u=users.objects.get(email=Email)
 	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city,'Institute_Name':u.institute,'Birthdate':u.birthday,'Profession_Name':u.profession,'Gender':u.gender,'Status':u.status,'Image_Link':u.image_url}}
 	return JsonResponse(d)
+
 #Update user data after the profile has changed
 @csrf_exempt
 def edit_profile_change(request):
@@ -77,6 +78,7 @@ def edit_profile_change(request):
 	u.image_url=input1['Image_Link']
 	u.save()
 	return JsonResponse({'status':'0'})
+
 #Send data for a given user from database to the frontend
 @csrf_exempt
 def userprofile(request):
@@ -115,6 +117,7 @@ def userprofile(request):
 		pass
 	d={'details':{'User_Id':u.user_id,'First_Name':u.first_name,'Last_Name':u.last_name,'Email':u.email,'Password':u.password,'Verified':u.verified,'ContactNumber':u.contact_number,'CityName':u.city,'Institute':u.institute,'Birthdate':u.birthday,'Profession_Name':u.profession,'Gender':u.gender,'Status_Confirm':status,'Status_Report':report_status,'Institute_Name':u.institute,'Rating':u.rating,'Image_Link':u.image_url}}
 	return JsonResponse(d)
+
 #Send old password to frontend
 @csrf_exempt
 def settings(request):
@@ -123,6 +126,7 @@ def settings(request):
 	u=users.objects.get(email=Email)
 	d={'Old_Password':u.password}
 	return JsonResponse(d)
+
 #update the old password
 @csrf_exempt
 def change_password(request):
@@ -132,6 +136,7 @@ def change_password(request):
 	u.password=input1['New_Password']
 	u.save()
 	return JsonResponse({'status':0})
+
 #Send Dashboard details to frontend
 @csrf_exempt
 def dashboard(request):
@@ -170,6 +175,7 @@ def dashboard(request):
 
 	data['details']={'First_Name':u1.first_name,'Last_Name':u1.last_name,'User_Id':u1.user_id,'Image_Link':u1.image_url}
 	return JsonResponse(data)
+
 #Send transaction history to the frontend
 @csrf_exempt	
 def transactions(request):
@@ -204,6 +210,7 @@ def transactions(request):
 		products.append(details)
 	d={'products':products}
 	return JsonResponse(d)
+
 #update rating of a given user
 @csrf_exempt
 def change_rating(request):
@@ -226,6 +233,7 @@ def change_rating(request):
 	u1.save()
 	return JsonResponse({'status':0})
 
+#send product details of a given user
 @csrf_exempt
 def my_posts(request):
 	input1=json.loads(request.body)
@@ -260,6 +268,7 @@ def my_posts(request):
 		d['Products'].append(temp)
 	return JsonResponse(d)
 
+#Delete a post
 @csrf_exempt
 def delete_my_posts(request):
 	input1=json.loads(request.body)
@@ -268,6 +277,7 @@ def delete_my_posts(request):
 	p.delete()
 	return JsonResponse({'status':0})
 
+#Update post
 @csrf_exempt
 def update_my_posts(request):
 	input1=json.loads(request.body)
@@ -290,6 +300,8 @@ def update_my_posts(request):
 	
 	
 	return JsonResponse({'status':0})
+
+#Confirm deal
 @csrf_exempt	
 def confirm_post(request):
 	input1=json.loads(request.body)
@@ -307,6 +319,8 @@ def confirm_post(request):
 		transaction_history.objects.create(seeker=i.user_id,product_id=p,poster=p.user_id,rating=r,transact_status=randint(1,100000))
 		
 	return JsonResponse({'status':0})
+
+#Delete Account of a given user. Done by the user himself
 @csrf_exempt
 def delete_account(request):
 	input1=json.loads(request.body)
@@ -315,6 +329,7 @@ def delete_account(request):
 	u.delete()
 	return JsonResponse({'status':0})
 
+#Report Another User
 @csrf_exempt
 def report_a_user(request):
 	input1=json.loads(request.body)
@@ -327,6 +342,7 @@ def report_a_user(request):
 	u1.save()
 	return JsonResponse({'status':0})
 
+#Create new post
 @csrf_exempt
 def create_post(request):
 	input1=json.loads(request.body)
@@ -448,6 +464,7 @@ def create_post(request):
 			)
 	return JsonResponse({'status':0})
 
+#Edit a post for a given user and product
 @csrf_exempt
 def edit_post(request):
 	input1=json.loads(request.body)
@@ -546,6 +563,7 @@ def edit_post(request):
 
 	return JsonResponse(d)
 
+#Update the database for the given data for a given User
 @csrf_exempt
 def edit_data(request):
 	input1=json.loads(request.body)
@@ -672,26 +690,7 @@ def edit_data(request):
 		l.save()
 	return JsonResponse({'status':0})
 
-@csrf_exempt
-def send_email(request):
-
-	
-	to = 'tanayagl@gmail.com'
-	user = 'devarshsheth13@gmail.com'
-	pwd = 'idontknowits13'
-	smtpserver = smtplib.SMTP("smti.gmail.com",587)
-	smtpserver.ehlo()
-	smtpserver.starttls()
-	smtpserver.ehlo() # extra characters to permit edit
-	smtpserver.login(user, pwd)
-	header = 'To:' + to + '\n' + 'From: ' + user + '\n' + 'Subject:testing \n'
-	print header
-	msg = header + '\n this is test msg from splitnsave \n\n'
-	smtpserver.sendmail(user, to, msg)
-	print 'done!'
-	smtpserver.quit()
-	return JsonResponse({'status':0})
-
+#Send Product_details for a given product to the frontend
 @csrf_exempt
 def product_details(request):
 	input1=json.loads(request.body)
@@ -812,6 +811,7 @@ def product_details(request):
 
 	return JsonResponse(d)
 
+#Verify the login credentials
 @csrf_exempt
 def login(request):
 	input1=json.loads(request.body)
@@ -827,6 +827,8 @@ def login(request):
 		return JsonResponse({'status':0,'First_Name':u.first_name})
 	else:
 		return JsonResponse({'status':1,'First_Name':''})
+
+#Update the status of user interested for the given product
 @csrf_exempt
 def send_request(request):
 	input1=json.loads(request.body)
@@ -839,6 +841,8 @@ def send_request(request):
 
 
 	return JsonResponse({'status':0})
+
+#Report product
 @csrf_exempt
 def report_product(request):
 	input1=json.loads(request.body)
@@ -851,6 +855,7 @@ def report_product(request):
 
 	return JsonResponse({'status':0})
 
+#Return list of products for a given category
 @csrf_exempt
 def category_products(request):
 	input1=json.loads(request.body)
@@ -977,6 +982,7 @@ def category_products(request):
 		products1.append(d)
 	return JsonResponse({'products':products1})
 
+#Send companion history to users dashboard
 @csrf_exempt
 def send_users(request):
 	input1=json.loads(request.body)
@@ -1003,6 +1009,8 @@ def send_users(request):
 		temp={'First_Name':i.first_name,'Last_Name':i.last_name,'Image_Link':i.image_url,'User_Id':i.user_id}
 		users1.append(temp)
 	return JsonResponse({'Users':users1})
+
+#Return chat messages between the given users
 @csrf_exempt
 def chat_history_data(request):
 	input1=json.loads(request.body)
@@ -1029,8 +1037,7 @@ def chat_history_data(request):
 				chats[j+1]=temp
 	return JsonResponse({'Users':users1,'Chats':chats})
 
-
-
+#Add a new message to the database between the users
 @csrf_exempt
 def add_chat(request):
 	input1=json.loads(request.body)
@@ -1044,6 +1051,7 @@ def add_chat(request):
 
 	return JsonResponse({'status':0})
 
+#Send Verification Code to the new user's email to verify his identity
 @csrf_exempt
 def verify_user(request):
 	input1=json.loads(request.body)
@@ -1070,6 +1078,7 @@ def verify_user(request):
 	smtpserver.quit()
 	return JsonResponse({'code':code})
 
+#Send new password to User's email
 @csrf_exempt
 def forgot_password(request):
 	input1=json.loads(request.body)
@@ -1101,6 +1110,7 @@ def forgot_password(request):
 	u.save()
 	return JsonResponse({'status':0})
 
+#Send all users and products details to admin
 @csrf_exempt
 def admin_data(request):
 	u=users.objects.all()
@@ -1114,6 +1124,8 @@ def admin_data(request):
 		temp={'Title':i.product_name,'Product_Id':i.product_id,'Reports':user_report_post.objects.filter(product_id=p).count(),'Image_Link':i.image_url}
 		products1.append(temp)
 	return JsonResponse({'Users':users1,'Products':products1})
+
+#Delete a user account, Done by admin
 @csrf_exempt
 def delete_user(request):
 	input1=json.loads(request.body)
@@ -1122,6 +1134,7 @@ def delete_user(request):
 	u.delete()
 	return JsonResponse({'status':0})
 
+#Delete a product, Done by admin
 @csrf_exempt
 def delete_product(request):
 	input1=json.loads(request.body)
@@ -1130,6 +1143,7 @@ def delete_product(request):
 	p.delete()
 	return JsonResponse({'status':0})
 
+#Send notifications to user dashboard
 @csrf_exempt
 def notifications(request):
 	input1=json.loads(request.body)
