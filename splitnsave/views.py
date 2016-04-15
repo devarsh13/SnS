@@ -962,15 +962,15 @@ def send_users(request):
 	u1=user_interested.objects.filter(user_id)
 	p=product.objects.filter(email=Email)
 	u2=user_interested.objects.filter(product_id=p)
-	users=[]
+	users2=[]
 	users1=[]
 	for i in u1:
 		if(i.status==2 or i.status=='2'):
-			users.append(i.product_id.user_id)
+			users2.append(i.product_id.user_id)
 	for i in u2:
 		if(i.status==2 or i.status=='2'):
-			users.append(i.user_id)
-	for i in users:
+			users2.append(i.user_id)
+	for i in users2:
 		temp={'First_Name':i.first_name,'Last_Name':i.last_name,'Image_Link':i.image_url,'User_Id':i.user_id}
 		users1.append(temp)
 	return JsonResponse({'Users':users1})
