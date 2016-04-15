@@ -1113,4 +1113,8 @@ def admin_data(request):
 	for i in p:
 		temp={'Title':p.product_name,'Product_Id':p.product_id,'Reports':user_report_post.objects.filter(product_id=p).count(),'Image_Link':p.image_url}
 		products1.append(temp)
-	return JsonResponse('Users':users1,'Products':products1)
+	return JsonResponse({'Users':users1,'Products':products1})
+
+def delete_user(request):
+	input1=json.loads(request.body)
+	pass
