@@ -106,7 +106,7 @@ class products(models.Model):
 	confirm_date=models.DateField(null=True,blank=True,default=None)
 	post_date=models.DateField(default=datetime.date.today(),null=True)
 	location=models.CharField(max_length=100,default=None,null=True,blank=True)
-	reporter_by=models.IntegerField(default=0)
+	
 	def __str__(self):
 		return str(self.product_name)
 
