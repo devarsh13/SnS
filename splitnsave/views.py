@@ -1101,3 +1101,16 @@ def forgot_password(request):
 	u.save()
 	return JsonResponse({'status':0})
 
+@csrf_exempt
+def admin_data(request):
+	u=users.objects.all()
+	users1=[]
+	for i in u:
+		temp={'First_Name':i.first_name,'Last_Name':i.last_name,'Image_Link':i.image_url,'User_Id':i.user_id,'Reports':i.reported_by}
+		users1.append(temp)
+	p=products.objects.all()
+	products1=[]
+	for i in p:
+		temp={'Title':p.product_name,'Product_Id':p.product_id,'Reports':user_report_post.objects.filter(product_id=p).count(),'Image_Link':p.image_url}
+		products1.append(temp)
+	return JsonResponse('Users':users1,'Products':products1)
