@@ -958,7 +958,8 @@ def category_products(request):
 def send_users(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
-	u1=user_interested.objects.filter(email=Email)
+	u=users.objects.get(email=Email)
+	u1=user_interested.objects.filter(user_id)
 	p=product.objects.filter(email=Email)
 	u2=user_interested.objects.filter(product_id=p)
 	users=[]
