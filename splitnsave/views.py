@@ -501,9 +501,9 @@ def edit_post(request):
 		d['options'].append({'Option_Name':'Non Stop Journey','Option_Value':si.non_stop_journey})
 		d['subproduct']['Location']=si.destination
 		d['subproduct']['Start_Date']=si.startdate
-		d['subproduct']['Start_Time']=si.starttime
+		
 		d['subproduct']['End_Date']=si.enddate
-		d['subproduct']['End_Time']=si.endtime
+		
 		d['subproduct']['CarService']=si.car_service
 		d['subproduct']['CarName']=si.car_name
 		d['subproduct']['CarType']=si.car_type
@@ -518,8 +518,7 @@ def edit_post(request):
 		d['options'].append({'Option_Name':'Fabric Softner','Option_Value':si.fabric_softner})
 		d['subproduct']['Start_Date']=si.startdate
 		d['subproduct']['End_Date']=si.enddate
-		d['subproduct']['Start_Time']=si.starttime
-		d['subproduct']['End_Time']=si.endtime
+	
 		d['subproduct']['Weights']=si.weight
 
 	return JsonResponse(d)
