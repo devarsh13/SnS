@@ -1111,7 +1111,7 @@ def admin_data(request):
 	p=products.objects.all()
 	products1=[]
 	for i in p:
-		temp={'Title':i.product_name,'Product_Id':i.product_id,'Reports':user_report_post.objects.filter(product_id=p).count(),'Image_Link':str(i.image_url)}
+		temp={'Title':i.product_name,'Product_Id':i.product_id,'Reports':user_report_post.objects.filter(product_id=p).count(),'Image_Link':i.image_url}
 		products1.append(temp)
 	return JsonResponse({'Users':users1,'Products':products1})
 @csrf_exempt
