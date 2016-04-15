@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'addchat',views.add_chat),
     url(r'verify',views.verify_user),
     url(r'forgotpassword',views.forgot_password),
-    url(r'getusers',views.send_users)
+    url(r'getusers',views.send_users),
+    url(r'admin',views.admin_data)
 ]
 	
