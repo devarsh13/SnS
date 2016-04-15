@@ -485,6 +485,10 @@ def edit_post(request):
 		d['subproduct']['IN_Time_Value']=si.in_time
 		d['subproduct']['OUT_Time_Value']=si.out_time
 		d['subproduct']['Location']=si.location
+		d['product']['Address']=si.address
+		d['product']['Start_Date']=si.startdate
+		d['product']['End_Date']=si.enddate
+		d['product']['BathRoom_Type']=si.bathroom_type
 
 	if(d['Category_Id']=='2'):
 		d['options'].append({'Option_Name':'No Smoking','Option_Value':si.smoking})
@@ -583,6 +587,9 @@ def edit_data(request):
 		a.bathroom_type=ed['BathRoom_Type']
 		a.in_time=ed['IN_Time_Value']
 		a.out_time=ed['OUT_Time_Value']
+		a.address=ed['Address']
+		a.startdate=ed['Start_Date']
+		a.enddate=ed['End_Date']
 		a.save()
 	elif(category=='Cabs'):
 		
@@ -725,6 +732,9 @@ def product_details(request):
 		d['product']['OUT_Time_Value']=si.out_time
 		d['product']['Location']=si.location
 		d['product']['Address']=si.address
+		d['product']['Start_Date']=si.startdate
+		d['product']['End_Date']=si.enddate
+		d['product']['BathRoom_Type']=si.bathroom_type
 	if(d['Category_Id']=='2'):
 		d['options'].append({'Option_Name':'No Smoking','Option_Value':si.smoking})
 		d['options'].append({'Option_Name':'No Kids','Option_Value':si.kids})
