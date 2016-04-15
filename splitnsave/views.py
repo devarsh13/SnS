@@ -152,18 +152,15 @@ def dashboard(request):
 			if i.product_id.user_id not in u:
 				u.append(i.product_id.user_id)
 	output = []
-    seen = set()
-    for value in u:
-        # If value has not been encountered yet,
-        # ... add it to both list and set.
-        if value not in seen:
-            output.append(value)
-            seen.add(value)
+	seen = set()
+	for value in u:
+		if value not in seen:
+			output.append(value)
+			seen.add(value)
     
 
 # Remove duplicates from this list.
-values = [5, 5, 1, 1, 2, 3, 4, 4, 5]
-result = remove_duplicates(values)
+
 	data={'users':[],'notifications':[{'Message':'aaaaa','Type':1}],'details':[]}
 	for i in output:
 		temp_dict={'First_Name':i.first_name,'Last_Name':i.last_name,'User_Id':i.user_id,'Image_Link':i.image_url}
