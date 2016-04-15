@@ -144,11 +144,13 @@ def dashboard(request):
 
 		ui=user_interested.objects.filter(product_id=i,status=2)
 		for j in ui:
-			u.append(j.user_id)
+			if j not in u:
+				u.append(j.user_id)
 
 	for i in abc:
 		if(i.status==2):
-			u.append(i.product_id.user_id)
+			if i.product_id.user_id not in u:
+				u.append(i.product_id.user_id)
 	data={'users':[],'notifications':[{'Message':'aaaaa','Type':1}],'details':[]}
 	for i in u:
 		temp_dict={'First_Name':i.first_name,'Last_Name':i.last_name,'User_Id':i.user_id,'Image_Link':i.image_url}
