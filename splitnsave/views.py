@@ -7,6 +7,7 @@ import json
 import ast
 from time import strptime
 import smtplib
+from datetime import datetime
 # Create your views here.
 def index(request):
 	return render(request,'index.html')
@@ -1029,7 +1030,7 @@ def add_chat(request):
 	u1=users.objects.get(email=Email)
 	u2=users.objects.get(user_id=User_Id)
 	Message=input1['Message']
-	chat_history.objects.create(sender=u1,receiver=u2,message=Message)
+	chat_history.objects.create(sender=u1,receiver=u2,message=Message,timestamp=datetime.now())
 
 	return JsonResponse({'status':0})
 
