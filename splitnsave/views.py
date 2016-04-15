@@ -182,7 +182,7 @@ def transactions(request):
 	products=[]
 	for i in transaction_list:
 		temp=i.product_id
-		details={'Product_Name':temp.product_name,'Product_Image':temp.image_url,'Product_Id':temp.product_id,'Confirm_Date':temp.confirm_date,'Price':temp.price,'Location':temp.location}
+		details={'Product_Name':temp.product_name,'Product_Image':temp.image_url,'Product_Id':temp.product_id,'Confirm_Date':str(temp.confirm_date),'Price':temp.price,'Location':temp.location,'Sharers':temp.number_of_sharers}
 		details['Sharer']=[]
 		sharers=[]
 		aaa=transaction_history.objects.filter(product_id=temp)
@@ -294,6 +294,7 @@ def confirm_post(request):
 	input1=json.loads(request.body)
 	Product_Id=input1['Product_Id']
 	p=products.objects.get(product_id=Product_Id)
+	p.confirm_date(datetime.now())
 	i=p
 	u=user_interested.objects.filter(product_id=p,status=2)
 	p.status=3
