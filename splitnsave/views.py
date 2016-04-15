@@ -960,7 +960,7 @@ def send_users(request):
 	Email=input1['Email']
 	u=users.objects.get(email=Email)
 	u1=user_interested.objects.filter(user_id=u)
-	p=products.objects.filter(email=Email)
+	p=products.objects.filter(user_id=u)
 	u2=user_interested.objects.filter(product_id=p)
 	users2=[]
 	users1=[]
