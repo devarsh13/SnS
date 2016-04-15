@@ -278,9 +278,3 @@ class chat_history(models.Model):
 	receiver=models.ForeignKey(users,default=None,related_name='receiver')
 	message=models.CharField(max_length=100000,default=None)
 	timestamp=models.DateTimeField(default=datetime.datetime.now())
-
-class notifications(models.Model):
-	poster=models.ForeignKey(users,default=None,related_name='n_poster')
-	seeker=models.ForeignKey(users,default=None,related_name='n_seeker')
-	product_id=models.ForeignKey(products,default=None)
-	status=models.IntegerField(default=0)
