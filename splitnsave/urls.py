@@ -33,6 +33,8 @@ urlpatterns = [
     url(r'verify',views.verify_user),
     url(r'forgotpassword',views.forgot_password),
     url(r'getusers',views.send_users),
-    url(r'admin',views.admin_data)
+    url(r'admin',views.admin_data),
+    url(r'deleteuser',views.delete_user),
+    url(r'deleteproduct',views.delete_product)
 ]
 	

@@ -1117,4 +1117,14 @@ def admin_data(request):
 
 def delete_user(request):
 	input1=json.loads(request.body)
-	pass
+	user_id=input1['User_Id']
+	u=users.objects.get(user_id=user_id)
+	u.delete()
+	return JsonResponse({'status':0})
+
+def delete_product(request):
+	input1=json.loads(request.body)
+	product_id=input1['Product_Id']
+	p=products.objects.get(product_id=product_id)
+	p.delete()
+	return JsonResponse({'status':0})
