@@ -1011,7 +1011,12 @@ def chat_history_data(request):
 	for i in ch1:
 		chat={'username':i.sender.first_name,'User2':i.receiver.first_name,'content':i.message,'Timestamp':i.timestamp}
 		chats.append(chat)
-	chats=sorted(chats,key=lambda k:k['Timestamp'])
+	for i in xrange(0,len(chats)):
+		for j in xrange(i,len(chats)):
+			if(chats[j]['Timestamp']<chats[j+1]['Timestamp']):
+				temp=chats[j]
+				chats[j]=chats[j+1]
+				chats[j+1]=temp
 	return JsonResponse({'Users':users1,'Chats':chats})
 
 
