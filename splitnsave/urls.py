@@ -2,7 +2,7 @@ from django.conf.urls import include, url
 import views
 
 urlpatterns = [
-    url(r'^index',views.index),
+    
     url(r'signupcheck',views.signup_check),
     url(r'editprofiledata',views.editprofile),
     url(r'editprofile',views.edit_profile_change),
@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'createpost',views.create_post),
     url(r'editpost',views.edit_post),
     url(r'editdata',views.edit_data),
-    url(r'sendmail',views.send_email),
+    
     url(r'productdetail',views.product_details),
     url(r'login',views.login),
     url(r'sendrequest',views.send_request),

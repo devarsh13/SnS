@@ -1148,9 +1148,10 @@ def delete_product(request):
 def notifications(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
-	ui=user_interested.objects.filter(email=Email)
-	a=[]
 	u=users.objects.get(email=Email)
+	ui=user_interested.objects.filter(user_id=u)
+	a=[]
+	
 	for i in ui:
 		if i.status==2 or i.status=='2':
 			temp={'Product_Id':i.product_id.product_id,'Product_Name':i.product_id.product_name,'Message':'Your request for Product %s has been accepted' % i.product_id.product_name,'Message_Type':1}
@@ -1162,8 +1163,9 @@ def notifications(request):
 			b.append(temp)
 	p=products.objects.filter(user_id=u)
 	ui=user_interested.objects.filter(product_id=p)
+	c=[]
 	for i in ui:
-		if i.status==2 or i.status=='2':
+		if i.status==1 or i.status=='1':
 			temp={'Product_Id':i.product_id.product_id,'Product_Name':i.product_id.product_name,'Message':'You have received a request for %s' % i.product_id.product_name,'Message_Type':3}
 			c.append(temp)
 
