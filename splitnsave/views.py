@@ -505,7 +505,7 @@ def edit_post(request):
 		d['subproduct']['Tag1']=si.tag1
 		d['subproduct']['Tag2']=si.tag2
 		d['subproduct']['Tag3']=si.tag3
-		d['subproduct']['Location']=si.location
+		
 		d['subproduct']['College']=si.college
 
 	if(d['Category_Id']=='1'):
@@ -528,11 +528,11 @@ def edit_post(request):
 		d['subproduct']['Bath_Rooms']=si.number_of_bathrooms
 		d['subproduct']['IN_Time_Value']=si.in_time
 		d['subproduct']['OUT_Time_Value']=si.out_time
-		d['subproduct']['Location']=si.location
-		d['product']['Address']=si.address
-		d['product']['Start_Date']=si.startdate
-		d['product']['End_Date']=si.enddate
-		d['product']['BathRoom_Type']=si.bathroom_type
+		
+		d['subproduct']['Address']=si.address
+		d['subproduct']['Start_Date']=si.startdate
+		d['subproduct']['End_Date']=si.enddate
+		d['subproduct']['BathRoom_Type']=si.bathroom_type
 
 	if(d['Category_Id']=='2'):
 		d['options'].append({'Option_Name':'No Smoking','Option_Value':si.smoking})
