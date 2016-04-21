@@ -787,7 +787,7 @@ def product_details(request):
 		d['options'].append({'Option_Name':'Fabric Softner','Option_Value':si.fabric_softner})
 		d['product']['Start_Date']=si.startdate
 		d['product']['End_Date']=si.enddate
-		
+		d['product']['Start_Time']=si.starttime
 		d['product']['Weights']=si.weight
 
 	d['user']['First_Name']=u.first_name
@@ -982,6 +982,12 @@ def category_products(request):
 
 		
 		products1.append(d)
+	for i in xrange(0,len(products1)):
+		for j in xrange(i,len(products1)-1):
+			if(products1[j]['products']['Post_Date']>products1[j+1]['products']['Post_Date']):
+				temp=products1[j]['products']['Post_Date']
+				products1[j]['products']['Post_Date']=products1[j+1]['products']['Post_Date']
+				products1[j+1]['products']['Post_Date']=temp
 	return JsonResponse({'products':products1})
 
 #Send companion history to users dashboard
