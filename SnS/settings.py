@@ -31,7 +31,7 @@ SECRET_KEY = 's%2jk$557ddve!dd33iv!ezi^h)vcc_zn!#p!%3*srp)lwhb1('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['splitnsave.pythonanywhere.com']
 
 
 # Application definition

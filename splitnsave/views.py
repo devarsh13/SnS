@@ -256,6 +256,7 @@ def my_posts(request):
 		temp['Price']=i.price
 		temp['Sharers_Left']=i.number_of_sharers_left
 		temp['Sharer']=[]
+		temp['Sharers']=i.number_of_sharers
 		u=user_interested.objects.filter(product_id=i)
 		for j in u:
 			temp_user={}
@@ -366,7 +367,7 @@ def create_post(request):
 	number_of_sharers1=input1['product']['Sharers']
 	number_of_sharers_left1=input1['product']['Sharers']
 	gender1=input1['product']['Gender']
-	
+	location=input1['product']['Location']	
 	ci=categories.objects.get(category_name=category)
 	p=products.objects.create(
 		category_id=ci,
@@ -378,6 +379,7 @@ def create_post(request):
 		number_of_sharers=number_of_sharers1,
 		number_of_sharers_left=number_of_sharers_left1,
 		gender=gender1,
+		location=location,
 		
 		)
 	options=input1['options']
@@ -1148,9 +1150,10 @@ def delete_product(request):
 def notifications(request):
 	input1=json.loads(request.body)
 	Email=input1['Email']
-	ui=user_interested.objects.filter(email=Email)
-	a=[]
 	u=users.objects.get(email=Email)
+	ui=user_interested.objects.filter(user_id=u)
+	a=[]
+	
 	for i in ui:
 		if i.status==2 or i.status=='2':
 			temp={'Product_Id':i.product_id.product_id,'Product_Name':i.product_id.product_name,'Message':'Your request for Product %s has been accepted' % i.product_id.product_name,'Message_Type':1}
@@ -1162,8 +1165,9 @@ def notifications(request):
 			b.append(temp)
 	p=products.objects.filter(user_id=u)
 	ui=user_interested.objects.filter(product_id=p)
+	c=[]
 	for i in ui:
-		if i.status==2 or i.status=='2':
+		if i.status==1 or i.status=='1':
 			temp={'Product_Id':i.product_id.product_id,'Product_Name':i.product_id.product_name,'Message':'You have received a request for %s' % i.product_id.product_name,'Message_Type':3}
 			c.append(temp)
 
