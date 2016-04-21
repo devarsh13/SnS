@@ -984,11 +984,11 @@ def category_products(request):
 		products1.append(d)
 	for i in xrange(0,len(products1)):
 		for j in xrange(i,len(products1)-1):
-			if(products1[j]['products']['Post_Date']>products1[j+1]['products']['Post_Date']):
-				temp=products1[j]['products']['Post_Date']
-				products1[j]['products']['Post_Date']=products1[j+1]['products']['Post_Date']
-				products1[j+1]['products']['Post_Date']=temp
-	return JsonResponse({'products':products1})
+			if(products1[j]['product']['Post_Date']>products1[j+1]['product']['Post_Date']):
+				temp=products1[j]['product']['Post_Date']
+				products1[j]['product']['Post_Date']=products1[j+1]['product']['Post_Date']
+				products1[j+1]['product']['Post_Date']=temp
+	return JsonResponse({'product':products1})
 
 #Send companion history to users dashboard
 @csrf_exempt
