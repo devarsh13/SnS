@@ -988,7 +988,7 @@ def category_products(request):
 				temp=products1[j]['product']['Post_Date']
 				products1[j]['product']['Post_Date']=products1[j+1]['product']['Post_Date']
 				products1[j+1]['product']['Post_Date']=temp
-	return JsonResponse({'product':products1})
+	return JsonResponse({'products':products1})
 
 #Send companion history to users dashboard
 @csrf_exempt
