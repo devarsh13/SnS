@@ -733,7 +733,7 @@ def product_details(request):
 		d['product']['Tag1']=si.tag1
 		d['product']['Tag2']=si.tag2
 		d['product']['Tag3']=si.tag3
-		d['product']['Location']=si.location
+		
 		d['product']['College']=si.college
 
 	if(d['Category_Id']=='1'):
@@ -756,7 +756,7 @@ def product_details(request):
 		d['product']['Bath_Rooms']=si.number_of_bathrooms
 		d['product']['IN_Time_Value']=si.in_time
 		d['product']['OUT_Time_Value']=si.out_time
-		d['product']['Location']=si.location
+		
 		d['product']['Address']=si.address
 		d['product']['Start_Date']=si.startdate
 		d['product']['End_Date']=si.enddate
@@ -925,7 +925,7 @@ def category_products(request):
 			d['product']['Tag1']=sp.tag1
 			d['product']['Tag2']=sp.tag2
 			d['product']['Tag3']=sp.tag3
-			d['product']['Location']=sp.location
+			
 			d['product']['College']=sp.college
 
 		if(d['Category_Id']=='1'):
@@ -948,7 +948,7 @@ def category_products(request):
 			d['product']['Bath_Rooms']=sp.number_of_bathrooms
 			d['product']['IN_Time_Value']=sp.in_time
 			d['product']['OUT_Time_Value']=sp.out_time
-			d['product']['Location']=sp.location
+			
 
 		if(d['Category_Id']=='2'):
 			d['product']['options'].append({'Option_Name':'No Smoking','Option_Value':sp.smoking})
